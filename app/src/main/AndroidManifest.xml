@@ -11,7 +11,7 @@
         android:theme="@style/Theme.Finder"
         >
         <activity
-            android:name=".screen.MainActivity"
+            android:name=".screen.activity.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Finder">
@@ -22,7 +22,7 @@
         </activity>
 
         <activity
-            android:name=".screen.SplashActivity"
+            android:name=".screen.activity.SplashActivity"
             android:exported="true"
             android:theme="@style/SplashTheme">
 
@@ -33,9 +33,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".screen.SignActivity"
+        <activity android:name=".screen.activity.SignActivity"
             android:exported="false"
-            android:theme="@style/Theme.Finder">
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>

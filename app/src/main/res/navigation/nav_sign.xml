@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_sign">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_sign"
+    app:startDestination="@id/onBoardingFragment">
+
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.android.finder.screen.fragment.onboarding.OnBoardingFragment"
+        tools:layout="@layout/fragment_on_boarding"
+        android:label="OnBoardingFragment" >
+        <action
+            android:id="@+id/action_onBoardingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.android.finder.screen.fragment.LoginFragment"
+        tools:layout="@layout/fragment_login"
+        android:label="LoginFragment" />
 
 </navigation>

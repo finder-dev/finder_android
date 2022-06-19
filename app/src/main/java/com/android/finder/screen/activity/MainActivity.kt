@@ -1,4 +1,4 @@
-package com.android.finder.screen
+package com.android.finder.screen.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
