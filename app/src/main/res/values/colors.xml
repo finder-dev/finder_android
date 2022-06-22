@@ -9,6 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="mainColor">#FF6609</color>
     <color name="black1">#2C2C2C</color>
+    <color name="darkGray">#121212</color>
+    <color name="black04">#717171</color>
 
     <color name="onBoardingGray">#7E8589</color>
 </resources>

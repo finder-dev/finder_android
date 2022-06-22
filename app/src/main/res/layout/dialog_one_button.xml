@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="25dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/mainDescriptionView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            tools:text="코드 전송"
+            android:textColor="@color/darkGray"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/subDescriptionView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            tools:text="이메일로 코드 번호가 발송되었습니다."
+            android:textColor="@color/black04"
+            android:gravity="center"
+            android:textSize="14dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/confirmButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/mainColor"
+            android:gravity="center"
+            android:padding="18dp"
+            tools:text="확인"
+            android:textColor="@color/white"
+            android:textSize="14dp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
