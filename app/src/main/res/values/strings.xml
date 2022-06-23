@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">F!nder</string>
 
+    <string name="password">비밀번호</string>
+    <string name="login">로그인</string>
+    <string name="sign_up">회원가입</string>
+
     <string name="do_start">시작하기</string>
+    <string name="login_by_email">이메일로 로그인</string>
+    <string name="email_id">아이디(이메일)</string>
+    <string name="login_maintain_check">로그인 상태 유지</string>
+
+    <string name="hint_input_email">이메일 주소를 입력해주세요</string>
+    <string name="hint_input_password">비밀번호를 입력해주세요</string>
+
+    <string name="msg_sign_up_induce">아직 F!nder 회원이 아니라면?</string>
 </resources>
