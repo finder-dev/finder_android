@@ -6,6 +6,7 @@
     <string name="sign_up">회원가입</string>
     <string name="next">다음</string>
 
+    <string name="sign_up_complete">회원가입 완료</string>
     <string name="authentication_request">인증요청</string>
     <string name="authentication_check">인증확인</string>
     <string name="code_number">코드번호</string>
@@ -22,4 +23,5 @@
 
     <string name="msg_sign_up_induce">아직 F!nder 회원이 아니라면?</string>
     <string name="msg_terms_description">개인정보취급방침 및 서비스 약관에 동의 합니다.</string>
+    <string name="msg_complete_sign_up">회원가입을 축하드려요</string>
 </resources>
