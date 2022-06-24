@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="17dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="32dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/select_mbti"
+                android:textColor="@color/black1"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/closeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_close"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="46dp"
+            android:paddingRight="47dp"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:id="@+id/selectOneGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:padding="1dp"
+                android:background="@drawable/bg_gainsboro_stroke"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/selectEButton"
+                    android:layout_width="114dp"
+                    android:layout_height="54dp"
+                    android:background="@drawable/bg_selector_radio"
+                    android:button="null"
+                    android:gravity="center"
+                    android:text="E 외향"
+                    android:textSize="16dp"
+                    android:textColor="@drawable/bg_selector_radio_text_color"
+                    android:textStyle="bold"
+                    android:checked="false"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/gainsboro"/>
+
+                <RadioButton
+                    android:id="@+id/selectIButton"
+                    android:layout_width="114dp"
+                    android:layout_height="54dp"
+                    android:background="@drawable/bg_selector_radio"
+                    android:button="null"
+                    android:gravity="center"
+                    android:text="I 내향"
+                    android:textSize="16dp"
+                    android:textColor="@drawable/bg_selector_radio_text_color"
+                    android:textStyle="bold"
+                    android:checked="false"/>
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/selectTwoGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_gravity="center"
+                android:padding="1dp"
+                android:background="@drawable/bg_gainsboro_stroke"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/selectSButton"
+                    android:layout_width="114dp"
+                    android:layout_height="54dp"
+                    android:background="@drawable/bg_selector_radio"
+                    android:button="null"
+                    android:gravity="center"
+                    android:text="S 현실"
+                    android:textSize="16dp"
+                    android:textColor="@drawable/bg_selector_radio_text_color"
+                    android:textStyle="bold"
+                    android:checked="false"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/gainsboro"/>
+
+                <RadioButton
+                    android:id="@+id/selectNButton"
+                    android:layout_width="114dp"
+                    android:layout_height="54dp"
+                    android:background="@drawable/bg_selector_radio"
+                    android:button="null"
+                    android:gravity="center"
+                    android:text="N 직관"
+                    android:textSize="16dp"
+                    android:textColor="@drawable/bg_selector_radio_text_color"
+                    android:textStyle="bold"
+                    android:checked="false"/>
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/selectThreeGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_gravity="center"
+                android:padding="1dp"
+                android:background="@drawable/bg_gainsboro_stroke"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/selectTButton"
+                    android:layout_width="114dp"
+                    android:layout_height="54dp"
+                    android:background="@drawable/bg_selector_radio"
+                    android:button="null"
+                    android:gravity="center"
+                    android:text="T 사고"
+                    android:textSize="16dp"
+                    android:textColor="@drawable/bg_selector_radio_text_color"
+                    android:textStyle="bold"
+                    android:checked="false"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/gainsboro"/>
+
+                <RadioButton
+                    android:id="@+id/selectFButton"
+                    android:layout_width="114dp"
+                    android:layout_height="54dp"
+                    android:background="@drawable/bg_selector_radio"
+                    android:button="null"
+                    android:gravity="center"
+                    android:text="F 감정"
+                    android:textSize="16dp"
+                    android:textColor="@drawable/bg_selector_radio_text_color"
+                    android:textStyle="bold"
+                    android:checked="false"/>
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/selectFourGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_gravity="center"
+                android:padding="1dp"
+                android:background="@drawable/bg_gainsboro_stroke"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/selectPButton"
+                    android:layout_width="114dp"
+                    android:layout_height="54dp"
+                    android:background="@drawable/bg_selector_radio"
+                    android:button="null"
+                    android:gravity="center"
+                    android:text="P 인식"
+                    android:textSize="16dp"
+                    android:textColor="@drawable/bg_selector_radio_text_color"
+                    android:textStyle="bold"
+                    android:checked="false"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/gainsboro"/>
+
+                <RadioButton
+                    android:id="@+id/selectJButton"
+                    android:layout_width="114dp"
+                    android:layout_height="54dp"
+                    android:background="@drawable/bg_selector_radio"
+                    android:button="null"
+                    android:gravity="center"
+                    android:text="J 계획"
+                    android:textSize="16dp"
+                    android:textColor="@drawable/bg_selector_radio_text_color"
+                    android:textStyle="bold"
+                    android:checked="false"/>
+            </RadioGroup>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/confirmButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@color/mainColor"
+            android:text="@string/confirm"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:gravity="center"
+            android:paddingTop="15dp"
+            android:paddingBottom="16dp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

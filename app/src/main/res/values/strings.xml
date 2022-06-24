@@ -6,12 +6,14 @@
     <string name="sign_up">회원가입</string>
     <string name="next">다음</string>
     <string name="nick_name">닉네임</string>
+    <string name="confirm">확인</string>
 
     <string name="sign_up_complete">회원가입 완료</string>
     <string name="authentication_request">인증요청</string>
     <string name="authentication_check">인증확인</string>
     <string name="code_number">코드번호</string>
     <string name="overlap_check">중복확인</string>
+    <string name="select_mbti">MBTI 선택</string>
     <string name="do_start">시작하기</string>
     <string name="login_by_email">이메일로 로그인</string>
     <string name="email_id">아이디(이메일)</string>
