@@ -5,11 +5,13 @@
     <string name="login">로그인</string>
     <string name="sign_up">회원가입</string>
     <string name="next">다음</string>
+    <string name="nick_name">닉네임</string>
 
     <string name="sign_up_complete">회원가입 완료</string>
     <string name="authentication_request">인증요청</string>
     <string name="authentication_check">인증확인</string>
     <string name="code_number">코드번호</string>
+    <string name="overlap_check">중복확인</string>
     <string name="do_start">시작하기</string>
     <string name="login_by_email">이메일로 로그인</string>
     <string name="email_id">아이디(이메일)</string>
@@ -20,6 +22,8 @@
     <string name="hint_input_code_number">코드번호를 입력해주세요</string>
     <string name="hint_input_password">비밀번호를 입력해주세요</string>
     <string name="hint_re_input_password">비밀번호를 다시 입력해주세요</string>
+    <string name="hint_MBTI_select">MBTI를 선택해주세요</string>
+    <string name="hint_input_nick_name">6자 이내로 적어주세요</string>
 
     <string name="msg_sign_up_induce">아직 F!nder 회원이 아니라면?</string>
     <string name="msg_terms_description">개인정보취급방침 및 서비스 약관에 동의 합니다.</string>

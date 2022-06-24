@@ -184,36 +184,6 @@
                     android:textSize="12dp"
                     android:textColor="@color/black04"/>
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/autoLoginCheckButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_check_button"/>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="8dp"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/msg_terms_description"
-                        android:textSize="12dp"
-                        android:textColor="@color/darkSlateGray"/>
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/moveToTermsButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_right_gray_arrow"/>
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
             </androidx.appcompat.widget.LinearLayoutCompat>
         </ScrollView>
 
