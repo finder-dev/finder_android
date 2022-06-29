@@ -35,7 +35,6 @@ class OnBoardingDesignFragment(val position: Int) :
     }
 
     override fun onClick(p0: View?) {
-        Toast.makeText(context, p0.toString(), Toast.LENGTH_SHORT).show()
         navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToLoginFragment())
     }
 }

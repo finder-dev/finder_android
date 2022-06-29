@@ -11,6 +11,7 @@
         android:orientation="vertical">
 
         <include
+            android:id="@+id/actionBar"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             layout="@layout/include_sub_tool_bar"/>
@@ -59,6 +60,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/bg_main_color_focus_stroke"
+                        android:inputType="textEmailAddress"
+                        android:lines="1"
                         android:paddingTop="15dp"
                         android:paddingBottom="16dp"
                         android:paddingLeft="20dp"
@@ -71,6 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/mainColor"
+                        android:lines="1"
                         android:text="@string/authentication_request"
                         android:textColor="@color/white"
                         android:textSize="14dp"
@@ -109,6 +113,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:inputType="text"
                             android:background="@drawable/bg_main_color_focus_stroke"
                             android:paddingTop="15dp"
                             android:paddingBottom="16dp"
@@ -149,6 +154,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/bg_main_color_focus_stroke"
+                    android:lines="1"
+                    android:inputType="textPassword"
                     android:paddingTop="15dp"
                     android:paddingBottom="16dp"
                     android:paddingLeft="20dp"
@@ -169,6 +176,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_main_color_focus_stroke"
+                    android:lines="1"
+                    android:inputType="textPassword"
                     android:paddingTop="15dp"
                     android:paddingBottom="16dp"
                     android:paddingLeft="20dp"
@@ -189,6 +198,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/nextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="26dp"

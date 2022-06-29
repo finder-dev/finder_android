@@ -31,6 +31,7 @@
             app:layout_constraintTop_toBottomOf="@id/completeCharacterView"/>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signUpCompleteButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="34dp"

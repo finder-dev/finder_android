@@ -73,7 +73,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/gainsboro"/>
+                    android:background="@color/black7"/>
 
                 <RadioButton
                     android:id="@+id/selectIButton"
@@ -115,7 +115,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/gainsboro"/>
+                    android:background="@color/black7"/>
 
                 <RadioButton
                     android:id="@+id/selectNButton"
@@ -157,7 +157,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/gainsboro"/>
+                    android:background="@color/black7"/>
 
                 <RadioButton
                     android:id="@+id/selectFButton"
@@ -199,7 +199,7 @@
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
-                    android:background="@color/gainsboro"/>
+                    android:background="@color/black7"/>
 
                 <RadioButton
                     android:id="@+id/selectJButton"

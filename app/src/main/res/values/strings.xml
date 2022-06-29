@@ -20,8 +20,8 @@
     <string name="login_maintain_check">로그인 상태 유지</string>
     <string name="password_help">영문, 숫자 포함 8~16자</string>
 
-    <string name="hint_input_email">이메일 주소를 입력해주세요</string>
-    <string name="hint_input_code_number">코드번호를 입력해주세요</string>
+    <string name="hint_input_email">이메일을 인증해주세요</string>
+    <string name="hint_input_code_number">코드번호를 입력하세요</string>
     <string name="hint_input_password">비밀번호를 입력해주세요</string>
     <string name="hint_re_input_password">비밀번호를 다시 입력해주세요</string>
     <string name="hint_MBTI_select">MBTI를 선택해주세요</string>

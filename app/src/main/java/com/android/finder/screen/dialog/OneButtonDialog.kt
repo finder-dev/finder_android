@@ -1,5 +1,6 @@
 package com.android.finder.screen.dialog
 
+import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -11,7 +12,7 @@ import androidx.databinding.DataBindingUtil
 import com.android.finder.R
 import com.android.finder.databinding.DialogOneButtonBinding
 
-class OneButtonDialog(context: Context, val message: String, val subMessage : String? = null) : AlertDialog(context),
+class OneButtonDialog(context: Context, val message: String, val subMessage : String? = null) : Dialog(context),
     View.OnClickListener {
 
     private val binding by lazy {

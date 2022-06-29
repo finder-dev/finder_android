@@ -28,6 +28,33 @@
         android:id="@+id/emailLoginFragment"
         tools:layout="@layout/fragment_email_login"
         android:name="com.android.finder.screen.fragment.login.EmailLoginFragment"
-        android:label="EmailLoginFragment" />
+        android:label="EmailLoginFragment" >
+        <action
+            android:id="@+id/action_emailLoginFragment_to_signUpOneStepFragment"
+            app:destination="@id/signUpOneStepFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpOneStepFragment"
+        tools:layout="@layout/fragment_sign_up_one"
+        android:name="com.android.finder.screen.fragment.signup.SignUpOneStepFragment"
+        android:label="SignUpOneStepFragment" >
+        <action
+            android:id="@+id/action_signUpOneStepFragment_to_signUpTwoStepFragment"
+            app:destination="@id/signUpTwoStepFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpTwoStepFragment"
+        tools:layout="@layout/fragment_sign_up_two"
+        android:name="com.android.finder.screen.fragment.signup.SignUpTwoStepFragment"
+        android:label="SignUpTwoStepFragment" >
+        <action
+            android:id="@+id/action_signUpTwoStepFragment_to_signUpCompleteFragment"
+            app:destination="@id/signUpCompleteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpCompleteFragment"
+        tools:layout="@layout/fragment_sign_up_complete"
+        android:name="com.android.finder.screen.fragment.signup.SignUpCompleteFragment"
+        android:label="SignUpCompleteFragment" />
 
 </navigation>
