@@ -17,8 +17,17 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.android.finder.screen.fragment.LoginFragment"
+        android:name="com.android.finder.screen.fragment.login.LoginFragment"
         tools:layout="@layout/fragment_login"
-        android:label="LoginFragment" />
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_emailLoginFragment"
+            app:destination="@id/emailLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/emailLoginFragment"
+        tools:layout="@layout/fragment_email_login"
+        android:name="com.android.finder.screen.fragment.login.EmailLoginFragment"
+        android:label="EmailLoginFragment" />
 
 </navigation>

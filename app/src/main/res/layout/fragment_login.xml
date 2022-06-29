@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -7,7 +8,74 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/mainLogoView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_finder_logo_orange"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/mainCharacterView"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/mainCharacterView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_main_character"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            android:layout_marginBottom="76dp"
+            android:orientation="vertical"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainCharacterView">
+
+            <com.android.finder.component.LoginButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:bgColor="@color/yellow"
+                app:symbol="@drawable/ic_kakao_logo"
+                app:text="카카오로 시작하기"
+                app:textColor="@color/black" />
+
+            <com.android.finder.component.LoginButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:bgColor="@color/black"
+                app:symbol="@drawable/ic_apple_logo_white"
+                app:text="애플로 시작하기"
+                app:textColor="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/startToEmailButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/email_start_under_bar"
+                android:textColor="@color/black1"/>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

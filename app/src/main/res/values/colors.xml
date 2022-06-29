@@ -15,6 +15,7 @@
     <color name="gainsboro">#DADADA</color>
     <color name="darkSlateGray">#333333</color>
     <color name="light_gray">#A7A7A7</color>
+    <color name="yellow">#FEE500</color>
 
     <color name="onBoardingGray">#7E8589</color>
 </resources>

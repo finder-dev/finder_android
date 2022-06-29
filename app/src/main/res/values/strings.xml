@@ -31,4 +31,5 @@
     <string name="msg_sign_up_induce">아직 F!nder 회원이 아니라면?</string>
     <string name="msg_terms_description">개인정보취급방침 및 서비스 약관에 동의 합니다.</string>
     <string name="msg_complete_sign_up">회원가입을 축하드려요</string>
+    <string name="email_start_under_bar"><u>이메일로 시작하기</u></string>
 </resources>
