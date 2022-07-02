@@ -55,6 +55,7 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mbtiDisplayView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -86,7 +87,7 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/emailEditTextView"
+                android:id="@+id/nicknameEditTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -117,6 +118,7 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/termsAgreeCheckLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -126,7 +128,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_check_on_button"/>
+                android:src="@drawable/ic_check_off_button"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
@@ -154,7 +156,8 @@
             android:layout_marginBottom="26dp"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:background="@color/mainColor"
+            android:background="@drawable/bg_select_button"
+            android:enabled="false"
             android:text="@string/next"
             android:textColor="@color/white"
             android:textSize="16dp"

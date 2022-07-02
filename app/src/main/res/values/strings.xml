@@ -32,4 +32,12 @@
     <string name="msg_terms_description">개인정보취급방침 및 서비스 약관에 동의 합니다.</string>
     <string name="msg_complete_sign_up">회원가입을 축하드려요</string>
     <string name="email_start_under_bar"><u>이메일로 시작하기</u></string>
+
+    <string name="error_unspecified_message">문제가 발생했습니다.</string>
+    <string name="error_email_check">이메일 확인 실패</string>
+    <string name="error_email_check_sub">이메일을 확인해주세요</string>
+    <string name="error_email_code_empty">이메일 인증코드를 입력해주세요.</string>
+    <string name="error_not_equal_password">비밀번호 확인 실패</string>
+    <string name="error_not_equal_password_sub">비밀번호가 비밀번호 확인과 동일한 지 확인해주세요.</string>
+    <string name="error_sign_up">회원가입 실패</string>
 </resources>

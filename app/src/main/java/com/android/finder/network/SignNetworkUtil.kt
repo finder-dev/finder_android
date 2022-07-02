@@ -1,10 +1,13 @@
 package com.android.finder.network
 
+import com.android.finder.DateDeserializer
 import com.android.finder.network.api.SignApiService
 import com.android.finder.network.response.ErrorResponse
+import com.google.gson.GsonBuilder
 import okhttp3.ResponseBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 object SignNetworkUtil {
     val api : SignApiService by lazy { apiInit() }
@@ -16,7 +19,7 @@ object SignNetworkUtil {
         val retrofit = testRetrofit ?: run {
             Retrofit.Builder()
                 .baseUrl("$SERVER_ADDR/")
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(provideGson()))
                 .build()
                 .also { finderRetrofit = it }
         }
@@ -28,4 +31,8 @@ object SignNetworkUtil {
             ErrorResponse::class.java.annotations
         )?.convert(errorBody)
     }
+
+    fun provideGson() = GsonBuilder().apply {
+        this.registerTypeAdapter(Date::class.java, DateDeserializer())
+    }.create()
 }

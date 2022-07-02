@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/bg_gainsboro_stroke.xml" value="0.1955" />
+        <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/bg_select_button.xml" value="0.201" />
+        <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/bg_selector_radio.xml" value="0.201" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_apple_logo_white.xml" value="0.201" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_check_button.xml" value="0.1955" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_finder_app_icon.xml" value="0.1955" />

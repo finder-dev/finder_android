@@ -1,5 +1,6 @@
 package com.android.finder.network.api
 
+import com.android.finder.network.response.EmailSignUpResponse
 import com.android.finder.network.response.SendCodeResponse
 import com.android.finder.network.response.SuccessMessageResponse
 import com.google.gson.JsonObject
@@ -15,4 +16,13 @@ interface SignApiService {
     fun getAuthCodeByEmail(
         @Field("email") email: String
     ) : Call<SendCodeResponse>
+
+    @FormUrlEncoded
+    @POST("/api/signup")
+    fun signUpByEmail(
+        @Field("email") email : String,
+        @Field("password") password : String,
+        @Field("mbti") mbti : String,
+        @Field("nickname") nickname : String
+    ) : Call<EmailSignUpResponse>
 }

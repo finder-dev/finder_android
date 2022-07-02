@@ -1,5 +1,6 @@
 package com.android.finder.screen.dialog
 
+import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -12,12 +13,12 @@ import androidx.databinding.DataBindingUtil
 import com.android.finder.R
 import com.android.finder.databinding.DialogSelectMbtiBinding
 
-class MBTISelectDialog(context: Context) : AlertDialog(context), View.OnClickListener, RadioGroup.OnCheckedChangeListener {
+class MBTISelectDialog(context: Context) : Dialog(context), View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
     private val binding by lazy {
         DataBindingUtil.inflate<DialogSelectMbtiBinding>(
             layoutInflater,
-            R.layout.dialog_one_button,
+            R.layout.dialog_select_mbti,
             null,
             false
         )
@@ -35,6 +36,10 @@ class MBTISelectDialog(context: Context) : AlertDialog(context), View.OnClickLis
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setCancelable(false)
         binding.confirmButton.setOnClickListener(this)
+        binding.selectOneGroup.setOnCheckedChangeListener(this)
+        binding.selectTwoGroup.setOnCheckedChangeListener(this)
+        binding.selectThreeGroup.setOnCheckedChangeListener(this)
+        binding.selectFourGroup.setOnCheckedChangeListener(this)
     }
 
 
@@ -47,10 +52,10 @@ class MBTISelectDialog(context: Context) : AlertDialog(context), View.OnClickLis
         }
     }
 
-    private fun getMBTI() : String? {
-        if(M.isNotEmpty() && B.isNotEmpty() && T.isNotEmpty() && I.isNotEmpty()) {
-            return "$M$B$T$I"
-        } else return null
+    fun getMBTI() : String? {
+        return if(M.isNotEmpty() && B.isNotEmpty() && T.isNotEmpty() && I.isNotEmpty()) {
+            "$M$B$T$I"
+        } else null
     }
 
     override fun onCheckedChanged(rg: RadioGroup?, checkedId: Int) {
