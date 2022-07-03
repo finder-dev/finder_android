@@ -9,6 +9,8 @@
     <string name="confirm">확인</string>
 
     <string name="sign_up_complete">회원가입 완료</string>
+    <string name="send_code_number">코드번호 발송</string>
+    <string name="check_code_number">코드번호 확인</string>
     <string name="authentication_request">인증요청</string>
     <string name="authentication_check">인증확인</string>
     <string name="code_number">코드번호</string>
@@ -35,8 +37,14 @@
 
     <string name="error_unspecified_message">문제가 발생했습니다.</string>
     <string name="error_email_check">이메일 확인 실패</string>
+    <string name="error_send_auth_code">코드번호 발송 실패</string>
+    <string name="error_check_auth_code">코드번호 인증 실패</string>
+    <string name="error_code_empty">code를 입력해주세요.</string>
+    <string name="error_email_auth">이메일 인증 실패</string>
+    <string name="error_email_empty">email을 입력해주세요.</string>
     <string name="error_email_check_sub">이메일을 확인해주세요</string>
-    <string name="error_email_code_empty">이메일 인증코드를 입력해주세요.</string>
+    <string name="error_password_length_check">비밀번호 오류</string>
+    <string name="error_password_length_check_sub">비밀번호는 영문, 숫자 포함\n8~16자로 입력해주세요.</string>
     <string name="error_not_equal_password">비밀번호 확인 실패</string>
     <string name="error_not_equal_password_sub">비밀번호가 비밀번호 확인과 동일한 지 확인해주세요.</string>
     <string name="error_sign_up">회원가입 실패</string>

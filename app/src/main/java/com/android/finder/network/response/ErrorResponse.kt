@@ -1,6 +1,6 @@
 package com.android.finder.network.response
 
 data class ErrorResponse(
-    val status : Int,
-    val errorMessages : List<String>
+    val errorMessages: List<String>,
+    val status: Int
 )

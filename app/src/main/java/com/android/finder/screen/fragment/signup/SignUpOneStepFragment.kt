@@ -27,10 +27,20 @@ class SignUpOneStepFragment :
         binding.actionBar.titleView.text = resources.getString(R.string.sign_up)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        signUpViewModel.apply {
+            signUpResultMessage = ""
+            checkCodeMessage = ""
+            sendCodeResultMessage = ""
+        }
+    }
+
     override fun eventListenerSetting() {
         binding.actionBar.backButton.setOnClickListener(this)
         binding.nextButton.setOnClickListener(this)
         binding.authenticationRequestButton.setOnClickListener(this)
+        binding.authenticationCheckButton.setOnClickListener(this)
 
         binding.emailEditTextView.addTextChangedListener(this)
         binding.passwordConfirmEditTextView.addTextChangedListener(this)
@@ -39,8 +49,26 @@ class SignUpOneStepFragment :
 
         signUpViewModel.isSendCode.observe(viewLifecycleOwner) {
             if (signUpViewModel.sendCodeResultMessage.isNotEmpty()) {
-                oneButtonDialogShow(context, signUpViewModel.sendCodeResultMessage)
+                oneButtonDialogShow(
+                    context,
+                    if (it) resources.getString(R.string.send_code_number) else resources.getString(
+                        R.string.error_send_auth_code
+                    ),
+                    signUpViewModel.sendCodeResultMessage
+                )
             }
+        }
+        signUpViewModel.isCheckCodeComplete.observe(viewLifecycleOwner) {
+            if (signUpViewModel.checkCodeMessage.isNotEmpty()) {
+                oneButtonDialogShow(
+                    context,
+                    if (it) resources.getString(R.string.check_code_number) else resources.getString(
+                        R.string.error_check_auth_code
+                    ),
+                    signUpViewModel.checkCodeMessage
+                )
+            }
+            binding.nextButton.isEnabled = isDataFull()
         }
     }
 
@@ -51,6 +79,15 @@ class SignUpOneStepFragment :
                 CoroutineScope(Dispatchers.IO).launch {
                     val email = binding.emailEditTextView.text.toString()
                     context?.let { signUpViewModel.sendEmailAuthCode(it, email) }
+                }
+            }
+            binding.authenticationCheckButton -> {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val email = binding.emailEditTextView.text.toString()
+                    val code = binding.codeNumberEditTextView.text.toString()
+                    context?.let {
+                        signUpViewModel.checkEmailAuthCode(it, email, code)
+                    }
                 }
             }
             binding.nextButton -> {
@@ -69,11 +106,23 @@ class SignUpOneStepFragment :
     private fun checkCondition(): Boolean {
         val email = binding.emailEditTextView.text.toString()
         if (!isValidEmail(email)) {
-            oneButtonDialogShow(context, resources.getString(R.string.error_email_check) , resources.getString(R.string.error_email_check_sub))
+            oneButtonDialogShow(
+                context,
+                resources.getString(R.string.error_email_check),
+                resources.getString(R.string.error_email_check_sub)
+            )
             return false
         }
         val password = binding.passwordEditTextView.text.toString()
         val confirmPassword = binding.passwordConfirmEditTextView.text.toString()
+        if (password.length < 7) {
+            oneButtonDialogShow(
+                context,
+                resources.getString(R.string.error_password_length_check),
+                resources.getString(R.string.error_password_length_check_sub)
+            )
+            return false
+        }
         if (confirmPassword != password) {
             oneButtonDialogShow(
                 context,
@@ -90,7 +139,11 @@ class SignUpOneStepFragment :
         val emailCode = binding.codeNumberEditTextView.text.toString()
         val password = binding.passwordEditTextView.text.toString()
         val confirmPassword = binding.passwordConfirmEditTextView.text.toString()
-        return email.isNotEmpty() && emailCode.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()
+        return email.isNotEmpty() &&
+                emailCode.isNotEmpty() &&
+                password.isNotEmpty() &&
+                confirmPassword.isNotEmpty() &&
+                signUpViewModel.isCheckCodeComplete.value ?: false
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}

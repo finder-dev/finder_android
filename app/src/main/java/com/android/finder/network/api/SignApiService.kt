@@ -18,6 +18,13 @@ interface SignApiService {
     ) : Call<SendCodeResponse>
 
     @FormUrlEncoded
+    @POST("api/mail/auth")
+    fun checkAuthCodeByEmail(
+        @Field("email") email : String,
+        @Field("code") code : String
+    ) : Call<SendCodeResponse>
+
+    @FormUrlEncoded
     @POST("/api/signup")
     fun signUpByEmail(
         @Field("email") email : String,
