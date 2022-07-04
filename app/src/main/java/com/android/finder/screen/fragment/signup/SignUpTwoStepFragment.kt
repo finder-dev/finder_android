@@ -77,6 +77,7 @@ class SignUpTwoStepFragment :
         binding.nextButton.setOnClickListener(this)
         binding.selectMBTILayout.setOnClickListener(this)
         binding.termsAgreeCheckLayout.setOnClickListener(this)
+        binding.nicknameEditTextView.addTextChangedListener(this)
 
         signUpViewModel.isTermsAgree.observe(viewLifecycleOwner) {
             binding.termsAgreeCheckButton.setImageResource(if

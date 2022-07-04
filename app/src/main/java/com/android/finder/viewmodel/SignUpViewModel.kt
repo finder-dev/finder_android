@@ -143,4 +143,19 @@ class SignUpViewModel : ViewModel() {
         }
         return false
     }
+
+    fun clear() {
+        isSendCode.value = false
+        isCheckCodeComplete.value = false
+        isTermsAgree.value = false
+        sendCodeResultMessage = ""
+        signUpResultMessage = ""
+        checkCodeMessage = ""
+    }
+
+    fun messageClear() {
+        sendCodeResultMessage = ""
+        signUpResultMessage = ""
+        checkCodeMessage = ""
+    }
 }

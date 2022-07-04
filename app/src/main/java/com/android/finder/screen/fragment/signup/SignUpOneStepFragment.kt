@@ -22,18 +22,14 @@ class SignUpOneStepFragment :
     private val signUpViewModel: SignUpViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        signUpViewModel.messageClear()
         super.onViewCreated(view, savedInstanceState)
-        signUpViewModel.sendCodeResultMessage = ""
         binding.actionBar.titleView.text = resources.getString(R.string.sign_up)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        signUpViewModel.apply {
-            signUpResultMessage = ""
-            checkCodeMessage = ""
-            sendCodeResultMessage = ""
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        signUpViewModel.clear()
     }
 
     override fun eventListenerSetting() {
