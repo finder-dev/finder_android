@@ -1,9 +1,7 @@
 package com.android.finder.network.api
 
-import com.android.finder.network.response.EmailSignUpResponse
+import com.android.finder.network.response.EmailLoginResponse
 import com.android.finder.network.response.SendCodeResponse
-import com.android.finder.network.response.SuccessMessageResponse
-import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -31,5 +29,13 @@ interface SignApiService {
         @Field("password") password : String,
         @Field("mbti") mbti : String,
         @Field("nickname") nickname : String
-    ) : Call<EmailSignUpResponse>
+    ) : Call<EmailLoginResponse>
+
+    @FormUrlEncoded
+    @POST("api/login")
+    fun login(
+        @Field("email") email : String,
+        @Field("password") password : String
+    ) : Call<EmailLoginResponse>
+
 }

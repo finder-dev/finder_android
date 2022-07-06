@@ -7,6 +7,11 @@
     <string name="next">다음</string>
     <string name="nick_name">닉네임</string>
     <string name="confirm">확인</string>
+    <string name="home">홈</string>
+    <string name="debate">토론</string>
+    <string name="community">커뮤니티</string>
+    <string name="save">저장</string>
+    <string name="my">마이</string>
 
     <string name="sign_up_complete">회원가입 완료</string>
     <string name="send_code_number">코드번호 발송</string>
@@ -19,6 +24,7 @@
     <string name="do_start">시작하기</string>
     <string name="login_by_email">이메일로 로그인</string>
     <string name="email_id">아이디(이메일)</string>
+    <string name="remaining_time">남은 시간</string>
     <string name="login_maintain_check">로그인 상태 유지</string>
     <string name="password_help">영문, 숫자 포함 8~16자</string>
 
@@ -40,14 +46,19 @@
     <string name="msg_sign_up_induce">아직 F!nder 회원이 아니라면?</string>
     <string name="msg_terms_description">개인정보취급방침 및 서비스 약관에 동의 합니다.</string>
     <string name="msg_complete_sign_up">회원가입을 축하드려요</string>
+    <string name="msg_welcome">오늘은 하고 싶은 말\n다하고 오셨나요?</string>
+    <string name="msg_balance_game_introduce">HOT한 밸런스 게임! 당신의 선택은?</string>
+    <string name="msg_empty_balance_game_main">아직 생성된 토론이 없습니다!\n첫 토론의 주인공이 돼보세요! GOGO!</string>
     <string name="email_start_under_bar"><u>이메일로 시작하기</u></string>
 
     <string name="error_unspecified_message">문제가 발생했습니다.</string>
+    <string name="error_login">로그인 실패</string>
     <string name="error_email_check">이메일 확인 실패</string>
     <string name="error_send_auth_code">코드번호 발송 실패</string>
     <string name="error_check_auth_code">코드번호 인증 실패</string>
     <string name="error_code_empty">code를 입력해주세요.</string>
     <string name="error_email_auth">이메일 인증 실패</string>
+    <string name="error_password_empty">패스워드를 입력해주세요.</string>
     <string name="error_email_empty">email을 입력해주세요.</string>
     <string name="error_email_check_sub">이메일을 확인해주세요</string>
     <string name="error_password_length_check">비밀번호 오류</string>

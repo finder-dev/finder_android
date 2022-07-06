@@ -32,13 +32,6 @@ class SplashActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Default).launch {
             delay(SPLASH_DELAY_TIME)
             sendIntent.run {
-//                val navController = findNavController(R.id.nav_sign)
-//                val navGraph = navController.graph
-//                if(SettingUtil.getOnBoardingData(this@SplashActivity)) {
-//                    navGraph.setStartDestination(R.id.loginFragment)
-//                }
-//                Log.e("헤헤",SettingUtil.getOnBoardingData(this@SplashActivity).toString())
-//                navController.graph = navGraph
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(this)

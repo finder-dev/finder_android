@@ -8,11 +8,10 @@ import com.android.finder.R
 import com.android.finder.enum.MBTI
 import com.android.finder.network.SignNetworkUtil
 import com.android.finder.network.response.EmailCodeCheckResponse
-import com.android.finder.network.response.EmailSignUpResponse
+import com.android.finder.network.response.EmailLoginResponse
 import com.android.finder.network.response.SendCodeResponse
 import com.android.finder.oneButtonDialogShow
 import com.google.gson.Gson
-import com.google.gson.JsonObject
 import java.lang.Exception
 
 class SignUpViewModel : ViewModel() {
@@ -119,11 +118,12 @@ class SignUpViewModel : ViewModel() {
                 if(result.isSuccessful) {
                     result.body()?.let {
                         //여기서 토큰 처리
+                        Log.e("login success", it.toString())
                     }
                 } else {
                     result.errorBody()?.string()?.let {
                         try {
-                            val response = Gson().fromJson(it, EmailSignUpResponse::class.java)
+                            val response = Gson().fromJson(it, EmailLoginResponse::class.java)
                             signUpResultMessage = if(response.errorResponse.errorMessages.isNotEmpty()) {
                                 response.errorResponse.errorMessages[0]
                             } else {
