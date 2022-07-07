@@ -2,6 +2,7 @@ package com.android.finder
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 
 class App : Application() {
 
@@ -16,6 +17,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        Log.e("App", instance.toString())
     }
 
 }

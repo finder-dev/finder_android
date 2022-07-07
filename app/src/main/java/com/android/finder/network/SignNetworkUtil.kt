@@ -25,12 +25,6 @@ object SignNetworkUtil {
         }
         return retrofit.create(SignApiService::class.java)
     }
-    fun getErrorResponse(errorBody: ResponseBody): ErrorResponse? {
-        return finderRetrofit?.responseBodyConverter<ErrorResponse>(
-            ErrorResponse::class.java,
-            ErrorResponse::class.java.annotations
-        )?.convert(errorBody)
-    }
 
     fun provideGson() = GsonBuilder().apply {
         this.registerTypeAdapter(Date::class.java, DateDeserializer())

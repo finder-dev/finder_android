@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.android.finder.R
 import com.android.finder.network.SignNetworkUtil
 import com.android.finder.network.response.EmailLoginResponse
+import com.android.finder.util.SecureManager
 import com.google.gson.Gson
 import java.lang.Exception
 
@@ -22,6 +23,9 @@ class LoginViewModel: ViewModel() {
                 //여기서 토큰 처리
                 result.body()?.let {
                     Log.e("login success", it.toString())
+                    it.response?.accessToken?.let { token ->
+                        SecureManager(context).setToken(token)
+                    }
                 }
             } else {
                 result.errorBody()?.string()?.let {
@@ -37,8 +41,8 @@ class LoginViewModel: ViewModel() {
                         e.printStackTrace()
                     }
                 }
-                return result.isSuccessful
             }
+            return result.isSuccessful
         }.onFailure {
             loginErrorMessage = context.resources.getString(R.string.error_unspecified_message)
             it.printStackTrace()

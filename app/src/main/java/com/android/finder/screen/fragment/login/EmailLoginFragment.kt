@@ -1,6 +1,7 @@
 package com.android.finder.screen.fragment.login
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.android.finder.R
@@ -47,6 +48,8 @@ class EmailLoginFragment : CommonFragment<FragmentEmailLoginBinding>(R.layout.fr
                     oneButtonDialogShow(context, resources.getString(R.string.error_password_empty))
                     return
                 }
+                Log.e("email",email)
+                Log.e("password", password)
                 CoroutineScope(Dispatchers.IO).launch {
                     context?.let {
                         if (loginViewModel.login(it, email, password)) {

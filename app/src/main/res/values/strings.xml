@@ -16,6 +16,7 @@
     <string name="sign_up_complete">회원가입 완료</string>
     <string name="send_code_number">코드번호 발송</string>
     <string name="check_code_number">코드번호 확인</string>
+    <string name="nickname_duplication">닉네임 중복 확인</string>
     <string name="authentication_request">인증요청</string>
     <string name="authentication_check">인증확인</string>
     <string name="code_number">코드번호</string>
@@ -27,6 +28,7 @@
     <string name="remaining_time">남은 시간</string>
     <string name="login_maintain_check">로그인 상태 유지</string>
     <string name="password_help">영문, 숫자 포함 8~16자</string>
+    <string name="email_start_under_bar"><u>이메일로 시작하기</u></string>
 
     <string name="hint_input_email">이메일을 인증해주세요</string>
     <string name="hint_input_code_number">코드번호를 입력하세요</string>
@@ -35,6 +37,8 @@
     <string name="hint_MBTI_select">MBTI를 선택해주세요</string>
     <string name="hint_input_nick_name">6자 이내로 적어주세요</string>
     <string name="hint_mbti_search">알고싶은 MBTI가 있나요?</string>
+
+
 
     <string name="msg_one_on_boarding_main">궁금한 MBTI한테\n바로 물어보세요</string>
     <string name="msg_one_on_boarding_sub">오해와 진실! 여기서 다 풀어요</string>
@@ -47,9 +51,11 @@
     <string name="msg_terms_description">개인정보취급방침 및 서비스 약관에 동의 합니다.</string>
     <string name="msg_complete_sign_up">회원가입을 축하드려요</string>
     <string name="msg_welcome">오늘은 하고 싶은 말\n다하고 오셨나요?</string>
-    <string name="msg_balance_game_introduce">HOT한 밸런스 게임! 당신의 선택은?</string>
+    <string name="msg_balance_game_introduce_title">HOT한 밸런스 게임! 당신의 선택은?</string>
+    <string name="msg_debate_introduce_title">급상승 중인 파인더들의 수다</string>
     <string name="msg_empty_balance_game_main">아직 생성된 토론이 없습니다!\n첫 토론의 주인공이 돼보세요! GOGO!</string>
-    <string name="email_start_under_bar"><u>이메일로 시작하기</u></string>
+    <string name="msg_re_login">앱을 재실행해주세요</string>
+
 
     <string name="error_unspecified_message">문제가 발생했습니다.</string>
     <string name="error_login">로그인 실패</string>

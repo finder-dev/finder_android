@@ -1,11 +1,9 @@
 package com.android.finder.network.api
 
 import com.android.finder.network.response.EmailLoginResponse
-import com.android.finder.network.response.SendCodeResponse
+import com.android.finder.network.response.MessageResponse
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface SignApiService {
 
@@ -13,14 +11,19 @@ interface SignApiService {
     @POST("/api/mail/send")
     fun getAuthCodeByEmail(
         @Field("email") email: String
-    ) : Call<SendCodeResponse>
+    ) : Call<MessageResponse>
 
     @FormUrlEncoded
     @POST("api/mail/auth")
     fun checkAuthCodeByEmail(
         @Field("email") email : String,
         @Field("code") code : String
-    ) : Call<SendCodeResponse>
+    ) : Call<MessageResponse>
+
+    @GET("api/duplicated/nickname")
+    fun checkDuplicatiedNickname(
+        @Query("nickname") nickname: String
+    ) : Call<MessageResponse>
 
     @FormUrlEncoded
     @POST("/api/signup")

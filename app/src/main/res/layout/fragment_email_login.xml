@@ -58,7 +58,6 @@
                 android:hint="@string/hint_input_email"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/passwordEditTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -68,6 +67,7 @@
                 android:textStyle="bold"/>
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/passwordEditTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
