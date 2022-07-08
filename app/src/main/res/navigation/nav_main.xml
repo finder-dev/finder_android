@@ -9,5 +9,14 @@
         android:id="@+id/mainFragment"
         tools:layout="@layout/fragment_main"
         android:name="com.android.finder.screen.fragment.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_communityWriteFragment"
+            app:destination="@id/communityWriteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/communityWriteFragment"
+        tools:layout="@layout/fragment_community_write"
+        android:name="com.android.finder.screen.fragment.community.CommunityWriteFragment"
+        android:label="CommunityWriteFragment" />
 </navigation>

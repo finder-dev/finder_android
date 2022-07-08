@@ -5,6 +5,12 @@ import com.android.finder.screen.dialog.OneButtonDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.File
 import java.lang.Exception
 
 fun oneButtonDialogShow(context: Context?, message: String, subMessage : String? = null) {
@@ -23,4 +29,33 @@ fun isValidEmail(email: String?): Boolean {
     if (email == null) return false
     val regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}".toRegex()
     return regex.matches(email)
+}
+
+fun convertToMultipart(params: LinkedHashMap<String, Any>, imageName : String): Pair<LinkedHashMap<String, RequestBody>, List<MultipartBody.Part>> {
+    val params2 = LinkedHashMap<String, RequestBody>()
+    val images = mutableListOf<MultipartBody.Part>()
+
+    for (key in params.keys) {
+        params[key]?.also { value ->
+            if (key != "images") {
+                params2[key] = value.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+            } else {
+                if (value is List<*>) {
+                    for (image in value) {
+                        val imagePath = image as String
+                        val file = File(imagePath)
+                        val fileReqBody =
+                            file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                        val part = MultipartBody.Part.createFormData(
+                            imageName,
+                            file.path,
+                            fileReqBody
+                        )
+                        images.add(part)
+                    }
+                }
+            }
+        }
+    }
+    return Pair(params2, images)
 }
