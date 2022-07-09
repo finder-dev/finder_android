@@ -16,7 +16,9 @@
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_finder_app_icon.xml" value="0.1955" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_finder_logo_orange.xml" value="0.1955" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_finder_logo_white.xml" value="0.1955" />
+        <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_gray_dot.xml" value="0.1955" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_kakao_logo.xml" value="0.201" />
+        <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_like.xml" value="0.1955" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_on_boarding_one.xml" value="0.1955" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_on_boarding_three.xml" value="0.1955" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_on_boarding_two.xml" value="0.1955" />
@@ -56,6 +58,8 @@
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/include_debate_home.xml" value="0.358695652173913" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/include_empty_view.xml" value="0.5" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/include_sub_tool_bar.xml" value="0.1875" />
+        <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/include_user_data.xml" value="0.15391192817443353" />
+        <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/item_community_post.xml" value="0.33" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/item_login_layout.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/item_tab_list.xml" value="0.5" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.201" />
