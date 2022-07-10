@@ -1,4 +1,4 @@
-package com.android.finder.enum
+package com.android.finder.enumdata
 
 enum class MBTI(val value : String) {
     INFJ("INFJ"),

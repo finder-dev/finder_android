@@ -9,7 +9,7 @@ import com.android.finder.screen.CommonFragment
 import com.android.finder.R
 import com.android.finder.bindingadapter.MainFragmentAdapter
 import com.android.finder.databinding.ItemTabListBinding
-import com.android.finder.enum.HomeBottomTap
+import com.android.finder.enumdata.HomeBottomTap
 import com.android.finder.imageSrcCompatResource
 import com.google.android.material.tabs.TabLayoutMediator
 

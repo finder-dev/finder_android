@@ -8,7 +8,8 @@ import com.android.finder.databinding.FragmentCommunityBinding
 import com.android.finder.screen.CommonFragment
 import com.android.finder.R
 import com.android.finder.component.RecyclerViewItemDeco
-import com.android.finder.enum.CommunityOrderBy
+import com.android.finder.enumdata.CommunityOrderBy
+import com.android.finder.screen.dialog.MBTISelectDialog
 import com.android.finder.screen.fragment.MainFragmentDirections
 import com.android.finder.scrollPercent
 import com.android.finder.setTextColorResource
@@ -21,11 +22,12 @@ import java.lang.Exception
 class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.fragment_community), View.OnClickListener {
 
     private val communityViewModel : CommunityViewModel by viewModels()
+    private var isLoading : Boolean = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.listViewModel = communityViewModel
-        refresh()
+        sortUiChange()
         try {
             binding.communityRecyclerView.addItemDecoration(RecyclerViewItemDeco(
                 requireContext(),
@@ -37,7 +39,7 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
                     super.onScrolled(recyclerView, dx, dy)
                     if (scrollPercent(binding.communityRecyclerView) >= 100) {
                         if (communityViewModel.currentPage <= communityViewModel.lastPage) {
-                            dataLoading()
+                            dataLoading(false)
                         }
                     }
                 }
@@ -47,20 +49,30 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
         }
     }
 
-    fun refresh() {
-        communityViewModel.currentPage = 0
-        dataLoading()
-    }
-
-    fun dataLoading() {
-        CoroutineScope(Dispatchers.IO).launch {
-            communityViewModel.getCommunityList()
+    fun dataLoading(isRefresh: Boolean) {
+        if(!isLoading) {
+            isLoading = true
+            if(isRefresh) communityViewModel.currentPage = 0
+            CoroutineScope(Dispatchers.IO).launch {
+                communityViewModel.getCommunityList()
+                isLoading = false
+            }
         }
+
     }
     override fun eventListenerSetting() {
         binding.postButton.setOnClickListener(this)
         binding.fastestSortButton.setOnClickListener(this)
         binding.mostCommentsButton.setOnClickListener(this)
+        binding.selectMbtiButton.setOnClickListener(this)
+
+        communityViewModel.orderBy.observe(viewLifecycleOwner) {
+            sortUiChange()
+        }
+        communityViewModel.mbti.observe(viewLifecycleOwner) {
+            binding.selectedMbtiTextView.text = it
+            dataLoading(true)
+        }
     }
 
     override fun onClick(v: View?) {
@@ -69,21 +81,37 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
                 navigate(MainFragmentDirections.actionMainFragmentToCommunityWriteFragment())
             }
             binding.fastestSortButton -> {
+                communityViewModel.orderBy.value = CommunityOrderBy.CREATE_TIME
+            }
+            binding.mostCommentsButton -> {
+                communityViewModel.orderBy.value = CommunityOrderBy.ANSWER_COUNT
+            }
+            binding.selectMbtiButton -> {
+                context?.let {
+                    MBTISelectDialog(it).apply {
+                        selectEvent = { communityViewModel.mbti.postValue(getMBTI() ?: "전체") }
+                        show()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun sortUiChange() {
+        when(communityViewModel.orderBy.value){
+            CommunityOrderBy.CREATE_TIME -> {
                 binding.mostCommentsDotView.setImageResource(R.drawable.ic_gray_dot)
                 binding.mostCommentsTextView.setTextColorResource(R.color.gray3)
                 binding.fastestDotView.setImageResource(R.drawable.ic_main_2_color_dot)
                 binding.fastestTextView.setTextColorResource(R.color.main_color_2)
-                communityViewModel.orderBy = CommunityOrderBy.CREATE_TIME
-                refresh()
             }
-            binding.mostCommentsButton -> {
+            CommunityOrderBy.ANSWER_COUNT -> {
                 binding.fastestDotView.setImageResource(R.drawable.ic_gray_dot)
                 binding.fastestTextView.setTextColorResource(R.color.gray3)
                 binding.mostCommentsDotView.setImageResource(R.drawable.ic_main_2_color_dot)
                 binding.mostCommentsTextView.setTextColorResource(R.color.main_color_2)
-                communityViewModel.orderBy = CommunityOrderBy.ANSWER_COUNT
-                refresh()
             }
         }
+        dataLoading(true)
     }
 }

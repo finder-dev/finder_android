@@ -1,4 +1,4 @@
-package com.android.finder.enum
+package com.android.finder.enumdata
 
 import com.android.finder.App
 import com.android.finder.R

@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.finder.R
-import com.android.finder.enum.MBTI
+import com.android.finder.enumdata.MBTI
 import com.android.finder.network.SignNetworkUtil
 import com.android.finder.network.response.EmailCodeCheckResponse
 import com.android.finder.network.response.EmailLoginResponse

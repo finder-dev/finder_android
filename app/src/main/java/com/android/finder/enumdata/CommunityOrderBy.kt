@@ -1,4 +1,4 @@
-package com.android.finder.enum
+package com.android.finder.enumdata
 
 enum class CommunityOrderBy(val orderBy : String) {
     ANSWER_COUNT("ANSWER_COUNT"),
