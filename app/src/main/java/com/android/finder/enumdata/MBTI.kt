@@ -20,5 +20,12 @@ enum class MBTI(val value : String) {
 
     companion object {
         fun getMbtiByString(mbti : String) : MBTI? = values().find { it.value == mbti }
+
+        fun getAllMbti(isAll : Boolean) : ArrayList<String> {
+            val list = ArrayList<String>()
+            if(isAll) list.add("전체")
+            list.addAll(values().map(MBTI::value))
+            return list
+        }
     }
 }

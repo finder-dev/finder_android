@@ -1,11 +1,10 @@
-package com.android.finder.list
+package com.android.finder.list.community
 
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.android.finder.App
 import com.android.finder.R
 import com.android.finder.databinding.ItemCommunityPostBinding
-import com.android.finder.dataobj.CommunityListDto
 import com.android.finder.dataobj.Content
 
 class CommunityViewHolder(val binding: ItemCommunityPostBinding) :

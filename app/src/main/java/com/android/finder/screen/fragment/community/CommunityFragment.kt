@@ -9,9 +9,12 @@ import com.android.finder.screen.CommonFragment
 import com.android.finder.R
 import com.android.finder.component.RecyclerViewItemDeco
 import com.android.finder.enumdata.CommunityOrderBy
+import com.android.finder.enumdata.MBTI
+import com.android.finder.screen.dialog.GridSelectDialog
 import com.android.finder.screen.dialog.MBTISelectDialog
 import com.android.finder.screen.fragment.MainFragmentDirections
 import com.android.finder.scrollPercent
+import com.android.finder.selectGridDailogShow
 import com.android.finder.setTextColorResource
 import com.android.finder.viewmodel.CommunityViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -88,8 +91,12 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
             }
             binding.selectMbtiButton -> {
                 context?.let {
-                    MBTISelectDialog(it).apply {
-                        selectEvent = { communityViewModel.mbti.postValue(getMBTI() ?: "전체") }
+//                    MBTISelectDialog(it).apply {
+//                        selectEvent = { communityViewModel.mbti.postValue(getMBTI() ?: "전체") }
+//                        show()
+//                    }
+                    GridSelectDialog(it, MBTI.getAllMbti(true)).apply {
+                        selectEvent = { communityViewModel.mbti.postValue(getItem() ?: "전체") }
                         show()
                     }
                 }

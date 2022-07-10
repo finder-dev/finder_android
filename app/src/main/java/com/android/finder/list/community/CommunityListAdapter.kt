@@ -1,4 +1,4 @@
-package com.android.finder.list
+package com.android.finder.list.community
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableArrayList
 import androidx.recyclerview.widget.RecyclerView
 import com.android.finder.R
-import com.android.finder.dataobj.CommunityListDto
 import com.android.finder.dataobj.Content
 
 class CommunityListAdapter(

@@ -4,7 +4,7 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableArrayList
 import androidx.recyclerview.widget.RecyclerView
 import com.android.finder.dataobj.Content
-import com.android.finder.list.CommunityListAdapter
+import com.android.finder.list.community.CommunityListAdapter
 
 object RecyclerViewBinding {
 

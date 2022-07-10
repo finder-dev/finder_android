@@ -2,6 +2,7 @@ package com.android.finder
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
+import com.android.finder.screen.dialog.GridSelectDialog
 import com.android.finder.screen.dialog.OneButtonDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +15,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.lang.Exception
 
-fun oneButtonDialogShow(context: Context?, message: String, subMessage : String? = null) {
+fun oneButtonDialogShow(context: Context?, message: String, subMessage: String? = null) {
     CoroutineScope(Dispatchers.Main).launch {
         try {
             context?.let {
@@ -26,13 +27,31 @@ fun oneButtonDialogShow(context: Context?, message: String, subMessage : String?
     }
 }
 
+fun selectGridDailogShow(context: Context?, selectItems : List<String>, selectEvent : () -> Unit) {
+    CoroutineScope(Dispatchers.Main).launch {
+        try {
+            context?.let {
+                GridSelectDialog(it, selectItems).apply {
+                    this.selectEvent = selectEvent
+                    show()
+                }
+            }
+        } catch (e: Exception) {
+
+        }
+    }
+}
+
 fun isValidEmail(email: String?): Boolean {
     if (email == null) return false
     val regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}".toRegex()
     return regex.matches(email)
 }
 
-fun convertToMultipart(params: LinkedHashMap<String, Any>, imageName : String): Pair<LinkedHashMap<String, RequestBody>, List<MultipartBody.Part>> {
+fun convertToMultipart(
+    params: LinkedHashMap<String, Any>,
+    imageName: String
+): Pair<LinkedHashMap<String, RequestBody>, List<MultipartBody.Part>> {
     val params2 = LinkedHashMap<String, RequestBody>()
     val images = mutableListOf<MultipartBody.Part>()
 
