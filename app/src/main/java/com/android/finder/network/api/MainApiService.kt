@@ -1,5 +1,6 @@
 package com.android.finder.network.api
 
+import com.android.finder.network.response.CommunityListResponse
 import com.android.finder.network.response.SuccessProfileResponse
 import com.google.gson.annotations.SerializedName
 import okhttp3.MultipartBody
@@ -17,5 +18,12 @@ interface MainApiService {
     fun writeCommunityContents(
         @PartMap params: HashMap<String, RequestBody>,
         @Part questionImgs: List<MultipartBody.Part>
-    ) : Call<Unit>
+    ): Call<Unit>
+
+    @GET("api/community")
+    fun getCommunityPostList(
+        @Query("mbti") mbti: String? = null,
+        @Query("orderBy") orderBy: String? = null, //ANSWER_COUNT, CREATE_TIME →default: CREATE_TIME
+        @Query("page") page: Int
+    ) : Call<CommunityListResponse>
 }

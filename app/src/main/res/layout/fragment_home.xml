@@ -7,164 +7,171 @@
 
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="6dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="6dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="101dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_finder_logo_orange"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/moveToNoteView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_letter"
+                android:layout_marginRight="12dp"
+                app:layout_constraintRight_toLeftOf="@id/moveToNoticeView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/moveToNoticeView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_notice"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="6dp"
-                android:paddingLeft="24dp"
-                android:paddingRight="12dp"
-                android:paddingBottom="6dp">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="101dp"
-                    android:layout_height="36dp"
-                    android:src="@drawable/ic_finder_logo_orange"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/moveToNoteView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_letter"
-                    android:layout_marginRight="12dp"
-                    app:layout_constraintRight_toLeftOf="@id/moveToNoticeView"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/moveToNoticeView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_notice"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            android:fillViewport="true">
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/searchLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:background="@drawable/bg_light_gray_stroke">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/searchIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_search"/>
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/mbtiSearchEditTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="14dp"
-                    android:background="@null"
-                    android:fontFamily="@font/noto_sans_kr_medium"
-                    android:includeFontPadding="false"
-                    android:layout_gravity="center_vertical"
-                    android:hint="@string/hint_mbti_search"
-                    android:layout_weight="1"/>
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="wrap_content"
+                    android:id="@+id/searchLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="36dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:background="@drawable/bg_light_gray_stroke">
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:id="@+id/userIntroduceLayout"
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/searchIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:orientation="horizontal">
+                        android:src="@drawable/ic_search"/>
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/userIntroduceView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            tools:text="INFJ 수완"
-                            android:textStyle="bold"
-                            android:textSize="20dp"
-                            android:textColor="@color/black1"/>
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="님,"
-                            android:textColor="@color/black1"
-                            android:textSize="16dp"/>
-
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/msg_welcome"/>
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/mbtiSearchEditTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textSize="14dp"
+                        android:background="@null"
+                        android:fontFamily="@font/noto_sans_kr_medium"
+                        android:includeFontPadding="false"
+                        android:layout_gravity="center_vertical"
+                        android:hint="@string/hint_mbti_search"
+                        android:layout_weight="1"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/characterImageView"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_infj_character"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/mainColor"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"/>
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="36dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-            <include
-                android:id="@+id/balanceGameView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="56dp"
-                layout="@layout/include_balance_game_home"/>
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/userIntroduceLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:orientation="horizontal">
 
-            <include
-                android:id="@+id/debateView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                layout="@layout/include_debate_home"/>
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/userIntroduceView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="INFJ 수완"
+                                android:textStyle="bold"
+                                android:textSize="20dp"
+                                android:textColor="@color/black1"/>
 
-    </androidx.core.widget.NestedScrollView>
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="님,"
+                                android:textColor="@color/black1"
+                                android:textSize="16dp"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/msg_welcome"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/characterImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_infj_character"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/mainColor"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"/>
+
+                <include
+                    android:id="@+id/balanceGameView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="56dp"
+                    layout="@layout/include_balance_game_home"/>
+
+                <include
+                    android:id="@+id/debateView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/include_debate_home"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 </layout>

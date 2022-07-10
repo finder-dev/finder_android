@@ -1,6 +1,7 @@
 package com.android.finder
 
 import android.content.Context
+import androidx.recyclerview.widget.RecyclerView
 import com.android.finder.screen.dialog.OneButtonDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -58,4 +59,12 @@ fun convertToMultipart(params: LinkedHashMap<String, Any>, imageName : String): 
         }
     }
     return Pair(params2, images)
+}
+
+/**
+ * 스크롤 아래로 퍼센트 계산
+ * @return %
+ */
+fun scrollPercent(recyclerView: RecyclerView): Double {
+    return (recyclerView.computeVerticalScrollOffset() * 1.0 / (recyclerView.computeVerticalScrollRange() - recyclerView.computeVerticalScrollExtent())) * 100.0
 }

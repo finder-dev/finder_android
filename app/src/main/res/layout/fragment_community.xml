@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="android.view.View"/>
+        <variable
+            name="listViewModel"
+            type="com.android.finder.viewmodel.CommunityViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -35,48 +38,59 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/fastestDotView"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/fastestSortButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_main_2_color_dot"
-                    android:layout_marginRight="6dp"
-                    app:layout_constraintRight_toLeftOf="@id/fastestTextView"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/mostCommentsButton"
+                    android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/fastestTextView"
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/fastestDotView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_main_2_color_dot"
+                        android:layout_marginRight="6dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/fastestTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:text="@string/fastest"
+                        android:textColor="@color/black1"
+                        android:textSize="16dp"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/mostCommentsButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
-                    android:text="@string/fastest"
-                    android:textColor="@color/black1"
-                    android:textSize="16dp"
-                    app:layout_constraintRight_toLeftOf="@id/mostCommentsDotView"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/mostCommentsDotView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_gray_dot"
-                    android:layout_marginRight="6dp"
-                    app:layout_constraintRight_toLeftOf="@id/mostCommentsTextView"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/mostCommentsTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/most_comments"
-                    android:textColor="@color/gray3"
-                    android:textSize="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/mostCommentsDotView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_gray_dot"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="6dp"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/mostCommentsTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/most_comments"
+                        android:textColor="@color/gray3"
+                        android:textSize="16dp"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -86,10 +100,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:visibility="gone"
+                android:visibility="@{(listViewModel.contentList.size() == 0) ? View.VISIBLE : View.GONE}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sortSelectLayout" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/communityRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                communityAdapter="@{listViewModel.contentList}"
+                android:visibility="@{(listViewModel.contentList.size()!=0) ? View.VISIBLE : View.GONE}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sortSelectLayout"/>
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/postButton"
@@ -98,6 +123,7 @@
                 android:src="@drawable/ic_post_floating"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
