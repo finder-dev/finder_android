@@ -28,7 +28,7 @@ class CommunityWriteViewModel: ViewModel() {
             params["mbti"] = selectedMbti.value!!
             params["isQuestion"] = isCurious
             if(!questionImages.isEmpty()) params["images"] = questionImages.map { it.path }
-            val parts = convertToMultipart(params, "questionImgs[]")
+            val parts = convertToMultipart(params, "communityImages[]")
             MainNetWorkUtil.api.writeCommunityContents(parts.first, parts.second).runCatching {
                 val result = this.execute()
                 if(!result.isSuccessful) {
