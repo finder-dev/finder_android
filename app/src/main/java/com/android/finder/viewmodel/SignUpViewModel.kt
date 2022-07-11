@@ -117,39 +117,6 @@ class SignUpViewModel : ViewModel() {
         }
     }
 
-    fun checkDuplicatedNickname(context: Context, nickname: String): Boolean {
-        if (nickname.isNotEmpty()) {
-            SignNetworkUtil.api.checkDuplicatiedNickname(nickname).runCatching {
-                val result = this.execute()
-                if (result.isSuccessful) {
-                    result.body()?.let {
-                        duplicatedNicknameResultMessage = it.response?.message ?: "확인되었습니다."
-                    }
-                } else {
-                    result.errorBody()?.string()?.let {
-                        duplicatedNicknameResultMessage = try {
-                            val response = Gson().fromJson(it, MessageResponse::class.java)
-                            if (response.errorResponse.errorMessages.isNotEmpty()) {
-                                response.errorResponse.errorMessages[0]
-                            } else {
-                                "입력값을 확인해주세요."
-                            }
-                        } catch (e: Exception) {
-                            e.printStackTrace()
-                            context.resources.getString(R.string.error_unspecified_message)
-                        }
-                    }
-                }
-                return result.isSuccessful
-            }.onFailure {
-                duplicatedNicknameResultMessage =
-                    context.resources.getString(R.string.error_unspecified_message)
-                it.printStackTrace()
-            }
-        }
-        return false
-    }
-
     fun signUpByEmail(context: Context): Boolean {
         if (MBTI.getMbtiByString(mbti) != null) {
             SignNetworkUtil.api.signUpByEmail(

@@ -69,8 +69,7 @@ class CommunityWriteFragment: CommonFragment<FragmentCommunityWriteBinding>(R.la
             }
             binding.imageAddButton -> {
                 context?.let {
-                    TedImagePicker.with(it).startMultiImage { uriList ->
-                        Log.e("일단 되나?", uriList.toString())
+                    TedImagePicker.with(it).max(3, R.string.msg_max_image_count).startMultiImage { uriList ->
                         uriList.forEach { uri ->
                             getFullPathFromUri(it, uri)?.let { path -> writeViewModel.questionImages.add(File(path)) }
                         }
@@ -79,6 +78,7 @@ class CommunityWriteFragment: CommonFragment<FragmentCommunityWriteBinding>(R.la
 
             }
             binding.writeButton -> {
+                isLoading = true
                 val title = binding.titleEditText.text.toString()
                 val content = binding.contentsEditText.text.toString()
                 CoroutineScope(Dispatchers.IO).launch {
@@ -90,6 +90,7 @@ class CommunityWriteFragment: CommonFragment<FragmentCommunityWriteBinding>(R.la
                     } else {
                         oneButtonDialogShow(context, resources.getString(R.string.error_write), writeViewModel.writeResultMessage)
                     }
+                    isLoading = false
                 }
             }
             binding.backButton -> navPopStack()

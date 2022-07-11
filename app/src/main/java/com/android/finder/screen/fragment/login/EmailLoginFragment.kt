@@ -38,6 +38,7 @@ class EmailLoginFragment : CommonFragment<FragmentEmailLoginBinding>(R.layout.fr
                 loginViewModel.isAutoLogin.postValue(!(loginViewModel.isAutoLogin.value ?: false))
             }
             binding.loginButton -> {
+                isLoading = true
                 val email = binding.emailEditTextView.text.toString()
                 val password = binding.passwordEditTextView.text.toString()
                 if (email.isEmpty()) {
@@ -48,8 +49,6 @@ class EmailLoginFragment : CommonFragment<FragmentEmailLoginBinding>(R.layout.fr
                     oneButtonDialogShow(context, resources.getString(R.string.error_password_empty))
                     return
                 }
-                Log.e("email",email)
-                Log.e("password", password)
                 CoroutineScope(Dispatchers.IO).launch {
                     context?.let {
                         if (loginViewModel.login(it, email, password)) {
@@ -70,6 +69,7 @@ class EmailLoginFragment : CommonFragment<FragmentEmailLoginBinding>(R.layout.fr
                             )
                         }
                     }
+                    isLoading = false
                 }
             }
         }

@@ -1,5 +1,6 @@
 package com.android.finder.screen
 
+import android.app.Dialog
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
@@ -16,6 +17,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import com.android.finder.R
 import com.android.finder.viewmodel.NavigationViewModel
 
 abstract class CommonFragment<T : ViewDataBinding>(@LayoutRes private val layoutId: Int) :
@@ -23,6 +25,14 @@ abstract class CommonFragment<T : ViewDataBinding>(@LayoutRes private val layout
     private var _binding: T? = null
     protected val binding: T get() = _binding!!
     protected val navController: NavController get() = findNavController()
+    lateinit var progressDialog: Dialog
+
+    var isLoading: Boolean = false
+        set(value) {
+            field = value
+            if (value) progressDialog.show()
+            else progressDialog.dismiss()
+        }
 
     private val navigationViewModel : NavigationViewModel by viewModels()
 
@@ -40,6 +50,15 @@ abstract class CommonFragment<T : ViewDataBinding>(@LayoutRes private val layout
         binding.lifecycleOwner = this
         return binding.root
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        progressDialog = Dialog(requireContext())
+        progressDialog.setContentView(R.layout.dialog_progress)
+        progressDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        progressDialog.setCancelable(false)
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

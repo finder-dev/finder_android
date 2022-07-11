@@ -27,7 +27,6 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
     View.OnClickListener {
 
     private val communityViewModel: CommunityViewModel by viewModels()
-    private var isLoading: Boolean = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,10 +34,7 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
         sortUiChange()
         try {
             binding.communityRecyclerView.addItemDecoration(
-                RecyclerViewItemDeco(
-                    requireContext(),
-                    42
-                )
+                RecyclerViewItemDeco(requireContext(), 42)
             )
             binding.communityRecyclerView.addOnScrollListener(object :
                 RecyclerView.OnScrollListener() {

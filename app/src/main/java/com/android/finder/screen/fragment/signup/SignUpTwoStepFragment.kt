@@ -49,20 +49,6 @@ class SignUpTwoStepFragment :
                     }
                 }
             }
-            binding.nicknameDuplicationCheckButton -> {
-                context?.let {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        val nickname = binding.nicknameEditTextView.text.toString()
-                        signUpViewModel.checkDuplicatedNickname(it, nickname)
-                        oneButtonDialogShow(
-                            it,
-                            resources.getString(R.string.nickname_duplication),
-                            signUpViewModel.duplicatedNicknameResultMessage
-                        )
-                    }
-                }
-
-            }
             binding.termsAgreeCheckLayout -> {
                 signUpViewModel.isTermsAgree.value = !(signUpViewModel.isTermsAgree.value ?: false)
                 binding.nextButton.isEnabled = isDataFull()
@@ -70,6 +56,7 @@ class SignUpTwoStepFragment :
             binding.nextButton -> {
                 signUpViewModel.nickname = binding.nicknameEditTextView.text.toString()
                 context?.let {
+                    isLoading = true
                     CoroutineScope(Dispatchers.IO).launch {
                         if (signUpViewModel.signUpByEmail(it)) {
                             navigate(SignUpTwoStepFragmentDirections.actionSignUpTwoStepFragmentToSignUpCompleteFragment())
@@ -80,6 +67,7 @@ class SignUpTwoStepFragment :
                                 signUpViewModel.signUpResultMessage
                             )
                         }
+                        isLoading = false
                     }
                 }
             }
@@ -91,7 +79,6 @@ class SignUpTwoStepFragment :
         binding.nextButton.setOnClickListener(this)
         binding.selectMBTILayout.setOnClickListener(this)
         binding.termsAgreeCheckLayout.setOnClickListener(this)
-        binding.nicknameDuplicationCheckButton.setOnClickListener(this)
 
         binding.nicknameEditTextView.addTextChangedListener(this)
 
