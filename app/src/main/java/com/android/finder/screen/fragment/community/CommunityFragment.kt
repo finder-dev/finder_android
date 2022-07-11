@@ -1,47 +1,51 @@
 package com.android.finder.screen.fragment.community
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.android.finder.*
 import com.android.finder.databinding.FragmentCommunityBinding
 import com.android.finder.screen.CommonFragment
-import com.android.finder.R
 import com.android.finder.component.RecyclerViewItemDeco
 import com.android.finder.enumdata.CommunityOrderBy
 import com.android.finder.enumdata.MBTI
 import com.android.finder.screen.dialog.GridSelectDialog
-import com.android.finder.screen.dialog.MBTISelectDialog
 import com.android.finder.screen.fragment.MainFragmentDirections
-import com.android.finder.scrollPercent
-import com.android.finder.selectGridDailogShow
-import com.android.finder.setTextColorResource
 import com.android.finder.viewmodel.CommunityViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.lang.Exception
 
-class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.fragment_community), View.OnClickListener {
+class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.fragment_community),
+    View.OnClickListener {
 
-    private val communityViewModel : CommunityViewModel by viewModels()
-    private var isLoading : Boolean = false
+    private val communityViewModel: CommunityViewModel by viewModels()
+    private var isLoading: Boolean = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.listViewModel = communityViewModel
         sortUiChange()
         try {
-            binding.communityRecyclerView.addItemDecoration(RecyclerViewItemDeco(
-                requireContext(),
-                42
-            ))
+            binding.communityRecyclerView.addItemDecoration(
+                RecyclerViewItemDeco(
+                    requireContext(),
+                    42
+                )
+            )
             binding.communityRecyclerView.addOnScrollListener(object :
                 RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
-                    if (scrollPercent(binding.communityRecyclerView) >= 100) {
-                        if (communityViewModel.currentPage <= communityViewModel.lastPage) {
+                    if (scrollPercent(binding.communityRecyclerView) >= 90) {
+                        if (!communityViewModel.isLast) {
                             dataLoading(false)
                         }
                     }
@@ -52,10 +56,20 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (EventBus.getDefault().isRegistered(this)) EventBus.getDefault().unregister(this)
+    }
+
     fun dataLoading(isRefresh: Boolean) {
-        if(!isLoading) {
+        if (!isLoading) {
             isLoading = true
-            if(isRefresh) communityViewModel.currentPage = 0
+            if (isRefresh) communityViewModel.currentPage = 0
             CoroutineScope(Dispatchers.IO).launch {
                 communityViewModel.getCommunityList()
                 isLoading = false
@@ -63,6 +77,7 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
         }
 
     }
+
     override fun eventListenerSetting() {
         binding.postButton.setOnClickListener(this)
         binding.fastestSortButton.setOnClickListener(this)
@@ -79,7 +94,7 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
     }
 
     override fun onClick(v: View?) {
-        when(v) {
+        when (v) {
             binding.postButton -> {
                 navigate(MainFragmentDirections.actionMainFragmentToCommunityWriteFragment())
             }
@@ -91,10 +106,6 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
             }
             binding.selectMbtiButton -> {
                 context?.let {
-//                    MBTISelectDialog(it).apply {
-//                        selectEvent = { communityViewModel.mbti.postValue(getMBTI() ?: "전체") }
-//                        show()
-//                    }
                     GridSelectDialog(it, MBTI.getAllMbti(true)).apply {
                         selectEvent = { communityViewModel.mbti.postValue(getItem() ?: "전체") }
                         show()
@@ -105,7 +116,7 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
     }
 
     private fun sortUiChange() {
-        when(communityViewModel.orderBy.value){
+        when (communityViewModel.orderBy.value) {
             CommunityOrderBy.CREATE_TIME -> {
                 binding.mostCommentsDotView.setImageResource(R.drawable.ic_gray_dot)
                 binding.mostCommentsTextView.setTextColorResource(R.color.gray3)
@@ -120,5 +131,44 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
             }
         }
         dataLoading(true)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun contentIsLike(event: LikeCommunityContent) {
+        communityViewModel.contentList.find { it.communityId == event.content.communityId }?.let {
+            CoroutineScope(Dispatchers.IO).launch {
+                if (communityViewModel.likeChange(it.communityId)) {
+                    it.likeUser = !it.likeUser
+                    CoroutineScope(Dispatchers.Main).launch {
+                        try {
+                            if (it.likeUser) {
+                                it.likeCount++
+                                Toast.makeText(
+                                    context,
+                                    resources.getString(R.string.msg_like_success),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            } else {
+                                it.likeCount--
+                                Toast.makeText(
+                                    context,
+                                    resources.getString(R.string.msg_like_delete),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            binding.communityRecyclerView.adapter?.notifyDataSetChanged()
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    }
+                } else {
+                    Toast.makeText(
+                        context,
+                        resources.getString(R.string.error_unspecified_message),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
     }
 }

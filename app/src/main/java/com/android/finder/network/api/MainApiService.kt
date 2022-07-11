@@ -26,4 +26,9 @@ interface MainApiService {
         @Query("orderBy") orderBy: String? = null, //ANSWER_COUNT, CREATE_TIME →default: CREATE_TIME
         @Query("page") page: Int
     ) : Call<CommunityListResponse>
+
+    @POST("api/community/{communityId}/like")
+    fun likeChange(
+        @Path("communityId") communityId: Long
+    ) : Call<Unit>
 }

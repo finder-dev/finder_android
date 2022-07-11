@@ -1,6 +1,11 @@
 package com.android.finder
 
 import android.content.Context
+import android.database.Cursor
+import android.net.Uri
+import android.provider.MediaStore
+import android.util.Log
+import androidx.loader.content.CursorLoader
 import androidx.recyclerview.widget.RecyclerView
 import com.android.finder.screen.dialog.GridSelectDialog
 import com.android.finder.screen.dialog.OneButtonDialog
@@ -13,7 +18,7 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
-import java.lang.Exception
+
 
 fun oneButtonDialogShow(context: Context?, message: String, subMessage: String? = null) {
     CoroutineScope(Dispatchers.Main).launch {
@@ -64,11 +69,13 @@ fun convertToMultipart(
                     for (image in value) {
                         val imagePath = image as String
                         val file = File(imagePath)
+                        Log.e("file", file.name)
                         val fileReqBody =
                             file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                        Log.e("fileRequest", fileReqBody.contentType().toString())
                         val part = MultipartBody.Part.createFormData(
                             imageName,
-                            file.path,
+                            file.name,
                             fileReqBody
                         )
                         images.add(part)

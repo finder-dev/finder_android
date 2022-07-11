@@ -73,7 +73,7 @@
             android:id="@+id/previewImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:maxHeight="240dp"
             android:layout_marginBottom="16dp"/>
 
         <include

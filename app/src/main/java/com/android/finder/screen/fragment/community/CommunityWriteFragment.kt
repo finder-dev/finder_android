@@ -3,17 +3,21 @@ package com.android.finder.screen.fragment.community
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.android.finder.databinding.FragmentCommunityWriteBinding
 import com.android.finder.screen.CommonFragment
 import com.android.finder.R
+import com.android.finder.component.RecyclerViewHorizonItemDeco
 import com.android.finder.oneButtonDialogShow
 import com.android.finder.screen.dialog.MBTISelectDialog
 import com.android.finder.viewmodel.CommunityWriteViewModel
+import gun0912.tedimagepicker.builder.TedImagePicker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.File
 
 class CommunityWriteFragment: CommonFragment<FragmentCommunityWriteBinding>(R.layout.fragment_community_write), View.OnClickListener, TextWatcher {
 
@@ -21,6 +25,12 @@ class CommunityWriteFragment: CommonFragment<FragmentCommunityWriteBinding>(R.la
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.writeViewModel = writeViewModel
+        context?.let {
+            binding.imageRecyclerView.addItemDecoration(
+                RecyclerViewHorizonItemDeco(it,8)
+            )
+        }
 
     }
 
@@ -29,6 +39,7 @@ class CommunityWriteFragment: CommonFragment<FragmentCommunityWriteBinding>(R.la
         binding.backButton.setOnClickListener(this)
         binding.writeButton.setOnClickListener(this)
         binding.selectMBTILayout.setOnClickListener(this)
+        binding.imageAddButton.setOnClickListener(this)
 
         binding.titleEditText.addTextChangedListener(this)
         binding.contentsEditText.addTextChangedListener(this)
@@ -55,6 +66,17 @@ class CommunityWriteFragment: CommonFragment<FragmentCommunityWriteBinding>(R.la
                         show()
                     }
                 }
+            }
+            binding.imageAddButton -> {
+                context?.let {
+                    TedImagePicker.with(it).startMultiImage { uriList ->
+                        Log.e("일단 되나?", uriList.toString())
+                        uriList.forEach { uri ->
+                            getFullPathFromUri(it, uri)?.let { path -> writeViewModel.questionImages.add(File(path)) }
+                        }
+                    }
+                }
+
             }
             binding.writeButton -> {
                 val title = binding.titleEditText.text.toString()

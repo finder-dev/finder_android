@@ -64,6 +64,8 @@
     <string name="msg_re_login">앱을 재실행해주세요</string>
     <string name="msg_community_post_empty">커뮤니티 게시글이 없습니다.</string>
     <string name="msg_success_write">글이 등록되었습니다.</string>
+    <string name="msg_like_success">좋아요를 누르셨습니다.</string>
+    <string name="msg_like_delete">좋아요를 해제하셨습니다.</string>
 
 
     <string name="error_unspecified_message">문제가 발생했습니다.</string>

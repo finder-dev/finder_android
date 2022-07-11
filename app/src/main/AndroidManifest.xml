@@ -3,6 +3,7 @@
     package="com.android.finder">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".App"
@@ -12,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Finder"
+        android:requestLegacyExternalStorage="true"
         >
         <activity
             android:name=".screen.activity.MainActivity"

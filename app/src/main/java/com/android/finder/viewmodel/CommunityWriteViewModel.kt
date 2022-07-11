@@ -33,13 +33,10 @@ class CommunityWriteViewModel: ViewModel() {
                 val result = this.execute()
                 if(!result.isSuccessful) {
                     result.errorBody()?.string()?.let {
-                        Log.e("error", it)
                         val response = Gson().fromJson(it, MessageResponse::class.java)
-                        Log.e("error", response.toString())
                         writeResultMessage = if(response.errorResponse.errorMessages.isNotEmpty()) {
                             response.errorResponse.errorMessages[0]
                         } else "입력값을 확인해주세요."
-
                     }
                 } else {
                     writeResultMessage = App.instance.getString(R.string.msg_success_write)

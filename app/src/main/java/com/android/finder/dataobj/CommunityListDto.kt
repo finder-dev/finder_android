@@ -6,8 +6,6 @@ data class CommunityListDto(
     @SerializedName("content") val contents: List<Content>,
     @SerializedName("pageable") val pageable: Pageable,
     @SerializedName("last") val last : Boolean,
-    @SerializedName("totalPages") val totalPages : Int,
-    @SerializedName("totalElements") val pageElements : Int,
     @SerializedName("size") val size : Int
 )
 
@@ -16,11 +14,11 @@ data class Content(
     @SerializedName("communityTitle") val communityTitle: String,
     @SerializedName("communityContent") val communityContent: String,
     @SerializedName("communityMBTI") val communityMBTI: String,
-    @SerializedName("imageUrl") val imageUrl: String,
+    @SerializedName("imageUrl") val imageUrl: String?,
     @SerializedName("userNickname") val userNickname: String,
     @SerializedName("userMBTI") val userMBTI: String,
-    @SerializedName("likeUser") val likeUser: Boolean,
-    @SerializedName("likeCount") val likeCount: Int,
+    @SerializedName("likeUser") var likeUser: Boolean,
+    @SerializedName("likeCount") var likeCount: Int,
     @SerializedName("answerCount") val answerCount: Int,
     @SerializedName("isQuestion") val isQuestion: Boolean,
     @SerializedName("createTime") val createTime: String
