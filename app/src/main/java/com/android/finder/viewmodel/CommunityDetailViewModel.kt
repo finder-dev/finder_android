@@ -53,10 +53,14 @@ class CommunityDetailViewModel: ViewModel() {
     }
 
     fun likeChange(communityId: Long) : Boolean {
-        MainNetWorkUtil.api.likeChange(communityId).runCatching {
-            val result = this.execute()
-            return result.isSuccessful
-        }
-        return false
+        var result = false
+        MainNetWorkUtil.api.likeChange(communityId).runCatching { result = this.execute().isSuccessful }
+        return result
+    }
+
+    fun saveChange(communityId: Long) : Boolean {
+        var result = false
+        MainNetWorkUtil.api.saveChange(communityId).runCatching { result = this.execute().isSuccessful }
+        return result
     }
 }

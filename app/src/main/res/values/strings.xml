@@ -69,6 +69,8 @@
     <string name="msg_community_post_empty">커뮤니티 게시글이 없습니다.</string>
     <string name="msg_success_write">글이 등록되었습니다.</string>
     <string name="msg_like_success">좋아요를 누르셨습니다.</string>
+    <string name="msg_save_success">저장하셨습니다.</string>
+    <string name="msg_save_delete">저장을 취소하셨습니다.</string>
     <string name="msg_like_delete">좋아요를 해제하셨습니다.</string>
     <string name="msg_max_image_count">3장까지 이미지를 선택할 수 있습니다.</string>
 

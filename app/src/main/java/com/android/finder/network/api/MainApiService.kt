@@ -36,4 +36,10 @@ interface MainApiService {
     fun getCommunityDetail(
         @Path("communityId") communityId: Long
     ) : Call<CommunityDetailResponse>
+
+    @POST("/api/community/{communityId}/save")
+    fun saveChange(
+        @Path("communityId") communityId : Long
+    ) : Call<Unit>
+
 }

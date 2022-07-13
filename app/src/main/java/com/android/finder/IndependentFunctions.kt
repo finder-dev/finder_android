@@ -5,6 +5,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.Toast
 import androidx.loader.content.CursorLoader
 import androidx.recyclerview.widget.RecyclerView
 import com.android.finder.screen.dialog.GridSelectDialog
@@ -19,6 +20,19 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
+fun ToastShow(context: Context?, message: String) {
+    CoroutineScope(Dispatchers.Main).launch {
+        try {
+            Toast.makeText(
+                context,
+                message,
+                Toast.LENGTH_SHORT
+            ).show()
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+    }
+}
 
 fun oneButtonDialogShow(context: Context?, message: String, subMessage: String? = null, clickEvent : () -> Unit = {}) {
     CoroutineScope(Dispatchers.Main).launch {

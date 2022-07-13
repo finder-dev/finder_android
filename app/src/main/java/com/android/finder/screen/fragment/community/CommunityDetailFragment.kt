@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.android.finder.App
 import com.android.finder.R
+import com.android.finder.ToastShow
 import com.android.finder.component.RecyclerViewHorizonItemDeco
 import com.android.finder.component.RecyclerViewItemDeco
 import com.android.finder.databinding.FragmentCommunityDetailBinding
@@ -20,10 +21,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class CommunityDetailFragment : CommonFragment<FragmentCommunityDetailBinding>(R.layout.fragment_community_detail), View.OnClickListener {
+class CommunityDetailFragment :
+    CommonFragment<FragmentCommunityDetailBinding>(R.layout.fragment_community_detail),
+    View.OnClickListener {
 
     private val communityDetailViewModel: CommunityDetailViewModel by viewModels()
-    private val args : CommunityDetailFragmentArgs by navArgs()
+    private val args: CommunityDetailFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,19 +34,23 @@ class CommunityDetailFragment : CommonFragment<FragmentCommunityDetailBinding>(R
         refresh()
         context?.let {
             binding.imageRecyclerView.addItemDecoration(
-                RecyclerViewHorizonItemDeco(it,8)
+                RecyclerViewHorizonItemDeco(it, 8)
             )
         }
     }
+
     override fun eventListenerSetting() {
         binding.backButton.setOnClickListener(this)
         binding.commentInputButton.setOnClickListener(this)
         binding.likeLayout.setOnClickListener(this)
         binding.saveButton.setOnClickListener(this)
+        binding.saveButton.setOnClickListener(this)
 
         communityDetailViewModel.communityDetailData.observe(viewLifecycleOwner) {
-            if(it != null) setUI(it)
-            else { errorDialog() }
+            if (it != null) setUI(it)
+            else {
+                errorDialog()
+            }
         }
     }
 
@@ -71,7 +78,7 @@ class CommunityDetailFragment : CommonFragment<FragmentCommunityDetailBinding>(R
         }
     }
 
-    private fun setUI(data : CommunityDetailDto) {
+    private fun setUI(data: CommunityDetailDto) {
         data.apply {
             binding.questionMbtiView.text = communityMBTI
             binding.isCuriousImageView.isVisible = isQuestion
@@ -86,53 +93,65 @@ class CommunityDetailFragment : CommonFragment<FragmentCommunityDetailBinding>(R
                     null
                 ) else App.instance.resources.getColor(R.color.black7, null)
             )
-            binding.likeCountView.text = resources.getString(R.string.likeCountFormat, likeCount.toString())
-            binding.commentCountView.text = resources.getString(R.string.commentCountFormat, answerCount.toString())
+            binding.likeCountView.text =
+                resources.getString(R.string.likeCountFormat, likeCount.toString())
+            binding.commentCountView.text =
+                resources.getString(R.string.commentCountFormat, answerCount.toString())
+            binding.saveButton.setImageResource(if(saveUser) R.drawable.ic_save_on else R.drawable.ic_save_off)
         }
     }
 
     override fun onClick(v: View?) {
-        when(v) {
+        when (v) {
             binding.backButton -> navPopStack()
-            binding.commentInputButton -> {
-
-            }
-            binding.likeLayout ->{
+            binding.saveButton -> {
                 CoroutineScope(Dispatchers.IO).launch {
                     val item = communityDetailViewModel.communityDetailData.value
-                    if (item != null && communityDetailViewModel.likeChange(args.communityId)) {
-                        item.likeUser = !item.likeUser
+                    var toastMessage = ""
+                    if (item != null && communityDetailViewModel.saveChange(args.communityId)) {
+                        item.saveUser = !item.saveUser
+                        toastMessage =
+                            resources.getString(if (item.saveUser) R.string.msg_save_success else R.string.msg_save_delete)
                         CoroutineScope(Dispatchers.Main).launch {
                             try {
-                                if (item.likeUser) {
-                                    item.likeCount++
-                                    Toast.makeText(
-                                        context,
-                                        resources.getString(R.string.msg_like_success),
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                } else {
-                                    item.likeCount--
-                                    Toast.makeText(
-                                        context,
-                                        resources.getString(R.string.msg_like_delete),
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
                                 setUI(item)
                             } catch (e: Exception) {
                                 e.printStackTrace()
                             }
                         }
                     } else {
-                        CoroutineScope(Dispatchers.Main).launch {
-                            Toast.makeText(
-                                context,
-                                resources.getString(R.string.error_unspecified_message),
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+                        toastMessage = resources.getString(R.string.error_unspecified_message)
                     }
+                    ToastShow(context, toastMessage)
+                }
+            }
+            binding.commentInputButton -> {
+
+            }
+            binding.likeLayout -> {
+                CoroutineScope(Dispatchers.IO).launch {
+                    val item = communityDetailViewModel.communityDetailData.value
+                    var toastMessage = ""
+                    if (item != null && communityDetailViewModel.likeChange(args.communityId)) {
+                        item.likeUser = !item.likeUser
+                        if (item.likeUser) {
+                            toastMessage = resources.getString(R.string.msg_like_success)
+                            item.likeCount++
+                        } else {
+                            toastMessage = resources.getString(R.string.msg_like_delete)
+                            item.likeCount--
+                        }
+                        CoroutineScope(Dispatchers.Main).launch {
+                            try {
+                                setUI(item)
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                            }
+                        }
+                    } else {
+                        toastMessage = resources.getString(R.string.error_unspecified_message)
+                    }
+                    ToastShow(context, toastMessage)
                 }
             }
             binding.saveButton -> {}
