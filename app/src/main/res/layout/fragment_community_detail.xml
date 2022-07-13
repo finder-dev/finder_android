@@ -215,6 +215,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    commentAdapter="@{detailViewModel.commentList}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -231,7 +233,10 @@
                 android:id="@+id/commentEditTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/black04"
+                android:textSize="14dp"
+                android:hint="@string/hint_comment_add"
                 android:background="@null"
                 android:layout_weight="1"/>
 

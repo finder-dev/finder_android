@@ -49,6 +49,7 @@
     <string name="hint_mbti_search">알고싶은 MBTI가 있나요?</string>
     <string name="hint_input_title">제목을 입력하세요</string>
     <string name="hint_community_write">내용을 입력하세요.(고민이나 질문을 포함한 글은 상단 궁금 버튼을 눌러주세요)</string>
+    <string name="hint_comment_add">따뜻한 댓글을 남겨주세요!</string>
 
     <string name="msg_one_on_boarding_main">궁금한 MBTI한테\n바로 물어보세요</string>
     <string name="msg_one_on_boarding_sub">오해와 진실! 여기서 다 풀어요</string>

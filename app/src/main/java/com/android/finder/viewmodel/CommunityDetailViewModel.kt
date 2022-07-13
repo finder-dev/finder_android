@@ -10,15 +10,18 @@ import com.android.finder.network.MainNetWorkUtil
 import com.android.finder.network.response.MessageResponse
 import com.google.gson.Gson
 import com.android.finder.R
+import com.android.finder.dataobj.CommentData
 import java.io.File
 
 class CommunityDetailViewModel: ViewModel() {
 
     val communityDetailData : MutableLiveData<CommunityDetailDto?> = MutableLiveData()
     val questionImages : ObservableArrayList<String> = ObservableArrayList()
+    val commentList : ObservableArrayList<CommentData> = ObservableArrayList()
     var detailResultMessage = ""
 
     fun getCommunityContentDetail(communityId : Long) {
+        Log.e("제발", communityId.toString())
         MainNetWorkUtil.api.getCommunityDetail(communityId).runCatching {
             val result = this.execute()
             if(result.isSuccessful) {
@@ -28,6 +31,10 @@ class CommunityDetailViewModel: ViewModel() {
                     questionImages.apply {
                         clear()
                         addAll(it.response.communityImgDtos.map {  img -> img.communityImageUrl })
+                    }
+                    commentList.apply {
+                        clear()
+                        addAll(it.response.answerHistDtos)
                     }
                 }
             } else {

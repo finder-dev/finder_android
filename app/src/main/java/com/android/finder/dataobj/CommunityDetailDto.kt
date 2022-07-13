@@ -2,7 +2,7 @@ package com.android.finder.dataobj
 
 data class CommunityDetailDto(
     val answerCount: Int,
-    val answerHistDtos: List<Any>,
+    val answerHistDtos: List<CommentData>,
     val communityContent: String,
     val communityId: Int,
     val communityImgDtos: List<CommunityImgDto>,

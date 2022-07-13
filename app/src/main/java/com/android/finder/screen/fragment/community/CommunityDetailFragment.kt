@@ -9,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import com.android.finder.App
 import com.android.finder.R
 import com.android.finder.component.RecyclerViewHorizonItemDeco
+import com.android.finder.component.RecyclerViewItemDeco
 import com.android.finder.databinding.FragmentCommunityDetailBinding
 import com.android.finder.dataobj.CommunityDetailDto
 import com.android.finder.oneButtonDialogShow
@@ -47,6 +48,7 @@ class CommunityDetailFragment : CommonFragment<FragmentCommunityDetailBinding>(R
     }
 
     private fun refresh() {
+        isLoading = true
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 communityDetailViewModel.getCommunityContentDetail(args.communityId)
@@ -55,6 +57,7 @@ class CommunityDetailFragment : CommonFragment<FragmentCommunityDetailBinding>(R
                 errorDialog()
                 e.printStackTrace()
             }
+            isLoading = false
         }
     }
 
