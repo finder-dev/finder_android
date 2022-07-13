@@ -128,15 +128,15 @@ class CommunityDetailFragment :
                 if(communityDetailViewModel.answerId == 0) {
                     CoroutineScope(Dispatchers.IO).launch {
                         val item = communityDetailViewModel.communityDetailData.value
-                        var toastMessage = ""
+                        val toastMessage: String
                         val answer = binding.commentEditTextView.text.toString()
-                        if(answer.isNotEmpty()) {
+                        toastMessage = if(answer.isNotEmpty()) {
                             if(item != null && communityDetailViewModel.createAnswer(item.communityId, answer)) {
-                                toastMessage = resources.getString(R.string.msg_comment_add)
+                                resources.getString(R.string.msg_comment_add)
                             } else {
-                                toastMessage = resources.getString(R.string.error_comment_add)
+                                resources.getString(R.string.error_comment_add)
                             }
-                        } else toastMessage = resources.getString(R.string.error_empty_comment)
+                        } else resources.getString(R.string.error_empty_comment)
                         refresh()
                         ToastShow(context, toastMessage)
                     }

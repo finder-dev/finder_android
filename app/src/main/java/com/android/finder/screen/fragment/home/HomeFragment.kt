@@ -7,6 +7,7 @@ import com.android.finder.databinding.FragmentHomeBinding
 import com.android.finder.screen.CommonFragment
 import com.android.finder.R
 import com.android.finder.caching.CachingData
+import com.android.finder.component.RecyclerViewItemDeco
 import com.android.finder.viewmodel.HomeViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,14 +18,20 @@ class HomeFragment : CommonFragment<FragmentHomeBinding>(R.layout.fragment_home)
     private val homeViewModel : HomeViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setProfile()
+        refresh()
+        binding.debateView.homeViewModel = homeViewModel
+        context?.let {
+            binding.debateView.communityHotRecyclerView.addItemDecoration(
+                RecyclerViewItemDeco(it, 29)
+            )
+        }
+
     }
 
-    private fun setProfile() {
+    private fun refresh() {
         CoroutineScope(Dispatchers.IO).launch {
-            context?.let {
-                homeViewModel.getProfile(it)
-            }
+            context?.let { homeViewModel.getProfile(it) }
+            homeViewModel.getHotList()
         }
     }
     override fun eventListenerSetting() {

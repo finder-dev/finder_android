@@ -4,11 +4,14 @@ import android.content.Context
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableArrayList
 import androidx.recyclerview.widget.RecyclerView
+import com.android.finder.bindingadapter.RecyclerViewBinding.setCommentAdapter
 import com.android.finder.bindingadapter.RecyclerViewBinding.setImageAdapter
 import com.android.finder.dataobj.CommentData
+import com.android.finder.dataobj.CommunityHotTitleData
 import com.android.finder.dataobj.Content
 import com.android.finder.list.community.CommunityDetailCommentAdapter
 import com.android.finder.list.community.CommunityListAdapter
+import com.android.finder.list.home.CommunityHotListAdapter
 import com.android.finder.list.image.ImageListAdapter
 import java.io.File
 
@@ -47,6 +50,13 @@ object RecyclerViewBinding {
         if(this.adapter == null) {
             adapter = CommunityDetailCommentAdapter(this.context, list)
         }
+        adapter?.notifyDataSetChanged()
+    }
+
+    @BindingAdapter("homeCommunityAdapter")
+    @JvmStatic
+    fun RecyclerView.setHomeCommunityAapter(list : ObservableArrayList<CommunityHotTitleData>) {
+        if(this.adapter == null) adapter = CommunityHotListAdapter(this.context, list)
         adapter?.notifyDataSetChanged()
     }
 }

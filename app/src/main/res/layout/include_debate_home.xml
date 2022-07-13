@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="homeViewModel"
+            type="com.android.finder.viewmodel.HomeViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -21,6 +24,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
                 android:src="@drawable/ic_speech_bubble"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -34,7 +38,11 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/communityHotRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            homeCommunityAdapter="@{homeViewModel.communityHotList}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
