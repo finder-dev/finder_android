@@ -53,5 +53,15 @@ interface MainApiService {
     fun createAnswer(
         @Path("communityId") communityId : Long,
         @Field("content") content : String
-    ) :Call<Unit>
+    ) : Call<Unit>
+
+    @DELETE("api/community/{communityId}")
+    fun deleteCommunityContent(
+        @Path("communityId") communityId : Long
+    ) : Call<Unit>
+
+    @POST("api/community/{communityId}/report")
+    fun reportCommunityContent(
+        @Path("communityId") communityId : Long
+    ) : Call<Unit>
 }

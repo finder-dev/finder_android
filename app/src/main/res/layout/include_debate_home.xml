@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="homeViewModel"
             type="com.android.finder.viewmodel.HomeViewModel" />
@@ -38,11 +39,17 @@
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{(homeViewModel.communityHotList.size() == 0) ? View.VISIBLE : View.GONE}"
+            layout="@layout/include_empty_view"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/communityHotRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             homeCommunityAdapter="@{homeViewModel.communityHotList}"
+            android:visibility="@{(homeViewModel.communityHotList.size() != 0) ? View.VISIBLE : View.GONE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

@@ -13,7 +13,7 @@ data class CommunityDetailDto(
     var likeCount: Int,
     var likeUser: Boolean,
     var saveUser: Boolean,
-    val userId: Int,
+    val userId: Long,
     val userMBTI: String,
     val userNickname: String
 )

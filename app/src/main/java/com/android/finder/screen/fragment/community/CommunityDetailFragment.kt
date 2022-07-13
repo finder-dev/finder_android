@@ -2,19 +2,17 @@ package com.android.finder.screen.fragment.community
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.android.finder.App
-import com.android.finder.R
-import com.android.finder.ToastShow
+import com.android.finder.*
+import com.android.finder.caching.CachingData
 import com.android.finder.component.RecyclerViewHorizonItemDeco
-import com.android.finder.component.RecyclerViewItemDeco
 import com.android.finder.databinding.FragmentCommunityDetailBinding
 import com.android.finder.dataobj.CommunityDetailDto
-import com.android.finder.oneButtonDialogShow
+import com.android.finder.result.StringResult
 import com.android.finder.screen.CommonFragment
+import com.android.finder.screen.dialog.SelectListBottomSheetDialog
 import com.android.finder.viewmodel.CommunityDetailViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -44,6 +42,7 @@ class CommunityDetailFragment :
         binding.commentInputButton.setOnClickListener(this)
         binding.likeLayout.setOnClickListener(this)
         binding.saveButton.setOnClickListener(this)
+        binding.attributeButton.setOnClickListener(this)
 
         communityDetailViewModel.communityDetailData.observe(viewLifecycleOwner) {
             if (it != null) setUI(it)
@@ -96,7 +95,7 @@ class CommunityDetailFragment :
                 resources.getString(R.string.likeCountFormat, likeCount.toString())
             binding.commentCountView.text =
                 resources.getString(R.string.commentCountFormat, answerCount.toString())
-            binding.saveButton.setImageResource(if(saveUser) R.drawable.ic_save_on else R.drawable.ic_save_off)
+            binding.saveButton.setImageResource(if (saveUser) R.drawable.ic_save_on else R.drawable.ic_save_off)
         }
     }
 
@@ -121,24 +120,110 @@ class CommunityDetailFragment :
                     } else {
                         toastMessage = resources.getString(R.string.error_unspecified_message)
                     }
-                    ToastShow(context, toastMessage)
+                    toastShow(context, toastMessage)
+                }
+            }
+            binding.attributeButton -> {
+                val detailData = communityDetailViewModel.communityDetailData.value
+                if (detailData != null) {
+                    val itemList = if (detailData.userId == CachingData.userProfile?.userId) {
+                        arrayListOf(
+                            resources.getString(R.string.modify),
+                            resources.getString(R.string.delete),
+                            resources.getString(R.string.close)
+                        )
+                    } else {
+                        arrayListOf(
+                            resources.getString(R.string.send_a_note),
+                            resources.getString(R.string.report),
+                            resources.getString(R.string.close)
+                        )
+                    }
+                    val dialog = SelectListBottomSheetDialog(itemList).apply {
+                        result = object : StringResult {
+                            override fun finish(data: String) {
+                                when (data) {
+                                    resources.getString(R.string.modify) -> {
+                                        //수정 화면으로 이동
+                                    }
+                                    resources.getString(R.string.delete) -> {
+                                        this@CommunityDetailFragment.context?.let {
+                                            twoButtonDialogShow(
+                                                it,
+                                                resources.getString(R.string.question_delete_content),
+                                                closeButtonTitle = resources.getString(R.string.no),
+                                                confirmButtonTitle = resources.getString(R.string.ok)
+                                            ) {
+                                                CoroutineScope(Dispatchers.IO).launch {
+                                                    if (communityDetailViewModel.deleteCommunityContent(
+                                                            detailData.communityId
+                                                        )
+                                                    ) { navPopStack() }
+                                                    toastShow(
+                                                        it,
+                                                        communityDetailViewModel.deleteContentResultMessage
+                                                    )
+                                                }
+                                            }
+                                        }
+                                    }
+                                    resources.getString(R.string.send_a_note) -> {
+                                        //쪽지 보내기 기능
+                                    }
+                                    resources.getString(R.string.report) -> {
+                                        //신고 기능
+                                        this@CommunityDetailFragment.context?.let {
+                                            twoButtonDialogShow(
+                                                it,
+                                                resources.getString(R.string.question_user_report),
+                                                resources.getString(R.string.msg_description_user_report),
+                                                closeButtonTitle = resources.getString(R.string.cancel),
+                                                confirmButtonTitle = resources.getString(R.string.report)
+                                            ) {
+                                                CoroutineScope(Dispatchers.IO).launch {
+                                                    if (communityDetailViewModel.reportContent(
+                                                            detailData.communityId
+                                                        )
+                                                    ) {
+                                                        oneButtonDialogShow(
+                                                            it,
+                                                            App.instance.resources.getString(R.string.user_report_complete),
+                                                            App.instance.resources.getString(R.string.msg_report_complete)
+                                                        )
+                                                    } else {
+                                                        toastShow(
+                                                            it,
+                                                            communityDetailViewModel.reportContentResultMessage
+                                                        )
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                dismiss()
+                            }
+                        }
+                    }
+                    dialog.show(childFragmentManager, "attribute")
                 }
             }
             binding.commentInputButton -> {
-                if(communityDetailViewModel.answerId == 0) {
+                if (communityDetailViewModel.answerId == 0) {
                     CoroutineScope(Dispatchers.IO).launch {
                         val item = communityDetailViewModel.communityDetailData.value
                         val toastMessage: String
                         val answer = binding.commentEditTextView.text.toString()
-                        toastMessage = if(answer.isNotEmpty()) {
-                            if(item != null && communityDetailViewModel.createAnswer(item.communityId, answer)) {
-                                resources.getString(R.string.msg_comment_add)
-                            } else {
-                                resources.getString(R.string.error_comment_add)
-                            }
+                        toastMessage = if (answer.isNotEmpty()) {
+                            if (item != null && communityDetailViewModel.createAnswer(
+                                    item.communityId,
+                                    answer
+                                )
+                            ) resources.getString(R.string.msg_comment_add)
+                            else resources.getString(R.string.error_comment_add)
                         } else resources.getString(R.string.error_empty_comment)
                         refresh()
-                        ToastShow(context, toastMessage)
+                        toastShow(context, toastMessage)
                     }
                 }
                 binding.commentEditTextView.setText("")
@@ -168,7 +253,7 @@ class CommunityDetailFragment :
                         toastMessage = resources.getString(R.string.error_unspecified_message)
                     }
                     isLoading = false
-                    ToastShow(context, toastMessage)
+                    toastShow(context, toastMessage)
                 }
             }
         }

@@ -10,6 +10,7 @@ import androidx.loader.content.CursorLoader
 import androidx.recyclerview.widget.RecyclerView
 import com.android.finder.screen.dialog.GridSelectDialog
 import com.android.finder.screen.dialog.OneButtonDialog
+import com.android.finder.screen.dialog.TwoButtonDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,7 +21,7 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
-fun ToastShow(context: Context?, message: String) {
+fun toastShow(context: Context?, message: String) {
     CoroutineScope(Dispatchers.Main).launch {
         try {
             Toast.makeText(
@@ -34,7 +35,12 @@ fun ToastShow(context: Context?, message: String) {
     }
 }
 
-fun oneButtonDialogShow(context: Context?, message: String, subMessage: String? = null, clickEvent : () -> Unit = {}) {
+fun oneButtonDialogShow(
+    context: Context?,
+    message: String,
+    subMessage: String? = null,
+    clickEvent: () -> Unit = {}
+) {
     CoroutineScope(Dispatchers.Main).launch {
         try {
             context?.let {
@@ -46,7 +52,32 @@ fun oneButtonDialogShow(context: Context?, message: String, subMessage: String? 
     }
 }
 
-fun selectGridDailogShow(context: Context?, selectItems : List<String>, selectEvent : () -> Unit) {
+fun twoButtonDialogShow(
+    context: Context?,
+    message: String,
+    subMessage: String? = null,
+    closeButtonTitle: String,
+    confirmButtonTitle: String,
+    clickEvent: () -> Unit = {}
+) {
+    CoroutineScope(Dispatchers.Main).launch {
+        try {
+            context?.let {
+                TwoButtonDialog(
+                    it,
+                    message,
+                    subMessage,
+                    closeButtonTitle,
+                    confirmButtonTitle
+                ).apply { okEvent = clickEvent }.show()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+}
+
+fun selectGridDialogShow(context: Context?, selectItems: List<String>, selectEvent: () -> Unit) {
     CoroutineScope(Dispatchers.Main).launch {
         try {
             context?.let {

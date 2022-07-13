@@ -19,6 +19,8 @@ class CommunityDetailViewModel: ViewModel() {
     val questionImages : ObservableArrayList<String> = ObservableArrayList()
     val commentList : ObservableArrayList<CommentData> = ObservableArrayList()
     var detailResultMessage = ""
+    var deleteContentResultMessage = ""
+    var reportContentResultMessage = ""
     var answerId = 0
 
     fun getCommunityContentDetail(communityId : Long) {
@@ -83,6 +85,50 @@ class CommunityDetailViewModel: ViewModel() {
             .onFailure {
                 it.printStackTrace()
             }
+        return result
+    }
+
+    fun deleteCommunityContent(communityId: Long) : Boolean {
+        var result = false
+        MainNetWorkUtil.api.deleteCommunityContent(communityId).runCatching {
+            val data = this.execute()
+            result = data.isSuccessful
+            if(data.isSuccessful) {
+                deleteContentResultMessage = App.instance.getString(R.string.msg_delete_content)
+            } else {
+                data.errorBody()?.string()?.let {
+                    val response = Gson().fromJson(it, MessageResponse::class.java)
+                    deleteContentResultMessage = if(response.errorResponse.errorMessages.isNotEmpty()) {
+                        response.errorResponse.errorMessages[0]
+                    } else App.instance.resources.getString(R.string.error_delete_content_fail)
+                }
+            }
+        }.onFailure {
+            deleteContentResultMessage = App.instance.resources.getString(R.string.error_delete_content_fail)
+            it.printStackTrace()
+        }
+        return result
+    }
+
+    fun reportContent(communityId: Long) : Boolean {
+        var result = false
+        MainNetWorkUtil.api.reportCommunityContent(communityId).runCatching {
+            val data = this.execute()
+            result = data.isSuccessful
+            if(data.isSuccessful) {
+                reportContentResultMessage = App.instance.getString(R.string.msg_report_complete)
+            } else {
+                data.errorBody()?.string()?.let {
+                    val response = Gson().fromJson(it, MessageResponse::class.java)
+                    reportContentResultMessage = if(response.errorResponse.errorMessages.isNotEmpty()) {
+                        response.errorResponse.errorMessages[0]
+                    } else App.instance.resources.getString(R.string.error_delete_content_fail)
+                }
+            }
+        }.onFailure {
+            reportContentResultMessage = App.instance.resources.getString(R.string.error_delete_content_fail)
+            it.printStackTrace()
+        }
         return result
     }
 }
