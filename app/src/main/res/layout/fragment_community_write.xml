@@ -163,7 +163,7 @@
                 android:layout_marginTop="10dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
-                imageAdapter="@{writeViewModel.questionImages}"
+                imageModifyAdapter="@{writeViewModel.questionImages}"
                 android:layout_weight="1"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>

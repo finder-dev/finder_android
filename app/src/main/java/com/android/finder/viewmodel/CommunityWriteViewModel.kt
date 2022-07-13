@@ -17,7 +17,7 @@ import java.io.File
 class CommunityWriteViewModel: ViewModel() {
     var isCurious : Boolean = false
     val selectedMbti : MutableLiveData<String> = MutableLiveData("")
-    val questionImages : ObservableArrayList<File> = ObservableArrayList()
+    val questionImages : ObservableArrayList<String> = ObservableArrayList()
     var writeResultMessage = ""
 
     fun writeContent(title : String, content : String) : Boolean {
@@ -27,7 +27,7 @@ class CommunityWriteViewModel: ViewModel() {
             params["content"] = content
             params["mbti"] = selectedMbti.value!!
             params["isQuestion"] = isCurious
-            if(!questionImages.isEmpty()) params["images"] = questionImages.map { it.path }
+            if(!questionImages.isEmpty()) params["images"] = questionImages.map { it }
             val parts = convertToMultipart(params, "communityImages[]")
             MainNetWorkUtil.api.writeCommunityContents(parts.first, parts.second).runCatching {
                 val result = this.execute()

@@ -6,6 +6,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.android.finder.App
 import com.android.finder.LikeCommunityContent
+import com.android.finder.MoveToCommunityDetail
 import com.android.finder.R
 import com.android.finder.databinding.ItemCommunityPostBinding
 import com.android.finder.dataobj.Content
@@ -44,6 +45,9 @@ class CommunityViewHolder(val binding: ItemCommunityPostBinding) :
             )
             binding.likeButton.setOnClickListener {
                 EventBus.getDefault().post(LikeCommunityContent(item))
+            }
+            binding.root.setOnClickListener {
+                EventBus.getDefault().post(MoveToCommunityDetail(item.communityId))
             }
         }
     }

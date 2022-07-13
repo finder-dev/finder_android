@@ -14,7 +14,6 @@ object CachingData {
     fun setProfile(context: Context) {
         MainNetWorkUtil.api.getUserProfile().runCatching {
             val result = this.execute()
-            Log.e("success", result.isSuccessful.toString())
             if (result.isSuccessful) {
                 result.body()?.let {
                     Log.e("user", it.toString())

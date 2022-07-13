@@ -20,11 +20,11 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
 
-fun oneButtonDialogShow(context: Context?, message: String, subMessage: String? = null) {
+fun oneButtonDialogShow(context: Context?, message: String, subMessage: String? = null, clickEvent : () -> Unit = {}) {
     CoroutineScope(Dispatchers.Main).launch {
         try {
             context?.let {
-                OneButtonDialog(it, message, subMessage).show()
+                OneButtonDialog(it, message, subMessage).apply { okEvent = clickEvent }.show()
             }
         } catch (e: Exception) {
             e.printStackTrace()

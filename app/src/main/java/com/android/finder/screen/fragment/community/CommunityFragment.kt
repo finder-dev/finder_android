@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.android.finder.*
@@ -130,6 +131,11 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
+    fun moveCommunityDetail(event : MoveToCommunityDetail) {
+        navigate(MainFragmentDirections.actionMainFragmentToCommunityDetailFragment(event.communityId))
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
     fun contentIsLike(event: LikeCommunityContent) {
         communityViewModel.contentList.find { it.communityId == event.content.communityId }?.let {
             CoroutineScope(Dispatchers.IO).launch {
@@ -158,11 +164,13 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
                         }
                     }
                 } else {
-                    Toast.makeText(
-                        context,
-                        resources.getString(R.string.error_unspecified_message),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    CoroutineScope(Dispatchers.Main).launch {
+                        Toast.makeText(
+                            context,
+                            resources.getString(R.string.error_unspecified_message),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
         }

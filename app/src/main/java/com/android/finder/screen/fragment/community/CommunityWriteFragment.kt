@@ -71,7 +71,7 @@ class CommunityWriteFragment: CommonFragment<FragmentCommunityWriteBinding>(R.la
                 context?.let {
                     TedImagePicker.with(it).max(3, R.string.msg_max_image_count).startMultiImage { uriList ->
                         uriList.forEach { uri ->
-                            getFullPathFromUri(it, uri)?.let { path -> writeViewModel.questionImages.add(File(path)) }
+                            getFullPathFromUri(it, uri)?.let { path -> writeViewModel.questionImages.add(path) }
                         }
                     }
                 }

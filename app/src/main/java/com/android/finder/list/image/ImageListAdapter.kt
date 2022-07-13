@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.finder.R
 import java.io.File
 
-class ImageListAdapter(val context : Context, val dataList : ObservableArrayList<File>) :RecyclerView.Adapter<ImageListViewHolder>() {
+class ImageListAdapter(val context : Context, val dataList : ObservableArrayList<String>, val mode : Int) :RecyclerView.Adapter<ImageListViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageListViewHolder {
         return ImageListViewHolder(
             DataBindingUtil.inflate(
@@ -22,7 +22,7 @@ class ImageListAdapter(val context : Context, val dataList : ObservableArrayList
     }
 
     override fun onBindViewHolder(holder: ImageListViewHolder, position: Int) {
-        holder.bind(dataList[position])
+        holder.bind(dataList[position], mode)
     }
 
     override fun getItemCount(): Int = dataList.size

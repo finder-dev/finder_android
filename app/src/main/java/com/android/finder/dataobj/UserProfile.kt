@@ -1,7 +1,10 @@
 package com.android.finder.dataobj
 
+import com.google.gson.annotations.SerializedName
+
 data class UserProfile(
-    val email : String,
-    val mbti : String,
-    val nickname: String
+    @SerializedName("userId") val userId: Long,
+    @SerializedName("email") val email : String,
+    @SerializedName("mbti") val mbti : String,
+    @SerializedName("nickname") val nickname: String
 )
