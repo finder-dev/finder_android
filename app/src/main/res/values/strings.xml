@@ -73,6 +73,7 @@
     <string name="msg_save_delete">저장을 취소하셨습니다.</string>
     <string name="msg_like_delete">좋아요를 해제하셨습니다.</string>
     <string name="msg_max_image_count">3장까지 이미지를 선택할 수 있습니다.</string>
+    <string name="msg_comment_add">댓글을 남기셨습니다.</string>
 
     <string name="error_unspecified_message">문제가 발생했습니다.</string>
     <string name="error_login">로그인 실패</string>
@@ -93,4 +94,6 @@
     <string name="error_community_detail_load">게시글 조회 실패</string>
     <string name="error_community_detail_load_sub">글을 확인할 수 없습니다.</string>
     <string name="error_mbti_empty">mbti가 입력되지 않았습니다</string>
+    <string name="error_empty_comment">댓글을 입력해주세요.</string>
+    <string name="error_comment_add">댓글을 달 수 없습니다.</string>
 </resources>

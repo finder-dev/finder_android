@@ -1,8 +1,11 @@
 package com.android.finder.network.api
 
+import com.android.finder.dataobj.CommunityHotTitleData
 import com.android.finder.network.response.CommunityDetailResponse
+import com.android.finder.network.response.CommunityHotResponse
 import com.android.finder.network.response.CommunityListResponse
 import com.android.finder.network.response.SuccessProfileResponse
+import com.google.gson.JsonObject
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -27,6 +30,9 @@ interface MainApiService {
         @Query("page") page: Int
     ) : Call<CommunityListResponse>
 
+    @GET("api/community/hot")
+    fun getCommunityHotList() : Call<CommunityHotResponse>
+
     @POST("api/community/{communityId}/like")
     fun likeChange(
         @Path("communityId") communityId: Long
@@ -42,4 +48,10 @@ interface MainApiService {
         @Path("communityId") communityId : Long
     ) : Call<Unit>
 
+    @FormUrlEncoded
+    @POST("/api/community/{communityId}/answers")
+    fun createAnswer(
+        @Path("communityId") communityId : Long,
+        @Field("content") content : String
+    ) :Call<Unit>
 }

@@ -19,14 +19,13 @@ class CommunityDetailViewModel: ViewModel() {
     val questionImages : ObservableArrayList<String> = ObservableArrayList()
     val commentList : ObservableArrayList<CommentData> = ObservableArrayList()
     var detailResultMessage = ""
+    var answerId = 0
 
     fun getCommunityContentDetail(communityId : Long) {
-        Log.e("제발", communityId.toString())
         MainNetWorkUtil.api.getCommunityDetail(communityId).runCatching {
             val result = this.execute()
             if(result.isSuccessful) {
                 result.body()?.let {
-                    Log.e("body", it.toString())
                     communityDetailData.postValue(it.response)
                     questionImages.apply {
                         clear()
@@ -52,15 +51,38 @@ class CommunityDetailViewModel: ViewModel() {
         }
     }
 
+    fun createAnswer(communityId: Long, content : String) : Boolean {
+        var result = false
+        MainNetWorkUtil.api.createAnswer(communityId, content).runCatching {
+            val data = this.execute()
+            if(!data.isSuccessful) {
+                data.errorBody()?.string()?.let {
+                    Log.e("error?", it)
+                }
+            }
+            result = data.isSuccessful
+        }
+            .onFailure {
+                it.printStackTrace()
+            }
+        return result
+    }
+
     fun likeChange(communityId: Long) : Boolean {
         var result = false
         MainNetWorkUtil.api.likeChange(communityId).runCatching { result = this.execute().isSuccessful }
+            .onFailure {
+                it.printStackTrace()
+            }
         return result
     }
 
     fun saveChange(communityId: Long) : Boolean {
         var result = false
         MainNetWorkUtil.api.saveChange(communityId).runCatching { result = this.execute().isSuccessful }
+            .onFailure {
+                it.printStackTrace()
+            }
         return result
     }
 }

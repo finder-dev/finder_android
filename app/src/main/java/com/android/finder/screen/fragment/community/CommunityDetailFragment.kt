@@ -44,7 +44,6 @@ class CommunityDetailFragment :
         binding.commentInputButton.setOnClickListener(this)
         binding.likeLayout.setOnClickListener(this)
         binding.saveButton.setOnClickListener(this)
-        binding.saveButton.setOnClickListener(this)
 
         communityDetailViewModel.communityDetailData.observe(viewLifecycleOwner) {
             if (it != null) setUI(it)
@@ -126,9 +125,26 @@ class CommunityDetailFragment :
                 }
             }
             binding.commentInputButton -> {
-
+                if(communityDetailViewModel.answerId == 0) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val item = communityDetailViewModel.communityDetailData.value
+                        var toastMessage = ""
+                        val answer = binding.commentEditTextView.text.toString()
+                        if(answer.isNotEmpty()) {
+                            if(item != null && communityDetailViewModel.createAnswer(item.communityId, answer)) {
+                                toastMessage = resources.getString(R.string.msg_comment_add)
+                            } else {
+                                toastMessage = resources.getString(R.string.error_comment_add)
+                            }
+                        } else toastMessage = resources.getString(R.string.error_empty_comment)
+                        refresh()
+                        ToastShow(context, toastMessage)
+                    }
+                }
+                binding.commentEditTextView.setText("")
             }
             binding.likeLayout -> {
+                isLoading = true
                 CoroutineScope(Dispatchers.IO).launch {
                     val item = communityDetailViewModel.communityDetailData.value
                     var toastMessage = ""
@@ -151,10 +167,10 @@ class CommunityDetailFragment :
                     } else {
                         toastMessage = resources.getString(R.string.error_unspecified_message)
                     }
+                    isLoading = false
                     ToastShow(context, toastMessage)
                 }
             }
-            binding.saveButton -> {}
         }
     }
 }

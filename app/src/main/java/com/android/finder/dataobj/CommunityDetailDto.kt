@@ -4,7 +4,7 @@ data class CommunityDetailDto(
     val answerCount: Int,
     val answerHistDtos: List<CommentData>,
     val communityContent: String,
-    val communityId: Int,
+    val communityId: Long,
     val communityImgDtos: List<CommunityImgDto>,
     val communityMBTI: String,
     val communityTitle: String,

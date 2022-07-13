@@ -19,6 +19,9 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.android.finder.R
 import com.android.finder.viewmodel.NavigationViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 abstract class CommonFragment<T : ViewDataBinding>(@LayoutRes private val layoutId: Int) :
     Fragment() ,EventListenerSetting {
@@ -30,8 +33,10 @@ abstract class CommonFragment<T : ViewDataBinding>(@LayoutRes private val layout
     var isLoading: Boolean = false
         set(value) {
             field = value
-            if (value) progressDialog.show()
-            else progressDialog.dismiss()
+            CoroutineScope(Dispatchers.Main).launch {
+                if (value) progressDialog.show()
+                else progressDialog.dismiss()
+            }
         }
 
     private val navigationViewModel : NavigationViewModel by viewModels()
