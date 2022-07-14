@@ -1,7 +1,9 @@
 package com.android.finder.network.response
 
+import com.google.gson.annotations.SerializedName
+
 data class EmailCodeCheckResponse(
-    val success : Boolean,
-    val response : SuccessMessageResponse?,
-    val errorResponse: ErrorResponse
+    @SerializedName("success") val success : Boolean,
+    @SerializedName("response") val response : SuccessMessageResponse?,
+    @SerializedName("errorResponse") val errorResponse: ErrorResponse
 )

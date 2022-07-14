@@ -1,5 +1,6 @@
 package com.android.finder.network
 
+import android.util.Log
 import com.android.finder.App
 import com.android.finder.network.api.MainApiService
 import com.android.finder.network.api.SignApiService
@@ -21,6 +22,7 @@ object MainNetWorkUtil {
             if (token.isNotEmpty()) {
                 builder.addHeader("Authorization", "Bearer $token")
             }
+            Log.e("확인", it.request().url.toString())
             val request = builder.build()
 
             return@addInterceptor it.proceed(request)

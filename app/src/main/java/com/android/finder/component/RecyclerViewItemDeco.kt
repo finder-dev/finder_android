@@ -15,7 +15,7 @@ class RecyclerViewItemDeco(private val context : Context, private val height : I
         state: RecyclerView.State
     ) {
         super.getItemOffsets(outRect, view, parent, state)
-        if(parent.getChildAdapterPosition(view) != parent.adapter?.itemCount?:0 - 1) {
+        if(parent.getChildAdapterPosition(view) != (parent.adapter?.itemCount?:0) - 1) {
             outRect.bottom = height.dpToPx(context)
         }
     }

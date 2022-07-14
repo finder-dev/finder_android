@@ -1,6 +1,7 @@
 package com.android.finder.screen.fragment.community
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -285,6 +286,27 @@ class CommunityDetailFragment :
         }
     }
 
+    private fun modifyComment(answerId: Long, content : String) {
+        isLoading = true
+        CoroutineScope(Dispatchers.IO).launch {
+            Log.e("content", content)
+            val message = communityDetailViewModel.modifyAnswers(answerId, content)
+            toastShow(context, message.ifEmpty { resources.getString(R.string.msg_success_write) })
+            isLoading = false
+            refresh()
+        }
+    }
+
+    private fun createReComment(answerId: Long, content : String) {
+        isLoading = true
+        CoroutineScope(Dispatchers.IO).launch {
+            val message = communityDetailViewModel.createReAnswer(answerId, content)
+            toastShow(context, message.ifEmpty { resources.getString(R.string.msg_success_write) })
+            isLoading = false
+            refresh()
+        }
+    }
+
     private fun deleteComment(answerId : Long, isComment : Boolean = true) {
         isLoading = true
         CoroutineScope(Dispatchers.IO).launch {
@@ -301,7 +323,7 @@ class CommunityDetailFragment :
         }
     }
 
-    private fun reportComment(answerId: Long, isComment: Boolean = true) {
+    private fun reportComment(answerId: Long) {
         isLoading = true
         CoroutineScope(Dispatchers.IO).launch {
             val message = communityDetailViewModel.reportAnswers(answerId)
@@ -314,58 +336,131 @@ class CommunityDetailFragment :
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun commentAttributeClick(event : CommentAttributeClickEvent) {
         val commentData = event.data
-        val detailData = communityDetailViewModel.communityDetailData.value
-        if(detailData != null) {
-            val itemList = if (commentData.userId == CachingData.userProfile?.userId) {
-                arrayListOf(
-                    resources.getString(R.string.modify),
-                    resources.getString(R.string.delete),
-                    resources.getString(R.string.close)
-                )
-            } else {
-                arrayListOf(
-                    resources.getString(R.string.send_a_note),
-                    resources.getString(R.string.re_comment_put_on),
-                    resources.getString(R.string.report),
-                    resources.getString(R.string.close)
-                )
-            }
-            val dialog = SelectListBottomSheetDialog(itemList).apply {
-                result = object : StringResult {
-                    override fun finish(data: String) {
-                        when(data) {
-                            resources.getString(R.string.modify) -> {
-                                //댓글 수정
-                            }
-                            resources.getString(R.string.delete) -> {
-                                twoButtonDialogShow(
-                                    context,
-                                    resources.getString(R.string.question_delete_content),
-                                    closeButtonTitle = resources.getString(R.string.no),
-                                    confirmButtonTitle = resources.getString(R.string.ok)
-                                ) { deleteComment(commentData.answerId) }
-                            }
-                            resources.getString(R.string.send_a_note) -> {
-                                navigate(CommunityDetailFragmentDirections.actionCommunityDetailFragmentToSendNoteFragment(commentData.userId))
-                            }
-                            resources.getString(R.string.re_comment_put_on) -> {
-                                //대댓글 달기
-                            }
-                            resources.getString(R.string.report) -> {
-                                twoButtonDialogShow(
-                                    context,
-                                    resources.getString(R.string.question_user_report),
-                                    resources.getString(R.string.msg_description_user_report),
-                                    closeButtonTitle = resources.getString(R.string.no),
-                                    confirmButtonTitle = resources.getString(R.string.ok)
-                                ) { reportComment(commentData.answerId) }
-                            }
+        val itemList = if (commentData.userId == CachingData.userProfile?.userId) {
+            arrayListOf(
+                resources.getString(R.string.modify),
+                resources.getString(R.string.delete),
+                resources.getString(R.string.close)
+            )
+        } else {
+            arrayListOf(
+                resources.getString(R.string.send_a_note),
+                resources.getString(R.string.re_comment_put_on),
+                resources.getString(R.string.report),
+                resources.getString(R.string.close)
+            )
+        }
+        val dialog = SelectListBottomSheetDialog(itemList).apply {
+            result = object : StringResult {
+                override fun finish(data: String) {
+                    when(data) {
+                        resources.getString(R.string.modify) -> {
+                            textInputDialogShow(
+                                context,
+                                resources.getString(R.string.comment_modify),
+                                object : StringResult {
+                                    override fun finish(data: String) {
+                                        Log.e("answerId", commentData.answerId.toString())
+                                        modifyComment(commentData.answerId, data)
+                                    }
+                                }
+                            )
                         }
-                        dismiss()
+                        resources.getString(R.string.delete) -> {
+                            twoButtonDialogShow(
+                                context,
+                                resources.getString(R.string.question_delete_content),
+                                closeButtonTitle = resources.getString(R.string.no),
+                                confirmButtonTitle = resources.getString(R.string.ok)
+                            ) { deleteComment(commentData.answerId) }
+                        }
+                        resources.getString(R.string.send_a_note) -> {
+                            navigate(CommunityDetailFragmentDirections.actionCommunityDetailFragmentToSendNoteFragment(commentData.userId))
+                        }
+                        resources.getString(R.string.re_comment_put_on) -> {
+                            textInputDialogShow(
+                                context,
+                                resources.getString(R.string.re_comment_put_on),
+                                object : StringResult {
+                                    override fun finish(data: String) {
+                                        createReComment(commentData.answerId, data)
+                                    }
+                                }
+                            )
+                        }
+                        resources.getString(R.string.report) -> {
+                            twoButtonDialogShow(
+                                context,
+                                resources.getString(R.string.question_user_report),
+                                resources.getString(R.string.msg_description_user_report),
+                                closeButtonTitle = resources.getString(R.string.no),
+                                confirmButtonTitle = resources.getString(R.string.ok)
+                            ) { reportComment(commentData.answerId) }
+                        }
                     }
+                    dismiss()
                 }
             }
-            dialog.show(childFragmentManager, "comment")
         }
+        dialog.show(childFragmentManager, "comment")
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun reCommentAttributeClick(event : ReCommentAttributeClickEvent) {
+        val reCommentData = event.data
+        val itemList = if (reCommentData.userId == CachingData.userProfile?.userId) {
+            arrayListOf(
+                resources.getString(R.string.modify),
+                resources.getString(R.string.delete),
+                resources.getString(R.string.close)
+            )
+        } else {
+            arrayListOf(
+                resources.getString(R.string.send_a_note),
+                resources.getString(R.string.report),
+                resources.getString(R.string.close)
+            )
+        }
+        val dialog = SelectListBottomSheetDialog(itemList).apply {
+            result = object : StringResult {
+                override fun finish(data: String) {
+                    when(data) {
+                        resources.getString(R.string.modify) -> {
+                            textInputDialogShow(
+                                context,
+                                resources.getString(R.string.re_comment_modify),
+                                object : StringResult {
+                                    override fun finish(data: String) {
+                                        modifyComment(reCommentData.id, data)
+                                    }
+                                }
+                            )
+                        }
+                        resources.getString(R.string.delete) -> {
+                            twoButtonDialogShow(
+                                context,
+                                resources.getString(R.string.question_delete_content),
+                                closeButtonTitle = resources.getString(R.string.no),
+                                confirmButtonTitle = resources.getString(R.string.ok)
+                            ) { deleteComment(reCommentData.id) }
+                        }
+                        resources.getString(R.string.send_a_note) -> {
+                            navigate(CommunityDetailFragmentDirections.actionCommunityDetailFragmentToSendNoteFragment(reCommentData.userId))
+                        }
+                        resources.getString(R.string.report) -> {
+                            twoButtonDialogShow(
+                                context,
+                                resources.getString(R.string.question_user_report),
+                                resources.getString(R.string.msg_description_user_report),
+                                closeButtonTitle = resources.getString(R.string.no),
+                                confirmButtonTitle = resources.getString(R.string.ok)
+                            ) { reportComment(reCommentData.id) }
+                        }
+                    }
+                    dismiss()
+                }
+            }
+        }
+        dialog.show(childFragmentManager, "reComment")
     }
 }

@@ -1,8 +1,9 @@
 package com.android.finder.network.response
 
 import com.android.finder.dataobj.CommunityDetailDto
+import com.google.gson.annotations.SerializedName
 
 data class CommunityDetailResponse(
-    val response: CommunityDetailDto,
-    val success: Boolean
+    @SerializedName("response") val response: CommunityDetailDto,
+    @SerializedName("success") val success: Boolean
 )

@@ -11,6 +11,7 @@ import com.android.finder.network.response.MessageResponse
 import com.google.gson.Gson
 import com.android.finder.R
 import com.android.finder.dataobj.CommentData
+import com.android.finder.network.request.ModifyCommentRequestDTO
 import java.io.File
 
 class CommunityDetailViewModel: ViewModel() {
@@ -68,6 +69,38 @@ class CommunityDetailViewModel: ViewModel() {
                 it.printStackTrace()
             }
         return result
+    }
+
+    fun modifyAnswers(answerId: Long, content: String) : String {
+        var message = ""
+        MainNetWorkUtil.api.modifyCommentAndReComment(answerId, ModifyCommentRequestDTO(content)).runCatching {
+            val data = this.execute()
+            if(!data.isSuccessful) {
+                data.errorBody()?.string()?.let {
+                    val response = Gson().fromJson(it, MessageResponse::class.java)
+                    message = if(response.errorResponse.errorMessages.isNotEmpty()) {
+                        response.errorResponse.errorMessages[0]
+                    } else App.instance.resources.getString(R.string.error_comment_delete)
+                }
+            }
+        }
+        return message
+    }
+
+    fun createReAnswer(answerId: Long, content: String) : String {
+        var message = ""
+        MainNetWorkUtil.api.createReComment(answerId, content).runCatching {
+            val data = this.execute()
+            if(!data.isSuccessful) {
+                data.errorBody()?.string()?.let {
+                    val response = Gson().fromJson(it, MessageResponse::class.java)
+                    message = if(response.errorResponse.errorMessages.isNotEmpty()) {
+                        response.errorResponse.errorMessages[0]
+                    } else App.instance.resources.getString(R.string.error_comment_delete)
+                }
+            }
+        }
+        return message
     }
 
     fun deleteAnswers(answerId : Long) : String {

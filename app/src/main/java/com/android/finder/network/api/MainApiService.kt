@@ -1,6 +1,7 @@
 package com.android.finder.network.api
 
 import com.android.finder.dataobj.CommunityHotTitleData
+import com.android.finder.network.request.ModifyCommentRequestDTO
 import com.android.finder.network.response.CommunityDetailResponse
 import com.android.finder.network.response.CommunityHotResponse
 import com.android.finder.network.response.CommunityListResponse
@@ -72,6 +73,19 @@ interface MainApiService {
     @POST("api/community/{communityId}/report")
     fun reportCommunityContent(
         @Path("communityId") communityId : Long
+    ) : Call<Unit>
+
+    @PATCH("/api/community/answers/{answerId}")
+    fun modifyCommentAndReComment(
+        @Path("answerId") answerId : Long,
+        @Body content: ModifyCommentRequestDTO
+    ) : Call<Unit>
+
+    @FormUrlEncoded
+    @POST("/api/community/answers/{answerId}/reply")
+    fun createReComment(
+        @Path("answerId") answerId : Long,
+        @Field("content") content: String
     ) : Call<Unit>
 
     @DELETE("api/community/answers/{answerId}")

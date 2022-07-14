@@ -33,14 +33,12 @@ class SelectListBottomSheetDialog(val list: ArrayList<String>) :
             null,
             false
         )
-        Log.e("dialog", "onCreateView")
         binding.lifecycleOwner = this
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.e("dialog", "onCreate")
         context?.let { context ->
             result?.let {
                 binding.dialogItemRecyclerView.adapter = CommunityItemAdapter(context, list, it)

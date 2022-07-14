@@ -6,10 +6,13 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.loader.content.CursorLoader
 import androidx.recyclerview.widget.RecyclerView
+import com.android.finder.result.StringResult
 import com.android.finder.screen.dialog.GridSelectDialog
 import com.android.finder.screen.dialog.OneButtonDialog
+import com.android.finder.screen.dialog.TextInputDialog
 import com.android.finder.screen.dialog.TwoButtonDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -77,6 +80,25 @@ fun twoButtonDialogShow(
     }
 }
 
+fun textInputDialogShow(
+    context: Context?,
+    message: String,
+    result: StringResult
+) {
+    CoroutineScope(Dispatchers.Main).launch {
+        try {
+            context?.let {
+                TextInputDialog(
+                    it,
+                    message
+                ).apply { this.result = result }.show()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+}
+
 fun selectGridDialogShow(context: Context?, selectItems: List<String>, selectEvent: () -> Unit) {
     CoroutineScope(Dispatchers.Main).launch {
         try {
@@ -87,7 +109,7 @@ fun selectGridDialogShow(context: Context?, selectItems: List<String>, selectEve
                 }
             }
         } catch (e: Exception) {
-
+            e.printStackTrace()
         }
     }
 }
