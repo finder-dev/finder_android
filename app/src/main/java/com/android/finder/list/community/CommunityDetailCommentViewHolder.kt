@@ -1,9 +1,11 @@
 package com.android.finder.list.community
 
 import androidx.recyclerview.widget.RecyclerView
+import com.android.finder.CommentAttributeClickEvent
 import com.android.finder.component.RecyclerViewItemDeco
 import com.android.finder.databinding.ItemCommentBinding
 import com.android.finder.dataobj.CommentData
+import org.greenrobot.eventbus.EventBus
 
 class CommunityDetailCommentViewHolder(val binding : ItemCommentBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -16,6 +18,9 @@ class CommunityDetailCommentViewHolder(val binding : ItemCommentBinding) : Recyc
             binding.root.context,
             item.replyList
         )
+        binding.attributeButton.setOnClickListener {
+            EventBus.getDefault().post(CommentAttributeClickEvent(item))
+        }
         binding.reCommentRecyclerView.adapter?.notifyDataSetChanged()
 
     }

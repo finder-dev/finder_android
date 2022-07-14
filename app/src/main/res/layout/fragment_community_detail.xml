@@ -227,6 +227,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingRight="4dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp">
 
             <androidx.appcompat.widget.AppCompatEditText

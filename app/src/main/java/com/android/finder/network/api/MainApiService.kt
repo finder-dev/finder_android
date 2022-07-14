@@ -73,4 +73,14 @@ interface MainApiService {
     fun reportCommunityContent(
         @Path("communityId") communityId : Long
     ) : Call<Unit>
+
+    @DELETE("api/community/answers/{answerId}")
+    fun deleteCommentAndReComment(
+        @Path("answerId") answerId : Long
+    ) : Call<Unit>
+
+    @POST("/api/community/answers/{answerId}/report")
+    fun reportCommentAndReComment(
+        @Path("answerId") answerId : Long
+    ) : Call<Unit>
 }

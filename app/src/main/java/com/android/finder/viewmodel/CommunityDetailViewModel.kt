@@ -70,6 +70,38 @@ class CommunityDetailViewModel: ViewModel() {
         return result
     }
 
+    fun deleteAnswers(answerId : Long) : String {
+        var message = ""
+        MainNetWorkUtil.api.deleteCommentAndReComment(answerId).runCatching {
+            val data = this.execute()
+            if(!data.isSuccessful) {
+                data.errorBody()?.string()?.let {
+                    val response = Gson().fromJson(it, MessageResponse::class.java)
+                    message = if(response.errorResponse.errorMessages.isNotEmpty()) {
+                        response.errorResponse.errorMessages[0]
+                    } else App.instance.resources.getString(R.string.error_comment_delete)
+                }
+            }
+        }
+        return message
+    }
+
+    fun reportAnswers(answerId : Long) : String {
+        var message = ""
+        MainNetWorkUtil.api.reportCommentAndReComment(answerId).runCatching {
+            val data = this.execute()
+            if(!data.isSuccessful) {
+                data.errorBody()?.string()?.let {
+                    val response = Gson().fromJson(it, MessageResponse::class.java)
+                    message = if(response.errorResponse.errorMessages.isNotEmpty()) {
+                        response.errorResponse.errorMessages[0]
+                    } else App.instance.resources.getString(R.string.error_comment_delete)
+                }
+            }
+        }
+        return message
+    }
+
     fun likeChange(communityId: Long) : Boolean {
         var result = false
         MainNetWorkUtil.api.likeChange(communityId).runCatching { result = this.execute().isSuccessful }

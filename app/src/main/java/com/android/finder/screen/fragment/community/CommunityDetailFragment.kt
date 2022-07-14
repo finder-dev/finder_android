@@ -14,10 +14,14 @@ import com.android.finder.dataobj.CommunityDetailDto
 import com.android.finder.result.StringResult
 import com.android.finder.screen.CommonFragment
 import com.android.finder.screen.dialog.SelectListBottomSheetDialog
+import com.android.finder.screen.fragment.MainFragmentDirections
 import com.android.finder.viewmodel.CommunityDetailViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.lang.Exception
 
 class CommunityDetailFragment :
@@ -36,6 +40,16 @@ class CommunityDetailFragment :
                 RecyclerViewHorizonItemDeco(it, 8)
             )
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (EventBus.getDefault().isRegistered(this)) EventBus.getDefault().unregister(this)
     }
 
     override fun eventListenerSetting() {
@@ -169,9 +183,7 @@ class CommunityDetailFragment :
                                                     if (communityDetailViewModel.deleteCommunityContent(
                                                             detailData.communityId
                                                         )
-                                                    ) {
-                                                        navPopStack()
-                                                    }
+                                                    ) { navPopStack() }
                                                     toastShow(
                                                         it,
                                                         communityDetailViewModel.deleteContentResultMessage
@@ -182,7 +194,7 @@ class CommunityDetailFragment :
                                     }
                                     resources.getString(R.string.send_a_note) -> {
                                         //쪽지 보내기 기능
-                                        navigate(CommunityDetailFragmentDirections.actionCommunityDetailFragmentToSendNoteFragment())
+                                        navigate(CommunityDetailFragmentDirections.actionCommunityDetailFragmentToSendNoteFragment(detailData.userId))
                                     }
                                     resources.getString(R.string.report) -> {
                                         //신고 기능
@@ -270,6 +282,90 @@ class CommunityDetailFragment :
                     toastShow(context, toastMessage)
                 }
             }
+        }
+    }
+
+    private fun deleteComment(answerId : Long, isComment : Boolean = true) {
+        isLoading = true
+        CoroutineScope(Dispatchers.IO).launch {
+            val message = communityDetailViewModel.deleteAnswers(answerId)
+            toastShow(context, message.ifEmpty {
+                if (isComment) {
+                    resources.getString(R.string.msg_delete_content)
+                } else {
+                    resources.getString(R.string.msg_delete_re_comment)
+                }
+            })
+            isLoading = false
+            refresh()
+        }
+    }
+
+    private fun reportComment(answerId: Long, isComment: Boolean = true) {
+        isLoading = true
+        CoroutineScope(Dispatchers.IO).launch {
+            val message = communityDetailViewModel.reportAnswers(answerId)
+            toastShow(context, message.ifEmpty { resources.getString(R.string.msg_report_complete) })
+            isLoading = false
+            refresh()
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun commentAttributeClick(event : CommentAttributeClickEvent) {
+        val commentData = event.data
+        val detailData = communityDetailViewModel.communityDetailData.value
+        if(detailData != null) {
+            val itemList = if (commentData.userId == CachingData.userProfile?.userId) {
+                arrayListOf(
+                    resources.getString(R.string.modify),
+                    resources.getString(R.string.delete),
+                    resources.getString(R.string.close)
+                )
+            } else {
+                arrayListOf(
+                    resources.getString(R.string.send_a_note),
+                    resources.getString(R.string.re_comment_put_on),
+                    resources.getString(R.string.report),
+                    resources.getString(R.string.close)
+                )
+            }
+            val dialog = SelectListBottomSheetDialog(itemList).apply {
+                result = object : StringResult {
+                    override fun finish(data: String) {
+                        when(data) {
+                            resources.getString(R.string.modify) -> {
+                                //댓글 수정
+                            }
+                            resources.getString(R.string.delete) -> {
+                                twoButtonDialogShow(
+                                    context,
+                                    resources.getString(R.string.question_delete_content),
+                                    closeButtonTitle = resources.getString(R.string.no),
+                                    confirmButtonTitle = resources.getString(R.string.ok)
+                                ) { deleteComment(commentData.answerId) }
+                            }
+                            resources.getString(R.string.send_a_note) -> {
+                                navigate(CommunityDetailFragmentDirections.actionCommunityDetailFragmentToSendNoteFragment(commentData.userId))
+                            }
+                            resources.getString(R.string.re_comment_put_on) -> {
+                                //대댓글 달기
+                            }
+                            resources.getString(R.string.report) -> {
+                                twoButtonDialogShow(
+                                    context,
+                                    resources.getString(R.string.question_user_report),
+                                    resources.getString(R.string.msg_description_user_report),
+                                    closeButtonTitle = resources.getString(R.string.no),
+                                    confirmButtonTitle = resources.getString(R.string.ok)
+                                ) { reportComment(commentData.answerId) }
+                            }
+                        }
+                        dismiss()
+                    }
+                }
+            }
+            dialog.show(childFragmentManager, "comment")
         }
     }
 }

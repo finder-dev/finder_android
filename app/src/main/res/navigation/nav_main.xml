@@ -76,5 +76,12 @@
         android:id="@+id/sendNoteFragment"
         tools:layout="@layout/fragment_send_a_note"
         android:name="com.android.finder.screen.fragment.note.SendNoteFragment"
-        android:label="SendNoteFragment" />
+        android:label="SendNoteFragment" >
+
+        <argument
+            android:name="userId"
+            app:argType="long"
+            app:nullable="false"/>
+
+    </fragment>
 </navigation>
