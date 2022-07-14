@@ -2,11 +2,13 @@ package com.android.finder.list.image
 
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.android.finder.ImageDeleteEvent
 import com.android.finder.databinding.ItemImageBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import org.greenrobot.eventbus.EventBus
 import java.io.File
 
 class ImageListViewHolder(val binding: ItemImageBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -24,6 +26,7 @@ class ImageListViewHolder(val binding: ItemImageBinding) : RecyclerView.ViewHold
         binding.deleteButton.bringToFront()
         binding.deleteButton.setOnClickListener {
             //제거 이벤트
+            EventBus.getDefault().post(ImageDeleteEvent(imageUrl))
         }
     }
 }

@@ -22,9 +22,39 @@
         tools:layout="@layout/fragment_community_write"
         android:name="com.android.finder.screen.fragment.community.CommunityWriteFragment"
         android:label="CommunityWriteFragment" >
-        <action
-            android:id="@+id/action_communityWriteFragment_to_communityDetailFragment"
-            app:destination="@id/communityDetailFragment" />
+
+        <argument
+            android:name="communityId"
+            app:argType="long"
+            android:defaultValue="0L" />
+
+        <argument
+            android:name="communityTitle"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true"/>
+
+        <argument
+            android:name="communityContent"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true"/>
+
+        <argument
+            android:name="communityMbti"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true"/>
+
+        <argument
+            android:name="images"
+            android:defaultValue="@null"
+            app:argType="com.android.finder.dataobj.CommunityImgDto[]"
+            app:nullable="true"/>
+        <argument
+            android:name="isCurious"
+            app:argType="boolean"
+            android:defaultValue="false" />
     </fragment>
     <fragment
         android:id="@+id/communityDetailFragment"
@@ -35,5 +65,8 @@
             android:name="communityId"
             app:argType="long"
             app:nullable="false"/>
+        <action
+            android:id="@+id/action_communityDetailFragment_to_communityWriteFragment"
+            app:destination="@id/communityWriteFragment" />
     </fragment>
 </navigation>

@@ -21,7 +21,16 @@ interface MainApiService {
     fun writeCommunityContents(
         @PartMap params: HashMap<String, RequestBody>,
         @Part questionImgs: List<MultipartBody.Part>
-    ): Call<Unit>
+    ) : Call<Unit>
+
+    @Multipart
+    @PATCH("api/community/{communityId}")
+    fun modifyCommunityContents(
+        @Path("communityId") communityId: Long,
+        @PartMap params: HashMap<String, RequestBody>,
+        @Part deleteImages: List<MultipartBody.Part>,
+        @Part addImages: List<MultipartBody.Part>
+    ) : Call<Unit>
 
     @GET("api/community")
     fun getCommunityPostList(

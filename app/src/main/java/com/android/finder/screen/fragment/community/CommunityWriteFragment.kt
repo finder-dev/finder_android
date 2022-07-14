@@ -6,22 +6,29 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
+import com.android.finder.ImageDeleteEvent
 import com.android.finder.databinding.FragmentCommunityWriteBinding
 import com.android.finder.screen.CommonFragment
 import com.android.finder.R
 import com.android.finder.component.RecyclerViewHorizonItemDeco
 import com.android.finder.oneButtonDialogShow
 import com.android.finder.screen.dialog.MBTISelectDialog
+import com.android.finder.toastShow
 import com.android.finder.viewmodel.CommunityWriteViewModel
 import gun0912.tedimagepicker.builder.TedImagePicker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import java.io.File
 
 class CommunityWriteFragment: CommonFragment<FragmentCommunityWriteBinding>(R.layout.fragment_community_write), View.OnClickListener, TextWatcher {
 
     private val writeViewModel : CommunityWriteViewModel by viewModels()
+    private val args : CommunityWriteFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,7 +38,38 @@ class CommunityWriteFragment: CommonFragment<FragmentCommunityWriteBinding>(R.la
                 RecyclerViewHorizonItemDeco(it,8)
             )
         }
+        modifyData()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (EventBus.getDefault().isRegistered(this)) EventBus.getDefault().unregister(this)
+    }
+
+    private fun modifyData() {
+        if(args.communityId != 0L) {
+            binding.contentsEditText.setText(args.communityContent)
+            binding.titleEditText.setText(args.communityTitle)
+            writeViewModel.selectedMbti.postValue(args.communityMbti)
+            writeViewModel.isCurious = args.isCurious
+            if(writeViewModel.isCurious) {
+                binding.curiousButton.setImageResource(R.drawable.ic_curious_on)
+            } else {
+                binding.curiousButton.setImageResource(R.drawable.ic_curious_off)
+            }
+            if(args.images != null && args.images!!.isNotEmpty()) {
+                writeViewModel.apply {
+                    modifyImages = args.images!!
+                    questionImages.clear()
+                    questionImages.addAll(args.images!!.map { it.communityImageUrl })
+                }
+            }
+        }
     }
 
     override fun eventListenerSetting() {
@@ -45,7 +83,7 @@ class CommunityWriteFragment: CommonFragment<FragmentCommunityWriteBinding>(R.la
         binding.contentsEditText.addTextChangedListener(this)
 
         writeViewModel.selectedMbti.observe(viewLifecycleOwner) {
-            binding.selectedMbtiView.text = if(it.isNotEmpty()) it else resources.getString(R.string.select_target_mbti)
+            binding.selectedMbtiView.text = it.ifEmpty { resources.getString(R.string.select_target_mbti) }
         }
     }
 
@@ -71,7 +109,13 @@ class CommunityWriteFragment: CommonFragment<FragmentCommunityWriteBinding>(R.la
                 context?.let {
                     TedImagePicker.with(it).max(3, R.string.msg_max_image_count).startMultiImage { uriList ->
                         uriList.forEach { uri ->
-                            getFullPathFromUri(it, uri)?.let { path -> writeViewModel.questionImages.add(path) }
+                            if(writeViewModel.questionImages.size < 3) {
+                                getFullPathFromUri(it, uri)?.let { path ->
+                                    writeViewModel.questionImages.add(path)
+                                    writeViewModel.modifyImages.find { it.communityImageUrl == path }
+                                        ?:writeViewModel.addImageUrls.add(path)
+                                }
+                            }
                         }
                     }
                 }
@@ -82,10 +126,13 @@ class CommunityWriteFragment: CommonFragment<FragmentCommunityWriteBinding>(R.la
                 val title = binding.titleEditText.text.toString()
                 val content = binding.contentsEditText.text.toString()
                 CoroutineScope(Dispatchers.IO).launch {
-                    val isWrite = writeViewModel.writeContent(title, content)
-
-                    if(isWrite) {
-                        oneButtonDialogShow(context, resources.getString(R.string.success_write), writeViewModel.writeResultMessage)
+                    val isComplete = if(args.communityId == 0L) {
+                        writeViewModel.writeContent(title, content)
+                    } else {
+                        writeViewModel.modifyContent(args.communityId, title, content)
+                    }
+                    if(isComplete) {
+                        toastShow(context, writeViewModel.writeResultMessage)
                         navPopStack()
                     } else {
                         oneButtonDialogShow(context, resources.getString(R.string.error_write), writeViewModel.writeResultMessage)
@@ -108,4 +155,12 @@ class CommunityWriteFragment: CommonFragment<FragmentCommunityWriteBinding>(R.la
     }
 
     override fun afterTextChanged(p0: Editable?) {}
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun imageDeleteEvent(event : ImageDeleteEvent) {
+        writeViewModel.questionImages.remove(event.imageUrl)
+        writeViewModel.modifyImages.find { it.communityImageUrl == event.imageUrl }?.let {
+            writeViewModel.deleteImageIds.add(it.communityImageId)
+        }
+    }
 }

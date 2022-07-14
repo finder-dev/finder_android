@@ -2,6 +2,7 @@ package com.android.finder.screen.fragment.community
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -145,6 +146,16 @@ class CommunityDetailFragment :
                                 when (data) {
                                     resources.getString(R.string.modify) -> {
                                         //수정 화면으로 이동
+                                        navigate(
+                                            CommunityDetailFragmentDirections.actionCommunityDetailFragmentToCommunityWriteFragment(
+                                                communityId = detailData.communityId,
+                                                communityTitle = detailData.communityTitle,
+                                                communityContent = detailData.communityContent,
+                                                communityMbti = detailData.communityMBTI,
+                                                isCurious = detailData.isQuestion,
+                                                images = detailData.communityImgDtos.toTypedArray()
+                                            )
+                                        )
                                     }
                                     resources.getString(R.string.delete) -> {
                                         this@CommunityDetailFragment.context?.let {
@@ -158,7 +169,9 @@ class CommunityDetailFragment :
                                                     if (communityDetailViewModel.deleteCommunityContent(
                                                             detailData.communityId
                                                         )
-                                                    ) { navPopStack() }
+                                                    ) {
+                                                        navPopStack()
+                                                    }
                                                     toastShow(
                                                         it,
                                                         communityDetailViewModel.deleteContentResultMessage

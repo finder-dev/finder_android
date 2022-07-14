@@ -114,10 +114,7 @@ fun convertToMultipart(
                     for (image in value) {
                         val imagePath = image as String
                         val file = File(imagePath)
-                        Log.e("file", file.name)
-                        val fileReqBody =
-                            file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
-                        Log.e("fileRequest", fileReqBody.contentType().toString())
+                        val fileReqBody = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
                         val part = MultipartBody.Part.createFormData(
                             imageName,
                             file.name,
