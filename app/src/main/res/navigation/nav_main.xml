@@ -68,5 +68,13 @@
         <action
             android:id="@+id/action_communityDetailFragment_to_communityWriteFragment"
             app:destination="@id/communityWriteFragment" />
+        <action
+            android:id="@+id/action_communityDetailFragment_to_sendNoteFragment"
+            app:destination="@id/sendNoteFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/sendNoteFragment"
+        tools:layout="@layout/fragment_send_a_note"
+        android:name="com.android.finder.screen.fragment.note.SendNoteFragment"
+        android:label="SendNoteFragment" />
 </navigation>

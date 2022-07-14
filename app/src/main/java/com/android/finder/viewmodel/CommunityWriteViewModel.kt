@@ -68,7 +68,6 @@ class CommunityWriteViewModel: ViewModel() {
             params["content"] = content
             params["mbti"] = selectedMbti.value!!
             params["isQuestion"] = isCurious
-//            if(deleteImageIds.isNotEmpty()) params["deleteImageIds[]"] = deleteImageIds
             if(addImageUrls.isNotEmpty()) params["images"] = addImageUrls
             val parts = convertToMultipart(params, "addImages[]")
             var deleteImageList : ArrayList<MultipartBody.Part> = ArrayList()

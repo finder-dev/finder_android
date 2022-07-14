@@ -182,6 +182,7 @@ class CommunityDetailFragment :
                                     }
                                     resources.getString(R.string.send_a_note) -> {
                                         //쪽지 보내기 기능
+                                        navigate(CommunityDetailFragmentDirections.actionCommunityDetailFragmentToSendNoteFragment())
                                     }
                                     resources.getString(R.string.report) -> {
                                         //신고 기능
