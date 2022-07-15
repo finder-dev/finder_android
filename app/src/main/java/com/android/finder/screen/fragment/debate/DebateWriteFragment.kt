@@ -53,13 +53,17 @@ class DebateWriteFragment :
                     val optionA = binding.optionAEditText.text.toString()
                     val optionB = binding.optionBEditText.text.toString()
                     CoroutineScope(Dispatchers.IO).launch {
-                        val resultMessage = writeViewModel.createDebate(title, optionA, optionB)
-                        oneButtonDialogShow(
-                            context,
-                            resources.getString(R.string.success_create_debate),
-                            resultMessage
-                        ) {
-                            navPopStack()
+                        if(args.debateId == 0L) {
+                            val resultMessage = writeViewModel.createDebate(title, optionA, optionB)
+                            oneButtonDialogShow(
+                                context,
+                                resources.getString(R.string.success_create_debate),
+                                resultMessage
+                            ) {
+                                navPopStack()
+                            }
+                        } else {
+
                         }
                         isLoading = false
                     }

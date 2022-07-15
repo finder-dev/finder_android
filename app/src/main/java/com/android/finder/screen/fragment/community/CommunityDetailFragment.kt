@@ -289,7 +289,6 @@ class CommunityDetailFragment :
     private fun modifyComment(answerId: Long, content : String) {
         isLoading = true
         CoroutineScope(Dispatchers.IO).launch {
-            Log.e("content", content)
             val message = communityDetailViewModel.modifyAnswers(answerId, content)
             toastShow(context, message.ifEmpty { resources.getString(R.string.msg_success_write) })
             isLoading = false
@@ -360,7 +359,6 @@ class CommunityDetailFragment :
                                 resources.getString(R.string.comment_modify),
                                 object : StringResult {
                                     override fun finish(data: String) {
-                                        Log.e("answerId", commentData.answerId.toString())
                                         modifyComment(commentData.answerId, data)
                                     }
                                 }

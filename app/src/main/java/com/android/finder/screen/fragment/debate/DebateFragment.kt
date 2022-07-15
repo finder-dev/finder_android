@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.android.finder.MoveToDebateDetail
 import com.android.finder.R
 import com.android.finder.component.RecyclerViewItemDeco
 import com.android.finder.databinding.FragmentDebateBinding
@@ -18,6 +19,9 @@ import com.android.finder.viewmodel.DebateViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class DebateFragment: CommonFragment<FragmentDebateBinding>(R.layout.fragment_debate), View.OnClickListener {
 
@@ -43,6 +47,17 @@ class DebateFragment: CommonFragment<FragmentDebateBinding>(R.layout.fragment_de
             })
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (EventBus.getDefault().isRegistered(this)) EventBus.getDefault().unregister(this)
+    }
+
 
     private fun dataLoading(isRefresh: Boolean) {
         if (!isLoading) {
@@ -90,5 +105,10 @@ class DebateFragment: CommonFragment<FragmentDebateBinding>(R.layout.fragment_de
                 dialog.show(childFragmentManager, "debateFilter")
             }
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun moveToDetail(event: MoveToDebateDetail) {
+        navigate(MainFragmentDirections.actionMainFragmentToDebateDetailFragment(event.debateId))
     }
 }

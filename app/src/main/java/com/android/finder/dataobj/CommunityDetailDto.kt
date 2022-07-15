@@ -1,19 +1,21 @@
 package com.android.finder.dataobj
 
+import com.google.gson.annotations.SerializedName
+
 data class CommunityDetailDto(
-    val answerCount: Int,
-    val answerHistDtos: List<CommentData>,
-    val communityContent: String,
-    val communityId: Long,
-    val communityImgDtos: List<CommunityImgDto>,
-    val communityMBTI: String,
-    val communityTitle: String,
-    val createTime: String,
-    val isQuestion: Boolean,
-    var likeCount: Int,
-    var likeUser: Boolean,
-    var saveUser: Boolean,
-    val userId: Long,
-    val userMBTI: String,
-    val userNickname: String
+    @SerializedName("answerCount") val answerCount: Int,
+    @SerializedName("answerHistDtos") val answerHistDtos: List<CommentData>,
+    @SerializedName("communityContent") val communityContent: String,
+    @SerializedName("communityId") val communityId: Long,
+    @SerializedName("communityImgDtos") val communityImgDtos: List<CommunityImgDto>,
+    @SerializedName("communityMBTI") val communityMBTI: String,
+    @SerializedName("communityTitle") val communityTitle: String,
+    @SerializedName("createTime") val createTime: String,
+    @SerializedName("isQuestion") val isQuestion: Boolean,
+    @SerializedName("likeCount") var likeCount: Int,
+    @SerializedName("likeUser") var likeUser: Boolean,
+    @SerializedName("saveUser") var saveUser: Boolean,
+    @SerializedName("userId") val userId: Long,
+    @SerializedName("userMBTI") val userMBTI: String,
+    @SerializedName("userNickname") val userNickname: String
 )

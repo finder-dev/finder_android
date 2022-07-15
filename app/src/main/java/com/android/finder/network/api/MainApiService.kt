@@ -1,10 +1,9 @@
 package com.android.finder.network.api
 
-import com.android.finder.dataobj.CommunityHotTitleData
 import com.android.finder.network.request.CreateDebateRequestDTO
-import com.android.finder.network.request.ModifyCommentRequestDTO
+import com.android.finder.network.request.ContentBodyRequestDTO
+import com.android.finder.network.request.DebateOptionBodyRequestDTO
 import com.android.finder.network.response.*
-import com.google.gson.JsonObject
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -60,6 +59,11 @@ interface MainApiService {
         @Path("communityId") communityId: Long
     ) : Call<CommunityDetailResponse>
 
+    @GET("api/debate/{debateId}")
+    fun getDebateDetail(
+        @Path("debateId") debateId : Long
+    ) : Call<DebateDetailResponseDTO>
+
     @POST("/api/community/{communityId}/save")
     fun saveChange(
         @Path("communityId") communityId : Long
@@ -85,7 +89,14 @@ interface MainApiService {
     @PATCH("/api/community/answers/{answerId}")
     fun modifyCommentAndReComment(
         @Path("answerId") answerId : Long,
-        @Body content: ModifyCommentRequestDTO
+        @Body content: ContentBodyRequestDTO
+    ) : Call<Unit>
+
+    @Headers("Content-Type: application/json")
+    @PATCH("/api/debate/answers/{answerId}")
+    fun modifyDebateCommentAndReComment(
+        @Path("answerId") answerId : Long,
+        @Body content: ContentBodyRequestDTO
     ) : Call<Unit>
 
     @FormUrlEncoded
@@ -95,8 +106,27 @@ interface MainApiService {
         @Field("content") content: String
     ) : Call<Unit>
 
+    @Headers("Content-Type: application/json")
+    @POST("/api/debate/answers/{answerId}/reply")
+    fun createDebateReComment(
+        @Path("answerId") answerId : Long,
+        @Body content: ContentBodyRequestDTO
+    ) : Call<Unit>
+
+    @Headers("Content-Type: application/json")
+    @POST("api/debate/{debateId}/answers")
+    fun createDebateComment(
+        @Path("debateId") debateId: Long,
+        @Body content: ContentBodyRequestDTO
+    ) : Call<Unit>
+
     @DELETE("api/community/answers/{answerId}")
     fun deleteCommentAndReComment(
+        @Path("answerId") answerId : Long
+    ) : Call<Unit>
+
+    @DELETE("/api/debate/answers/{answerId}")
+    fun deleteDebateCommentAndReComment(
         @Path("answerId") answerId : Long
     ) : Call<Unit>
 
@@ -106,6 +136,22 @@ interface MainApiService {
     ) : Call<Unit>
 
     @Headers("Content-Type: application/json")
+    @POST("/api/debate/answers/{answerId}/report")
+    fun reportDebateCommentAndReComment(
+        @Path("answerId") answerId : Long
+    ) : Call<Unit>
+
+    @POST("api/debate/{debateId}/report")
+    fun reportDebateContent(@Path("debateId") debateId: Long) : Call<Unit>
+
+    @Headers("Content-Type: application/json")
     @POST("api/debate")
     fun createDebate(@Body data : CreateDebateRequestDTO) : Call<Unit>
+
+    @Headers("Content-Type: application/json")
+    @POST("api/debate/{debateId}")
+    fun joinDebateSelect(
+        @Path("debateId") debateId: Long,
+        @Body option : DebateOptionBodyRequestDTO
+    ) : Call<Unit>
 }

@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_mainFragment_to_debateWriteFragment"
             app:destination="@id/debateWriteFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_debateDetailFragment"
+            app:destination="@id/debateDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/communityWriteFragment"
@@ -115,6 +118,24 @@
             app:argType="string"
             android:defaultValue="@null"
             app:nullable="true"/>
+
+    </fragment>
+    <fragment
+        android:id="@+id/debateDetailFragment"
+        tools:layout="@layout/fragment_debate_detail"
+        android:name="com.android.finder.screen.fragment.debate.DebateDetailFragment"
+        android:label="DebateDetailFragment" >
+
+        <argument
+            android:name="debateId"
+            app:argType="long"
+            app:nullable="false"/>
+        <action
+            android:id="@+id/action_debateDetailFragment_to_debateWriteFragment"
+            app:destination="@id/debateWriteFragment" />
+        <action
+            android:id="@+id/action_debateDetailFragment_to_sendNoteFragment"
+            app:destination="@id/sendNoteFragment" />
 
     </fragment>
 </navigation>

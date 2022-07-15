@@ -61,7 +61,7 @@ class HomeFragment : CommonFragment<FragmentHomeBinding>(R.layout.fragment_home)
     }
 
     override fun eventListenerSetting() {
-        binding.balanceGameView.moveToDebateButton.setOnClickListener(this)
+        binding.moveToDebateButton.setOnClickListener(this)
 
         homeViewModel.isExistProfile.observe(viewLifecycleOwner) {
             if (it) {
@@ -81,10 +81,10 @@ class HomeFragment : CommonFragment<FragmentHomeBinding>(R.layout.fragment_home)
                     balancePossibleButton.text = it.optionA
                     gameImpossibleCount.text = it.optionBCount.toString()
                     balanceImpossibleButton.text = it.optionB
-                    moveToDebateTextview.text = resources.getString(R.string.move_to_leave_a_comment)
+                    binding.moveToDebateTextview.text = resources.getString(R.string.move_to_leave_a_comment)
                 }
             } else {
-                binding.balanceGameView.moveToDebateTextview.text = resources.getString(R.string.move_to_debate_create)
+                binding.moveToDebateTextview.text = resources.getString(R.string.move_to_debate_create)
                 binding.balanceGameView.emptyIncludeView.root.visibility = View.VISIBLE
                 binding.balanceGameView.balanceGamePromotionLayout.visibility = View.GONE
             }
@@ -177,8 +177,11 @@ class HomeFragment : CommonFragment<FragmentHomeBinding>(R.layout.fragment_home)
 
     override fun onClick(v: View?) {
         when(v) {
-            binding.balanceGameView.moveToDebateButton -> {
-                //토론 상세로 넘어가기
+            binding.moveToDebateButton -> {
+                homeViewModel.hotDebate.value?.let {
+                    navigate(MainFragmentDirections.actionMainFragmentToDebateDetailFragment(it.debateId))
+                }
+
             }
         }
     }

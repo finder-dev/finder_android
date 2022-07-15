@@ -8,6 +8,8 @@ data class LikeCommunityContent(val content : Content)
 
 data class MoveToCommunityDetail(val communityId: Long)
 
+data class MoveToDebateDetail(val debateId: Long)
+
 data class ImageDeleteEvent(val imageUrl: String)
 
 data class CommentAttributeClickEvent(val data : CommentData)
