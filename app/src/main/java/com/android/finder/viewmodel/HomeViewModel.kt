@@ -7,12 +7,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.finder.caching.CachingData
 import com.android.finder.dataobj.CommunityHotTitleData
+import com.android.finder.dataobj.DebateHotVO
 import com.android.finder.network.MainNetWorkUtil
+import com.android.finder.network.response.MessageResponse
+import com.google.gson.Gson
 
 class HomeViewModel: ViewModel() {
 
     val isExistProfile : MutableLiveData<Boolean> = MutableLiveData(false)
     val communityHotList : ObservableArrayList<CommunityHotTitleData> = ObservableArrayList()
+    val hotDebate : MutableLiveData<DebateHotVO?> = MutableLiveData()
+    val isDebateJoin : MutableLiveData<Boolean> = MutableLiveData(false)
+    var isA = false
 
     fun getProfile(context : Context) {
         if(CachingData.userProfile == null) {
@@ -28,9 +34,23 @@ class HomeViewModel: ViewModel() {
                 result.body()?.let {
                     communityHotList.clear()
                     communityHotList.addAll(it.response)
-                    Log.e("response", communityHotList.toString())
                 }
             }
         }
+    }
+
+    fun getDebateHot() {
+        MainNetWorkUtil.api.getDebateHot().runCatching {
+            val result = this.execute()
+            if(result.isSuccessful) {
+                result.body()?.let {
+                    hotDebate.postValue(it.response)
+                    isDebateJoin.postValue(it.response.join)
+                    if(it.response.joinOption != null) {
+                        isA = (it.response.joinOption == "A")
+                    }
+                }
+            }
+        }.onFailure { it.printStackTrace() }
     }
 }

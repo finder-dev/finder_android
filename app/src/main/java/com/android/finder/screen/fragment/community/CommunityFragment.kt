@@ -32,6 +32,8 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.listViewModel = communityViewModel
+        binding.emptyIncludeView.descriptionTextView.text =
+            resources.getString(R.string.msg_empty_community)
         sortUiChange()
         try {
             binding.communityRecyclerView.addItemDecoration(
@@ -72,7 +74,6 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
                 isLoading = false
             }
         }
-
     }
 
     override fun eventListenerSetting() {
@@ -131,7 +132,7 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun moveCommunityDetail(event : MoveToCommunityDetail) {
+    fun moveCommunityDetail(event: MoveToCommunityDetail) {
         navigate(MainFragmentDirections.actionMainFragmentToCommunityDetailFragment(event.communityId))
     }
 

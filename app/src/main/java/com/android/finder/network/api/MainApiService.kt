@@ -2,10 +2,7 @@ package com.android.finder.network.api
 
 import com.android.finder.dataobj.CommunityHotTitleData
 import com.android.finder.network.request.ModifyCommentRequestDTO
-import com.android.finder.network.response.CommunityDetailResponse
-import com.android.finder.network.response.CommunityHotResponse
-import com.android.finder.network.response.CommunityListResponse
-import com.android.finder.network.response.SuccessProfileResponse
+import com.android.finder.network.response.*
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -42,6 +39,15 @@ interface MainApiService {
 
     @GET("api/community/hot")
     fun getCommunityHotList() : Call<CommunityHotResponse>
+
+    @GET("api/debate")
+    fun getDebateList(
+        @Query("state") state : String = "PROCEEDING",
+        @Query("page") page : Int
+    ) : Call<DebateListResponseDTO>
+
+    @GET("api/debate/hot")
+    fun getDebateHot() : Call<DebateHotResponse>
 
     @POST("api/community/{communityId}/like")
     fun likeChange(

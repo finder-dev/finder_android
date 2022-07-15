@@ -49,9 +49,14 @@
     <string name="success_write">글쓰기 성공</string>
     <string name="success_modify">수정 성공</string>
     <string name="user_report_complete">해당 사용자 신고 완료</string>
+    <string name="move_to_debate_create">토론 만들러 가기</string>
+    <string name="move_to_leave_a_comment">의견 남기러 가기</string>
+    <string name="complete_debate">아쉽게 마감된 토론</string>
+    <string name="proceeding_debate">불나게 진행중인 토론</string>
 
     <string name="likeCountFormat">추천 %s</string>
     <string name="commentCountFormat">댓글 %s</string>
+    <string name="join_count_format">%s명 참여</string>
 
     <string name="question_delete_content">글을 삭제하시겠습니까?</string>
     <string name="question_delete_comment">댓글을 삭제하시겠습니까?</string>
@@ -83,6 +88,7 @@
     <string name="msg_balance_game_introduce_title">HOT한 밸런스 게임! 당신의 선택은?</string>
     <string name="msg_debate_introduce_title">급상승 중인 파인더들의 수다</string>
     <string name="msg_empty_balance_game_main">아직 생성된 토론이 없습니다!\n첫 토론의 주인공이 돼보세요! GOGO!</string>
+    <string name="msg_empty_community">커뮤니티 게시글이 없습니다.</string>
     <string name="msg_re_login">앱을 재실행해주세요</string>
     <string name="msg_community_post_empty">커뮤니티 게시글이 없습니다.</string>
     <string name="msg_success_write">글이 등록되었습니다.</string>

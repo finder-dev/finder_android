@@ -43,10 +43,12 @@ class EmailLoginFragment : CommonFragment<FragmentEmailLoginBinding>(R.layout.fr
                 val password = binding.passwordEditTextView.text.toString()
                 if (email.isEmpty()) {
                     oneButtonDialogShow(context, resources.getString(R.string.error_email_empty))
+                    isLoading = false
                     return
                 }
                 if (password.isEmpty()) {
                     oneButtonDialogShow(context, resources.getString(R.string.error_password_empty))
+                    isLoading = false
                     return
                 }
                 CoroutineScope(Dispatchers.IO).launch {

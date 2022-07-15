@@ -15,6 +15,7 @@
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/bg_selector_radio_text_color.xml" value="0.201" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_apple_logo_white.xml" value="0.201" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_black4_dot.xml" value="0.1955" />
+        <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_bottom_black1_arrow.xml" value="0.201" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_check_button.xml" value="0.1955" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_file_add.xml" value="0.201" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_finder_app_icon.xml" value="0.1955" />
@@ -40,6 +41,7 @@
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_selector_home.xml" value="0.1955" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_selector_my.xml" value="0.1955" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_selector_save.xml" value="0.201" />
+        <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/ic_user.xml" value="0.201" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/splash.xml" value="0.17" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/drawable/tc_main_color_or_gray3.xml" value="0.1955" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/font/custom_font_family.xml" value="0.21770833333333334" />
@@ -56,6 +58,7 @@
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/fragment_community.xml" value="0.33" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/fragment_community_detail.xml" value="0.25" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/fragment_community_write.xml" value="0.33" />
+        <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/fragment_debate.xml" value="0.33" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/fragment_email_login.xml" value="0.33" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/fragment_login.xml" value="0.25" />
@@ -70,13 +73,14 @@
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/fragment_sign_up_complete.xml" value="0.1875" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/fragment_sign_up_one.xml" value="0.375" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/fragment_sign_up_two.xml" value="0.33" />
-        <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/include_balance_game_home.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/include_balance_game_home.xml" value="0.25" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/include_debate_home.xml" value="0.358695652173913" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/include_empty_view.xml" value="0.5" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/include_sub_tool_bar.xml" value="0.1875" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/include_user_data.xml" value="0.15391192817443353" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/item_comment.xml" value="0.33" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/item_community_post.xml" value="0.33" />
+        <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/item_debate_post.xml" value="0.30055579307396324" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/item_home_hot_community.xml" value="0.3666323377960865" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/item_image.xml" value="1.25" />
         <entry key="..\:/Users/jaeheon/Documents/GitHub/finder_android/app/src/main/res/layout/item_login_layout.xml" value="0.17806484295845998" />

@@ -23,13 +23,15 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="top"
                 android:src="@drawable/ic_fire"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/msg_balance_game_introduce_title"
                 android:textColor="@color/black1"
+                android:gravity="center"
                 android:textSize="20dp"
                 android:fontFamily="@font/noto_sans_kr_bold"
                 android:includeFontPadding="false"/>
@@ -126,8 +128,8 @@
                             android:textColor="@color/navy"
                             android:fontFamily="@font/noto_sans_kr_bold"
                             android:includeFontPadding="false"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintBottom_toTopOf="@id/balancePossibleButton"/>
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"/>
 
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -159,15 +161,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="12dp"
-                            android:layout_marginBottom="8dp"
+                            android:layout_marginTop="24dp"
                             tools:text="9"
                             android:textSize="44dp"
                             android:textColor="@color/gray3"
                             android:fontFamily="@font/noto_sans_kr_bold"
                             android:includeFontPadding="false"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
+                            app:layout_constraintTop_toTopOf="parent"/>
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/impossibleCutImageView"
@@ -213,7 +214,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/moveToBalanceGameButton"
+            android:id="@+id/moveToDebateButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -225,6 +226,7 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/moveToDebateTextview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="토론 만들러 가기"

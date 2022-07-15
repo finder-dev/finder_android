@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/debateTitleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:layout_marginBottom="16dp"
+            tools:text="친구의 깻잎이 19장이나 붙어있는데, 이거 떼줘도 될까? "
+            android:textColor="@color/black1"
+            android:textSize="18dp"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/ic_user"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/joinCountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="42명 참여"
+                android:textColor="@color/black04"
+                android:textSize="14dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/deadlineTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="D-6"
+                android:textColor="@color/mainColor"
+                android:textSize="14dp"
+                android:fontFamily="@font/noto_sans_kr_bold"
+                android:includeFontPadding="false"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
