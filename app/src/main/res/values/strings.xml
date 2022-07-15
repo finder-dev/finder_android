@@ -19,6 +19,7 @@
     <string name="most_comments">댓글순</string>
     <string name="complete">완료</string>
     <string name="write">글쓰기</string>
+    <string name="debate_create">토론 생성</string>
     <string name="select_target_mbti">대상 MBTI 선택</string>
     <string name="curious">궁금</string>
     <string name="send_a_note">쪽지 보내기</string>
@@ -47,6 +48,7 @@
     <string name="password_help">영문, 숫자 포함 8~16자</string>
     <string name="email_start_under_bar"><u>이메일로 시작하기</u></string>
     <string name="success_write">글쓰기 성공</string>
+    <string name="success_create_debate">토론 생성 성공</string>
     <string name="success_modify">수정 성공</string>
     <string name="user_report_complete">해당 사용자 신고 완료</string>
     <string name="move_to_debate_create">토론 만들러 가기</string>
@@ -70,9 +72,12 @@
     <string name="hint_input_nick_name">6자 이내로 적어주세요</string>
     <string name="hint_mbti_search">알고싶은 MBTI가 있나요?</string>
     <string name="hint_input_title">제목을 입력하세요</string>
+    <string name="hint_input_debate_title">토론 제목을 입력하세요</string>
     <string name="hint_community_write">내용을 입력하세요.(고민이나 질문을 포함한 글은 상단 궁금 버튼을 눌러주세요)</string>
     <string name="hint_write">내용을 입력하세요.</string>
     <string name="hint_comment_add">따뜻한 댓글을 남겨주세요!</string>
+    <string name="hint_option_a">A 선택지를 8자 이내로 입력해주세요</string>
+    <string name="hint_option_b">B 선택지를 8자 이내로 입력해주세요</string>
 
     <string name="msg_one_on_boarding_main">궁금한 MBTI한테\n바로 물어보세요</string>
     <string name="msg_one_on_boarding_sub">오해와 진실! 여기서 다 풀어요</string>
@@ -92,6 +97,7 @@
     <string name="msg_re_login">앱을 재실행해주세요</string>
     <string name="msg_community_post_empty">커뮤니티 게시글이 없습니다.</string>
     <string name="msg_success_write">글이 등록되었습니다.</string>
+    <string name="msg_success_create_debate">토론이 생성되었습니다.</string>
     <string name="msg_like_success">좋아요를 누르셨습니다.</string>
     <string name="msg_save_success">저장하셨습니다.</string>
     <string name="msg_save_delete">저장을 취소하셨습니다.</string>
@@ -103,6 +109,7 @@
     <string name="msg_delete_re_comment">대댓글을 삭제했습니다.</string>
     <string name="msg_report_complete">신고되었습니다.</string>
     <string name="msg_description_user_report">허위 신고일 경우, 활동이 제한될 수 있으니, 신중히 신고하세요.</string>
+    <string name="msg_debate_notice">토론은 일주일간 진행됩니다.\n올리면 수정, 삭제가 안되니 신중하게 적어주세요!</string>
 
     <string name="error_unspecified_message">문제가 발생했습니다.</string>
     <string name="error_login">로그인 실패</string>
@@ -128,4 +135,5 @@
     <string name="error_comment_add">댓글을 달 수 없습니다.</string>
     <string name="error_comment_delete">댓글이 삭제되지 않았습니다.</string>
     <string name="error_delete_content_fail">글이 삭제되지 않았습니다.</string>
+    <string name="error_create_debate">토론 생성에 실패하셨습니다.</string>
 </resources>

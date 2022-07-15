@@ -7,8 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.finder.R
 import com.android.finder.component.RecyclerViewItemDeco
 import com.android.finder.databinding.FragmentDebateBinding
+import com.android.finder.enumdata.DebateFilter
+import com.android.finder.result.StringResult
 import com.android.finder.screen.CommonFragment
+import com.android.finder.screen.dialog.SelectListBottomSheetDialog
+import com.android.finder.screen.fragment.MainFragmentDirections
 import com.android.finder.scrollPercent
+import com.android.finder.selectGridDialogShow
 import com.android.finder.viewmodel.DebateViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,7 +26,6 @@ class DebateFragment: CommonFragment<FragmentDebateBinding>(R.layout.fragment_de
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.debateViewModel = debateViewModel
-        dataLoading(true)
         context?.let {
             binding.debateRecyclerView.addItemDecoration(
                 RecyclerViewItemDeco(it, 10)
@@ -56,7 +60,7 @@ class DebateFragment: CommonFragment<FragmentDebateBinding>(R.layout.fragment_de
         binding.listFilterButton.setOnClickListener(this)
 
         debateViewModel.currentFilter.observe(viewLifecycleOwner) {
-            binding.currentFilterTextView.text = it.filterString
+            binding.currentFilterTextView.text = it.filterViewString
             dataLoading(true)
         }
     }
@@ -64,10 +68,26 @@ class DebateFragment: CommonFragment<FragmentDebateBinding>(R.layout.fragment_de
     override fun onClick(v: View?) {
         when(v) {
             binding.addDebateButton -> {
-
+                navigate(MainFragmentDirections.actionMainFragmentToDebateWriteFragment())
             }
             binding.listFilterButton -> {
-
+                val itemList = ArrayList(DebateFilter.values().map { it.filterViewString })
+                val dialog = SelectListBottomSheetDialog(itemList).apply {
+                    this.result = object : StringResult {
+                        override fun finish(data: String) {
+                            when(data) {
+                                DebateFilter.PROCEEDING.filterViewString -> {
+                                    debateViewModel.currentFilter.postValue(DebateFilter.PROCEEDING)
+                                }
+                                DebateFilter.COMPLETE.filterViewString -> {
+                                    debateViewModel.currentFilter.postValue(DebateFilter.COMPLETE)
+                                }
+                            }
+                            dismiss()
+                        }
+                    }
+                }
+                dialog.show(childFragmentManager, "debateFilter")
             }
         }
     }

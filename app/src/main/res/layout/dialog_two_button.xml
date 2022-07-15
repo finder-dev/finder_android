@@ -42,7 +42,7 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/cancelButton"
+                android:id="@+id/confirmButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -55,7 +55,7 @@
                 android:textSize="14dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/confirmButton"
+                android:id="@+id/cancelButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

@@ -16,7 +16,7 @@ class DebateViewModel : ViewModel() {
 
     var currentPage: Int = 0
     var isLast: Boolean = false
-    var currentFilter: MutableLiveData<DebateFilter> = MutableLiveData()
+    var currentFilter: MutableLiveData<DebateFilter> = MutableLiveData(DebateFilter.PROCEEDING)
     val debateList : ObservableArrayList<DebateListVO> = ObservableArrayList()
     var debateListResultMessage = ""
 
@@ -28,7 +28,6 @@ class DebateViewModel : ViewModel() {
             if(result.isSuccessful) {
                 if(currentPage == 0) debateList.clear()
                 result.body()?.let {
-                    Log.e("body", it.toString())
                     debateList.addAll(it.debateResponse.content)
                     isLast = it.debateResponse.last
                     currentPage++

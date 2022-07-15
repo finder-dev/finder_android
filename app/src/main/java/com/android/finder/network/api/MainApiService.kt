@@ -1,6 +1,7 @@
 package com.android.finder.network.api
 
 import com.android.finder.dataobj.CommunityHotTitleData
+import com.android.finder.network.request.CreateDebateRequestDTO
 import com.android.finder.network.request.ModifyCommentRequestDTO
 import com.android.finder.network.response.*
 import com.google.gson.JsonObject
@@ -103,4 +104,8 @@ interface MainApiService {
     fun reportCommentAndReComment(
         @Path("answerId") answerId : Long
     ) : Call<Unit>
+
+    @Headers("Content-Type: application/json")
+    @POST("api/debate")
+    fun createDebate(@Body data : CreateDebateRequestDTO) : Call<Unit>
 }
