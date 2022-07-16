@@ -158,4 +158,12 @@ interface MainApiService {
 
     @GET("api/users/save")
     fun getUserSaveCommunityContent(@Query("page") page : Int) : Call<CommunityListResponse>
+
+    @GET("api/users/activity/community")
+    fun getMyCommunityContentList(@Query("page") page : Int) : Call<CommunityListResponse>
+
+    @GET("api/users/activity/answer")
+    fun getMyCommunityContentListThroughComment(
+        @Query("page") page : Int
+    ) : Call<CommunityListResponse>
 }

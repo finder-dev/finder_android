@@ -4,7 +4,7 @@ import com.android.finder.dataobj.CommentData
 import com.android.finder.dataobj.Content
 import com.android.finder.dataobj.ReCommentData
 
-data class LikeCommunityContent(val content : Content)
+data class LikeCommunityContent(val content : Content, val position: Int)
 
 data class MoveToCommunityDetail(val communityId: Long)
 

@@ -6,6 +6,7 @@
     <string name="cancel">취소</string>
     <string name="password">비밀번호</string>
     <string name="login">로그인</string>
+    <string name="logout">로그아웃</string>
     <string name="sign_up">회원가입</string>
     <string name="next">다음</string>
     <string name="nick_name">닉네임</string>
@@ -14,7 +15,7 @@
     <string name="debate">토론</string>
     <string name="community">커뮤니티</string>
     <string name="save">저장</string>
-    <string name="my">마이</string>
+    <string name="my">내정보</string>
     <string name="fastest">최신순</string>
     <string name="most_comments">댓글순</string>
     <string name="complete">완료</string>
@@ -30,6 +31,8 @@
     <string name="modify">수정</string>
     <string name="delete">삭제</string>
     <string name="close">닫기</string>
+    <string name="my_write_content">작성 글</string>
+    <string name="my_write_comment">댓글 단 글</string>
 
     <string name="sign_up_complete">회원가입 완료</string>
     <string name="send_code_number">코드번호 발송</string>

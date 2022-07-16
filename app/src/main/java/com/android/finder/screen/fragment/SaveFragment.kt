@@ -44,17 +44,7 @@ class SaveFragment : CommonFragment<FragmentSaveBinding>(R.layout.fragment_save)
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this)
-    }
-
     override fun eventListenerSetting() {}
-
-    override fun onPause() {
-        super.onPause()
-        if (EventBus.getDefault().isRegistered(this)) EventBus.getDefault().unregister(this)
-    }
 
     private fun dataLoading(isRefresh : Boolean) {
         if (!isLoading) {
@@ -65,10 +55,5 @@ class SaveFragment : CommonFragment<FragmentSaveBinding>(R.layout.fragment_save)
                 isLoading = false
             }
         }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun moveCommunityDetail(event: MoveToCommunityDetail) {
-        navigate(MainFragmentDirections.actionMainFragmentToCommunityDetailFragment(event.communityId))
     }
 }

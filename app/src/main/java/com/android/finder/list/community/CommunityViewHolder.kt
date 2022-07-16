@@ -22,7 +22,8 @@ class CommunityViewHolder(val binding: ItemCommunityPostBinding) :
     fun bind(item: Content) {
         binding.apply {
             questionMbtiView.text = item.communityMBTI
-            isCuriousImageView.isVisible = item.isQuestion
+
+            isCuriousImageView.visibility = if(item.isQuestion)View.VISIBLE else View.INVISIBLE
             communityTitleTextView.text = item.communityTitle
             communityContentsTextView.text = item.communityContent
             includePublisherData.postUserMbtiView.text = item.userMBTI
@@ -44,7 +45,7 @@ class CommunityViewHolder(val binding: ItemCommunityPostBinding) :
                 ) else App.instance.resources.getColor(R.color.black7, null)
             )
             binding.likeButton.setOnClickListener {
-                EventBus.getDefault().post(LikeCommunityContent(item))
+                EventBus.getDefault().post(LikeCommunityContent(item, adapterPosition))
             }
             binding.root.setOnClickListener {
                 EventBus.getDefault().post(MoveToCommunityDetail(item.communityId))

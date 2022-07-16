@@ -4,9 +4,6 @@ import android.content.Context
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableArrayList
 import androidx.recyclerview.widget.RecyclerView
-import com.android.finder.bindingadapter.RecyclerViewBinding.setCommentAdapter
-import com.android.finder.bindingadapter.RecyclerViewBinding.setHomeCommunityAdapter
-import com.android.finder.bindingadapter.RecyclerViewBinding.setImageAdapter
 import com.android.finder.dataobj.CommentData
 import com.android.finder.dataobj.CommunityHotTitleData
 import com.android.finder.dataobj.Content

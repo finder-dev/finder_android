@@ -132,11 +132,6 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun moveCommunityDetail(event: MoveToCommunityDetail) {
-        navigate(MainFragmentDirections.actionMainFragmentToCommunityDetailFragment(event.communityId))
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
     fun contentIsLike(event: LikeCommunityContent) {
         communityViewModel.contentList.find { it.communityId == event.content.communityId }?.let {
             CoroutineScope(Dispatchers.IO).launch {
@@ -146,32 +141,18 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
                         try {
                             if (it.likeUser) {
                                 it.likeCount++
-                                Toast.makeText(
-                                    context,
-                                    resources.getString(R.string.msg_like_success),
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                toastShow(context, resources.getString(R.string.msg_like_success))
                             } else {
                                 it.likeCount--
-                                Toast.makeText(
-                                    context,
-                                    resources.getString(R.string.msg_like_delete),
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                toastShow(context,  resources.getString(R.string.msg_like_delete))
                             }
-                            binding.communityRecyclerView.adapter?.notifyDataSetChanged()
+                            binding.communityRecyclerView.adapter?.notifyItemChanged(event.position)
                         } catch (e: Exception) {
                             e.printStackTrace()
                         }
                     }
                 } else {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        Toast.makeText(
-                            context,
-                            resources.getString(R.string.error_unspecified_message),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                    toastShow(context,  resources.getString(R.string.error_unspecified_message))
                 }
             }
         }

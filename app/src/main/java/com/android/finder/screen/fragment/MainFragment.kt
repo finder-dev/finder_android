@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import com.android.finder.MoveToCommunityDetail
 import com.android.finder.databinding.FragmentMainBinding
 import com.android.finder.screen.CommonFragment
 import com.android.finder.R
@@ -12,6 +13,9 @@ import com.android.finder.databinding.ItemTabListBinding
 import com.android.finder.enumdata.HomeBottomTap
 import com.android.finder.imageSrcCompatResource
 import com.google.android.material.tabs.TabLayoutMediator
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class MainFragment : CommonFragment<FragmentMainBinding>(R.layout.fragment_main) {
     private var tabNameIdList = HomeBottomTap.values().map { it.tapName }
@@ -20,6 +24,16 @@ class MainFragment : CommonFragment<FragmentMainBinding>(R.layout.fragment_main)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pageSetting()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (EventBus.getDefault().isRegistered(this)) EventBus.getDefault().unregister(this)
     }
 
     override fun onDestroyView() {
@@ -42,5 +56,10 @@ class MainFragment : CommonFragment<FragmentMainBinding>(R.layout.fragment_main)
     }
     override fun eventListenerSetting() {
 
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun moveCommunityDetail(event: MoveToCommunityDetail) {
+        navigate(MainFragmentDirections.actionMainFragmentToCommunityDetailFragment(event.communityId))
     }
 }
