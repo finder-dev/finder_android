@@ -1,9 +1,7 @@
 package com.android.finder.screen.fragment.community
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -15,7 +13,6 @@ import com.android.finder.dataobj.CommunityDetailDto
 import com.android.finder.result.StringResult
 import com.android.finder.screen.CommonFragment
 import com.android.finder.screen.dialog.SelectListBottomSheetDialog
-import com.android.finder.screen.fragment.MainFragmentDirections
 import com.android.finder.viewmodel.CommunityDetailViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -111,7 +108,7 @@ class CommunityDetailFragment :
                 resources.getString(R.string.likeCountFormat, likeCount.toString())
             binding.commentCountView.text =
                 resources.getString(R.string.commentCountFormat, answerCount.toString())
-            binding.saveButton.setImageResource(if (saveUser) R.drawable.ic_save_on else R.drawable.ic_save_off)
+            binding.saveButton.setImageResource(if (saveUser) R.drawable.ic_save_on else R.drawable.ic_save_mini)
         }
     }
 

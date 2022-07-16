@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="listViewModel"
+            type="com.android.finder.viewmodel.SaveViewModel" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleView"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="@string/save"
+            android:textSize="16dp"
+            android:textColor="@color/black1"/>
+
+        <include
+            android:id="@+id/emptyIncludeView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:visibility="@{(listViewModel.contentList.size()==0) ? View.VISIBLE : View.GONE}"
+            layout="@layout/include_empty_view"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/saveContentRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            communityAdapter="@{listViewModel.contentList}"
+            android:visibility="@{(listViewModel.contentList.size()!=0) ? View.VISIBLE : View.GONE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

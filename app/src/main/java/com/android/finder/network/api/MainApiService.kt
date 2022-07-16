@@ -4,6 +4,7 @@ import com.android.finder.network.request.CreateDebateRequestDTO
 import com.android.finder.network.request.ContentBodyRequestDTO
 import com.android.finder.network.request.DebateOptionBodyRequestDTO
 import com.android.finder.network.response.*
+import com.google.gson.JsonObject
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -154,4 +155,7 @@ interface MainApiService {
         @Path("debateId") debateId: Long,
         @Body option : DebateOptionBodyRequestDTO
     ) : Call<Unit>
+
+    @GET("api/users/save")
+    fun getUserSaveCommunityContent(@Query("page") page : Int) : Call<CommunityListResponse>
 }
