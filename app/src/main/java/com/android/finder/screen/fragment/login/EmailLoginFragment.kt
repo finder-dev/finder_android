@@ -9,6 +9,7 @@ import com.android.finder.databinding.FragmentEmailLoginBinding
 import com.android.finder.oneButtonDialogShow
 import com.android.finder.screen.CommonFragment
 import com.android.finder.screen.activity.MainActivity
+import com.android.finder.util.SettingUtil
 import com.android.finder.viewmodel.LoginViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -55,6 +56,7 @@ class EmailLoginFragment : CommonFragment<FragmentEmailLoginBinding>(R.layout.fr
                     context?.let {
                         if (loginViewModel.login(it, email, password)) {
                             activity?.let { activity ->
+                                SettingUtil.setAutoLoginKey(activity, loginViewModel.isAutoLogin.value?:false)
                                 val sendIntent = Intent(activity, MainActivity::class.java)
                                 sendIntent.run {
                                     flags = Intent.FLAG_ACTIVITY_CLEAR_TOP

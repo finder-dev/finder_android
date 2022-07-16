@@ -22,7 +22,6 @@ class LoginViewModel: ViewModel() {
             if(result.isSuccessful) {
                 //여기서 토큰 처리
                 result.body()?.let {
-                    Log.e("login success", it.toString())
                     it.response?.accessToken?.let { token ->
                         SecureManager(context).setToken(token)
                     }

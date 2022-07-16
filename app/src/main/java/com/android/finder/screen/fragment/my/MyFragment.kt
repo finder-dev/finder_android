@@ -14,6 +14,8 @@ import com.android.finder.enumdata.MBTI
 import com.android.finder.network.MainNetWorkUtil
 import com.android.finder.screen.activity.SignActivity
 import com.android.finder.screen.fragment.MainFragmentDirections
+import com.android.finder.util.SecureManager
+import com.android.finder.util.SettingUtil
 import com.android.finder.viewmodel.MyViewModel
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
@@ -122,6 +124,10 @@ class MyFragment : CommonFragment<FragmentMyBinding>(R.layout.fragment_my), View
                             val result = myViewModel.logout()
                             if(result) {
                                 CoroutineScope(Dispatchers.Main).launch {
+                                    context?.let {
+                                        SettingUtil.setAutoLoginKey(it, false)
+                                        SecureManager(it).removeToken()
+                                    }
                                     val sendIntent = Intent(context, SignActivity::class.java)
                                     sendIntent.run {
                                         flags = Intent.FLAG_ACTIVITY_CLEAR_TOP

@@ -14,6 +14,22 @@ object SettingUtil {
     private val Context.dataStore by preferencesDataStore(name = "onBoarding")
 
     private val onBoardingKey = booleanPreferencesKey("onBoardingKey")
+    private val isAutoLogin = booleanPreferencesKey("isAutoLogin")
+
+    suspend fun setAutoLoginKey(context: Context, isAutoLogin : Boolean) {
+        context.dataStore.edit {  it[this.isAutoLogin] = isAutoLogin }
+    }
+
+    suspend fun getAutoLoginData(context: Context) : Boolean {
+        val autoLoginData: Flow<Boolean> = context.dataStore.data
+            .catch { emit(emptyPreferences()) }
+            .map { it[isAutoLogin] ?: false }
+        return try {
+            autoLoginData.first()
+        } catch (e : Exception) {
+            false
+        }
+    }
 
     suspend fun setOnBoardingKey(context: Context) {
         context.dataStore.edit {  it[onBoardingKey] = true }

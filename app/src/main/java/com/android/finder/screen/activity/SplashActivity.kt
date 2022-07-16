@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.android.finder.R
 import androidx.navigation.findNavController
+import com.android.finder.util.SecureManager
 import com.android.finder.util.SettingUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,9 +28,15 @@ class SplashActivity : AppCompatActivity() {
     }
 
     //여기다 로딩 관련 내용 추가할 예정
-    private fun start(){
-        val sendIntent = Intent(baseContext, SignActivity::class.java)
+    private fun start() {
         CoroutineScope(Dispatchers.Default).launch {
+            val sendIntent = if (SecureManager(this@SplashActivity).getToken().isNotEmpty() &&
+                SettingUtil.getAutoLoginData(this@SplashActivity)
+            ) {
+                Intent(baseContext, MainActivity::class.java)
+            } else {
+                Intent(baseContext, SignActivity::class.java)
+            }
             delay(SPLASH_DELAY_TIME)
             sendIntent.run {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
