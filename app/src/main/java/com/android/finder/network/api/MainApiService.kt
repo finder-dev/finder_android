@@ -15,6 +15,9 @@ interface MainApiService {
     @GET("api/users")
     fun getUserProfile(): Call<SuccessProfileResponse>
 
+    @POST("api/logout")
+    fun logout() : Call<Unit>
+
     @Multipart
     @POST("api/community")
     fun writeCommunityContents(

@@ -14,6 +14,7 @@
             android:id="@+id/actionBar"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginLeft="20dp"
             layout="@layout/include_sub_tool_bar"/>
 
         <androidx.appcompat.widget.AppCompatImageView

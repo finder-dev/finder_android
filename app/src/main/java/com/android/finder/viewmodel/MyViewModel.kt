@@ -61,4 +61,11 @@ class MyViewModel: ViewModel() {
         }
         return false
     }
+
+    fun logout() : Boolean {
+        MainNetWorkUtil.api.logout().runCatching {
+            return this.execute().isSuccessful
+        }.onFailure { it.printStackTrace() }
+        return false
+    }
 }

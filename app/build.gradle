@@ -55,6 +55,9 @@ dependencies {
 
     implementation 'androidx.core:core-splashscreen:1.0.0-alpha01'
 
+    //iPhone style SwitchButton
+    implementation 'com.github.zcweng:switch-button:0.0.3@aar'
+
     //compose UI
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation "androidx.compose.ui:ui:$compose_version"

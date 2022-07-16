@@ -5,6 +5,7 @@
     <string name="no">아니요</string>
     <string name="cancel">취소</string>
     <string name="password">비밀번호</string>
+    <string name="account">계정</string>
     <string name="login">로그인</string>
     <string name="logout">로그아웃</string>
     <string name="sign_up">회원가입</string>
@@ -46,6 +47,9 @@
     <string name="do_start">시작하기</string>
     <string name="login_by_email">이메일로 로그인</string>
     <string name="email_id">아이디(이메일)</string>
+    <string name="modify_privacy">개인정보 수정</string>
+    <string name="alarm_reception">알람 수신</string>
+    <string name="all_alarm_and_reception">모든 수신/알림</string>
     <string name="remaining_time">남은 시간</string>
     <string name="login_maintain_check">로그인 상태 유지</string>
     <string name="password_help">영문, 숫자 포함 8~16자</string>
@@ -58,6 +62,11 @@
     <string name="move_to_leave_a_comment">의견 남기러 가기</string>
     <string name="complete_debate">아쉽게 마감된 토론</string>
     <string name="proceeding_debate">불나게 진행중인 토론</string>
+    <string name="terms_of_use">이용약관</string>
+    <string name="terms_of_use_service">서비스 이용약관</string>
+    <string name="account_deletion">탈퇴하기</string>
+    <string name="app_version">앱 버전</string>
+    <string name="setting">설정</string>
 
     <string name="likeCountFormat">추천 %s</string>
     <string name="commentCountFormat">댓글 %s</string>
@@ -66,6 +75,7 @@
     <string name="question_delete_content">글을 삭제하시겠습니까?</string>
     <string name="question_delete_comment">댓글을 삭제하시겠습니까?</string>
     <string name="question_user_report">해당 사용자를 신고하시겠습니까?</string>
+    <string name="question_logout">로그아웃 하시겠습니까?</string>
 
     <string name="hint_input_email">이메일을 인증해주세요</string>
     <string name="hint_input_code_number">코드번호를 입력하세요</string>

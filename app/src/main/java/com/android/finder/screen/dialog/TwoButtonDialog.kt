@@ -29,10 +29,12 @@ class TwoButtonDialog(
         )
     }
     var okEvent: () -> Unit = {}
+    var closeEvent : () -> Unit = {}
 
     override fun onClick(v: View?) {
         when(v) {
             binding.confirmButton -> okEvent()
+            binding.cancelButton -> closeEvent()
         }
         dismiss()
     }
@@ -53,9 +55,5 @@ class TwoButtonDialog(
         }
         binding.cancelButton.text = closeButtonTitle
         binding.confirmButton.text = confirmButtonTitle
-    }
-
-    fun setEvent(event : () -> Unit) {
-        okEvent = event
     }
 }

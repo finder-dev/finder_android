@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_mainFragment_to_debateDetailFragment"
             app:destination="@id/debateDetailFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/communityWriteFragment"
@@ -138,4 +141,9 @@
             app:destination="@id/sendNoteFragment" />
 
     </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        tools:layout="@layout/fragment_setting"
+        android:name="com.android.finder.screen.fragment.my.SettingFragment"
+        android:label="SettingFragment" />
 </navigation>

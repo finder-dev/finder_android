@@ -1,18 +1,19 @@
 package com.android.finder.screen.fragment.my
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
-import com.android.finder.LikeCommunityContent
+import com.android.finder.*
 import com.android.finder.databinding.FragmentMyBinding
 import com.android.finder.screen.CommonFragment
-import com.android.finder.R
 import com.android.finder.caching.CachingData
 import com.android.finder.component.RecyclerViewItemDeco
 import com.android.finder.enumdata.MBTI
-import com.android.finder.scrollPercent
-import com.android.finder.toastShow
+import com.android.finder.network.MainNetWorkUtil
+import com.android.finder.screen.activity.SignActivity
+import com.android.finder.screen.fragment.MainFragmentDirections
 import com.android.finder.viewmodel.MyViewModel
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
@@ -80,6 +81,7 @@ class MyFragment : CommonFragment<FragmentMyBinding>(R.layout.fragment_my), View
 
     override fun eventListenerSetting() {
         binding.settingButton.setOnClickListener(this)
+        binding.logoutButton.setOnClickListener(this)
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -106,7 +108,37 @@ class MyFragment : CommonFragment<FragmentMyBinding>(R.layout.fragment_my), View
     override fun onClick(v: View?) {
         when(v) {
             binding.settingButton -> {
-
+                navigate(MainFragmentDirections.actionMainFragmentToSettingFragment())
+            }
+            binding.logoutButton -> {
+                twoButtonDialogShow(
+                    context,
+                    message = resources.getString(R.string.question_logout),
+                    subMessage = null,
+                    closeButtonTitle = resources.getString(R.string.logout),
+                    confirmButtonTitle = resources.getString(R.string.no),
+                    closeEvent = {
+                        CoroutineScope(Dispatchers.IO).launch {
+                            val result = myViewModel.logout()
+                            if(result) {
+                                CoroutineScope(Dispatchers.Main).launch {
+                                    val sendIntent = Intent(context, SignActivity::class.java)
+                                    sendIntent.run {
+                                        flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                        startActivity(this)
+                                    }
+                                    activity?.finish()
+                                }
+                            } else {
+                                oneButtonDialogShow(
+                                    context,
+                                    resources.getString(R.string.error_unspecified_message)
+                                )
+                            }
+                        }
+                    }
+                )
             }
         }
     }

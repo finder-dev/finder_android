@@ -266,18 +266,19 @@ class DebateDetailFragment :
                     context,
                     resources.getString(R.string.question_user_report),
                     resources.getString(R.string.msg_description_user_report),
-                    closeButtonTitle = resources.getString(R.string.no),
-                    confirmButtonTitle = resources.getString(R.string.ok)
-                ) {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        val message = detailVieWModel.reportContent(args.debateId)
-                        oneButtonDialogShow(
-                            context,
-                            resources.getString(R.string.user_report_complete),
-                            message
-                        )
+                    closeButtonTitle = resources.getString(R.string.report),
+                    confirmButtonTitle = resources.getString(R.string.cancel),
+                    closeEvent = {
+                        CoroutineScope(Dispatchers.IO).launch {
+                            val message = detailVieWModel.reportContent(args.debateId)
+                            oneButtonDialogShow(
+                                context,
+                                resources.getString(R.string.user_report_complete),
+                                message
+                            )
+                        }
                     }
-                }
+                )
             }
         }
     }
@@ -319,8 +320,9 @@ class DebateDetailFragment :
                                 context,
                                 resources.getString(R.string.question_delete_content),
                                 closeButtonTitle = resources.getString(R.string.no),
-                                confirmButtonTitle = resources.getString(R.string.ok)
-                            ) { deleteComment(commentData.answerId) }
+                                confirmButtonTitle = resources.getString(R.string.ok),
+                                clickEvent = { deleteComment(commentData.answerId) }
+                            )
                         }
                         resources.getString(R.string.send_a_note) -> {
                             navigate(DebateDetailFragmentDirections.actionDebateDetailFragmentToSendNoteFragment(commentData.userId))
@@ -341,9 +343,10 @@ class DebateDetailFragment :
                                 context,
                                 resources.getString(R.string.question_user_report),
                                 resources.getString(R.string.msg_description_user_report),
-                                closeButtonTitle = resources.getString(R.string.no),
-                                confirmButtonTitle = resources.getString(R.string.ok)
-                            ) { reportComment(commentData.answerId) }
+                                closeButtonTitle = resources.getString(R.string.report),
+                                confirmButtonTitle = resources.getString(R.string.cancel),
+                                closeEvent = { reportComment(commentData.answerId) }
+                            )
                         }
                     }
                     dismiss()
@@ -389,8 +392,9 @@ class DebateDetailFragment :
                                 context,
                                 resources.getString(R.string.question_delete_content),
                                 closeButtonTitle = resources.getString(R.string.no),
-                                confirmButtonTitle = resources.getString(R.string.ok)
-                            ) { deleteComment(reCommentData.id) }
+                                confirmButtonTitle = resources.getString(R.string.ok),
+                                clickEvent = { deleteComment(reCommentData.id) }
+                            )
                         }
                         resources.getString(R.string.send_a_note) -> {
                             navigate(DebateDetailFragmentDirections.actionDebateDetailFragmentToSendNoteFragment(reCommentData.userId))
@@ -400,9 +404,10 @@ class DebateDetailFragment :
                                 context,
                                 resources.getString(R.string.question_user_report),
                                 resources.getString(R.string.msg_description_user_report),
-                                closeButtonTitle = resources.getString(R.string.no),
-                                confirmButtonTitle = resources.getString(R.string.ok)
-                            ) { reportComment(reCommentData.id) }
+                                closeButtonTitle = resources.getString(R.string.report),
+                                confirmButtonTitle = resources.getString(R.string.cancel),
+                                closeEvent = { reportComment(reCommentData.id) }
+                            )
                         }
                     }
                     dismiss()

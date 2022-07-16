@@ -61,7 +61,8 @@ fun twoButtonDialogShow(
     subMessage: String? = null,
     closeButtonTitle: String,
     confirmButtonTitle: String,
-    clickEvent: () -> Unit = {}
+    clickEvent: () -> Unit = {},
+    closeEvent: () -> Unit = {}
 ) {
     CoroutineScope(Dispatchers.Main).launch {
         try {
@@ -72,7 +73,10 @@ fun twoButtonDialogShow(
                     subMessage,
                     closeButtonTitle,
                     confirmButtonTitle
-                ).apply { okEvent = clickEvent }.show()
+                ).apply {
+                    okEvent = clickEvent
+                    this.closeEvent = closeEvent
+                }.show()
             }
         } catch (e: Exception) {
             e.printStackTrace()
