@@ -13,6 +13,7 @@ import com.android.finder.R
 import com.android.finder.caching.CachingData
 import com.android.finder.component.RecyclerViewItemDeco
 import com.android.finder.dpToPx
+import com.android.finder.enumdata.MBTI
 import com.android.finder.screen.fragment.MainFragmentDirections
 import com.android.finder.setTextColorResource
 import com.android.finder.viewmodel.HomeViewModel
@@ -68,6 +69,11 @@ class HomeFragment : CommonFragment<FragmentHomeBinding>(R.layout.fragment_home)
                 val user = CachingData.userProfile
                 user?.let { profile ->
                     binding.userIntroduceView.text = "${profile.mbti} ${profile.nickname}"
+                    val mbti = MBTI.getMbtiByString(profile.mbti)
+                    if(mbti != null) {
+                        binding.characterImageView.setImageResource(mbti.mbtiImageResource)
+                        binding.welcomeTextView.text = resources.getString(mbti.welcomeMentResource)
+                    }
                 }
             }
         }

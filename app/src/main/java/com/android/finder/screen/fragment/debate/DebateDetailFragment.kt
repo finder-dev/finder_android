@@ -323,7 +323,7 @@ class DebateDetailFragment :
                             ) { deleteComment(commentData.answerId) }
                         }
                         resources.getString(R.string.send_a_note) -> {
-                            navigate(CommunityDetailFragmentDirections.actionCommunityDetailFragmentToSendNoteFragment(commentData.userId))
+                            navigate(DebateDetailFragmentDirections.actionDebateDetailFragmentToSendNoteFragment(commentData.userId))
                         }
                         resources.getString(R.string.re_comment_put_on) -> {
                             textInputDialogShow(
