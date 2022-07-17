@@ -29,6 +29,7 @@
     <string name="report">신고</string>
     <string name="comment_modify">댓글 수정</string>
     <string name="re_comment_modify">대댓글 수정</string>
+    <string name="change">변경</string>
     <string name="modify">수정</string>
     <string name="delete">삭제</string>
     <string name="close">닫기</string>
@@ -71,6 +72,7 @@
     <string name="likeCountFormat">추천 %s</string>
     <string name="commentCountFormat">댓글 %s</string>
     <string name="join_count_format">%s명 참여</string>
+    <string name="app_version_format">앱 버전 %s</string>
 
     <string name="question_delete_content">글을 삭제하시겠습니까?</string>
     <string name="question_delete_comment">댓글을 삭제하시겠습니까?</string>
@@ -140,6 +142,7 @@
     <string name="msg_report_complete">신고되었습니다.</string>
     <string name="msg_description_user_report">허위 신고일 경우, 활동이 제한될 수 있으니, 신중히 신고하세요.</string>
     <string name="msg_debate_notice">토론은 일주일간 진행됩니다.\n올리면 수정, 삭제가 안되니 신중하게 적어주세요!</string>
+    <string name="password_correspond">비밀번호가 일치합니다.</string>
 
     <string name="error_unspecified_message">문제가 발생했습니다.</string>
     <string name="error_login">로그인 실패</string>

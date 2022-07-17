@@ -4,6 +4,8 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-parcelize'
 
+def buildVersionCode = Integer.parseInt(new Date().format("yyyyMMddHH"))
+
 android {
     compileSdk 31
 
@@ -11,8 +13,8 @@ android {
         applicationId "com.android.finder"
         minSdk 23
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        versionCode buildVersionCode
+        versionName "0.0.1-beta"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

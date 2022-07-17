@@ -19,6 +19,7 @@ class SettingFragment: CommonFragment<FragmentSettingBinding>(R.layout.fragment_
     override fun eventListenerSetting() {
         binding.actionBar.backButton.setOnClickListener(this)
         binding.moveToPrivacyModifyButton.setOnClickListener(this)
+        binding.termsOfUseServiceButton.setOnClickListener(this)
         binding.alarmReceptionSwitchButton.setOnCheckedChangeListener { view, isChecked ->
 
         }
@@ -28,7 +29,12 @@ class SettingFragment: CommonFragment<FragmentSettingBinding>(R.layout.fragment_
         when(v) {
             binding.actionBar.backButton -> navPopStack()
             binding.moveToPrivacyModifyButton -> {
-                //개인정보 수정 화면 추가 후 navigate 시키기
+                navigate(SettingFragmentDirections.actionSettingFragmentToUserInformationFragment())
+            }
+            binding.termsOfUseServiceButton -> {
+                navigate(SettingFragmentDirections.actionSettingFragmentToWebFragment(
+                    "https://pineapple-session-93c.notion.site/513cc9a19e4f40c491b43fa025340898"
+                ))
             }
         }
     }

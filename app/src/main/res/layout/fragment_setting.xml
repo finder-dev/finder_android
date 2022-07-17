@@ -106,6 +106,7 @@
             android:textSize="16dp" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/termsOfUseServiceButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="33dp"

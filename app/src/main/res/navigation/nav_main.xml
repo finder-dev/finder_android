@@ -145,5 +145,28 @@
         android:id="@+id/settingFragment"
         tools:layout="@layout/fragment_setting"
         android:name="com.android.finder.screen.fragment.my.SettingFragment"
-        android:label="SettingFragment" />
+        android:label="SettingFragment" >
+        <action
+            android:id="@+id/action_settingFragment_to_userInformationFragment"
+            app:destination="@id/userInformationFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_webFragment"
+            app:destination="@id/webFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userInformationFragment"
+        tools:layout="@layout/fragment_user_information"
+        android:name="com.android.finder.screen.fragment.my.UserInformationFragment"
+        android:label="UserInformationFragment" />
+    <fragment
+        android:id="@+id/webFragment"
+        tools:layout="@layout/fragment_web"
+        android:name="com.android.finder.screen.fragment.WebFragment"
+        android:label="WebFragment" >
+
+        <argument
+            android:name="url"
+            app:argType="string"
+            app:nullable="false"/>
+    </fragment>
 </navigation>
