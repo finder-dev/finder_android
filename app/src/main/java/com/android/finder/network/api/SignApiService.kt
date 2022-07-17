@@ -21,7 +21,7 @@ interface SignApiService {
     ) : Call<MessageResponse>
 
     @GET("api/duplicated/nickname")
-    fun checkDuplicatiedNickname(
+    fun checkDuplicateNickname(
         @Query("nickname") nickname: String
     ) : Call<MessageResponse>
 

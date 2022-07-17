@@ -4,8 +4,11 @@ import android.util.Log
 import com.android.finder.App
 import com.android.finder.network.api.MainApiService
 import com.android.finder.network.api.SignApiService
+import com.android.finder.network.response.MessageResponse
 import com.android.finder.util.SecureManager
+import com.google.gson.Gson
 import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -40,5 +43,12 @@ object MainNetWorkUtil {
                 .also { finderRetrofit = it }
         }
         return retrofit.create(MainApiService::class.java)
+    }
+
+    fun errorMessage(errorBody : ResponseBody?) : MessageResponse? {
+        errorBody?.string()?.let {
+            return Gson().fromJson(it, MessageResponse::class.java)
+        }
+        return null
     }
 }

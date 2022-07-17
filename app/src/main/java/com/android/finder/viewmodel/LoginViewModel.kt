@@ -29,6 +29,7 @@ class LoginViewModel: ViewModel() {
             } else {
                 result.errorBody()?.string()?.let {
                     try {
+                        Log.e("문제", it)
                         val response = Gson().fromJson(it, EmailLoginResponse::class.java)
                         loginErrorMessage = if(response.errorResponse.errorMessages.isNotEmpty()) {
                             response.errorResponse.errorMessages[0]

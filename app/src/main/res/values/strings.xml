@@ -49,6 +49,9 @@
     <string name="login_by_email">이메일로 로그인</string>
     <string name="email_id">아이디(이메일)</string>
     <string name="modify_privacy">개인정보 수정</string>
+    <string name="success_modify_privacy">개인정보 수정 완료</string>
+    <string name="success_nickname_check">닉네임 중복 확인</string>
+    <string name="failed_modify_privacy">개인정보 수정 실패</string>
     <string name="alarm_reception">알람 수신</string>
     <string name="all_alarm_and_reception">모든 수신/알림</string>
     <string name="remaining_time">남은 시간</string>
@@ -143,6 +146,7 @@
     <string name="msg_description_user_report">허위 신고일 경우, 활동이 제한될 수 있으니, 신중히 신고하세요.</string>
     <string name="msg_debate_notice">토론은 일주일간 진행됩니다.\n올리면 수정, 삭제가 안되니 신중하게 적어주세요!</string>
     <string name="password_correspond">비밀번호가 일치합니다.</string>
+    <string name="msg_modify">수정되었습니다.</string>
 
     <string name="error_unspecified_message">문제가 발생했습니다.</string>
     <string name="error_login">로그인 실패</string>
@@ -160,6 +164,7 @@
     <string name="error_not_equal_password_sub">비밀번호가 비밀번호 확인과 동일한 지 확인해주세요.</string>
     <string name="error_sign_up">회원가입 실패</string>
     <string name="error_write">글쓰기 실패</string>
+    <string name="error_nickName_duplicate">닉네임 중복</string>
     <string name="error_modify">수정 실패</string>
     <string name="error_community_detail_load">게시글 조회 실패</string>
     <string name="error_community_detail_load_sub">글을 확인할 수 없습니다.</string>

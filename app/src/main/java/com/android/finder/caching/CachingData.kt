@@ -16,7 +16,6 @@ object CachingData {
             val result = this.execute()
             if (result.isSuccessful) {
                 result.body()?.let {
-                    Log.e("user", it.toString())
                     userProfile = it.response
                 }
             }

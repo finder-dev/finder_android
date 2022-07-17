@@ -1,6 +1,8 @@
 package com.android.finder.network.response
 
+import com.google.gson.annotations.SerializedName
+
 data class DebateDetailResponseDTO(
-    val response: DebateDetailResponseVO,
-    val success: Boolean
+    @SerializedName("response") val response: DebateDetailResponseVO,
+    @SerializedName("success") val success: Boolean
 )

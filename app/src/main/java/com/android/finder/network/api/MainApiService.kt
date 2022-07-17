@@ -3,6 +3,7 @@ package com.android.finder.network.api
 import com.android.finder.network.request.CreateDebateRequestDTO
 import com.android.finder.network.request.ContentBodyRequestDTO
 import com.android.finder.network.request.DebateOptionBodyRequestDTO
+import com.android.finder.network.request.ModifyUserInformationRequestDTO
 import com.android.finder.network.response.*
 import com.google.gson.JsonObject
 import okhttp3.MultipartBody
@@ -169,4 +170,15 @@ interface MainApiService {
     fun getMyCommunityContentListThroughComment(
         @Query("page") page : Int
     ) : Call<CommunityListResponse>
+
+    @GET("api/duplicated/nickname")
+    fun checkDuplicateNickname(
+        @Query("nickname") nickname: String
+    ) : Call<MessageResponse>
+
+    @Headers("Content-Type: application/json")
+    @PATCH("api/users")
+    fun modifyUserInformation(
+        @Body data : ModifyUserInformationRequestDTO
+    ) : Call<Unit>
 }

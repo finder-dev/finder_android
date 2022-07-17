@@ -1,7 +1,9 @@
 package com.android.finder.screen.fragment.my
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import com.android.finder.BuildConfig
 import com.android.finder.R
 import com.android.finder.databinding.FragmentSettingBinding
 import com.android.finder.screen.CommonFragment
@@ -15,6 +17,8 @@ class SettingFragment: CommonFragment<FragmentSettingBinding>(R.layout.fragment_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.actionBar.titleView.text = resources.getString(R.string.setting)
+        binding.appVersionView.text =
+            resources.getString(R.string.app_version_format, BuildConfig.VERSION_NAME)
     }
     override fun eventListenerSetting() {
         binding.actionBar.backButton.setOnClickListener(this)

@@ -1,5 +1,7 @@
 package com.android.finder.network.response
 
+import com.google.gson.annotations.SerializedName
+
 data class SuccessMessageResponse(
-    val message : String?
+    @SerializedName("message") val message : String?
 )

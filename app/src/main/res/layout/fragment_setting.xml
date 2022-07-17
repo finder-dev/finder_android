@@ -139,6 +139,7 @@
                 android:src="@drawable/ic_gray_dot"/>
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appVersionView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_sans_kr_medium"

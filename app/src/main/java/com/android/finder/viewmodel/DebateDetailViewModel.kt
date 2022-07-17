@@ -1,6 +1,5 @@
 package com.android.finder.viewmodel
 
-import android.util.Log
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +9,6 @@ import com.android.finder.dataobj.CommentData
 import com.android.finder.network.MainNetWorkUtil
 import com.android.finder.network.request.ContentBodyRequestDTO
 import com.android.finder.network.request.DebateOptionBodyRequestDTO
-import com.android.finder.network.response.AnswerHistDto
 import com.android.finder.network.response.DebateDetailResponseVO
 import com.android.finder.network.response.MessageResponse
 import com.google.gson.Gson

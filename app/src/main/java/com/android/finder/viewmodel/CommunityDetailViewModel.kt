@@ -39,10 +39,9 @@ class CommunityDetailViewModel: ViewModel() {
                     }
                 }
             } else {
-                result.errorBody()?.string()?.let {
-                    val response = Gson().fromJson(it, MessageResponse::class.java)
-                    detailResultMessage =  if(response.errorResponse.errorMessages.isNotEmpty()) {
-                        response.errorResponse.errorMessages[0]
+                MainNetWorkUtil.errorMessage(result.errorBody())?.let {
+                    detailResultMessage =  if(it.errorResponse.errorMessages.isNotEmpty()) {
+                        it.errorResponse.errorMessages[0]
                     } else App.instance.resources.getString(R.string.error_community_detail_load_sub)
                 }
             }
@@ -57,9 +56,7 @@ class CommunityDetailViewModel: ViewModel() {
         MainNetWorkUtil.api.createAnswer(communityId, content).runCatching {
             val data = this.execute()
             if(!data.isSuccessful) {
-                data.errorBody()?.string()?.let {
-                    Log.e("error?", it)
-                }
+                MainNetWorkUtil.errorMessage(data.errorBody())
             }
             result = data.isSuccessful
         }
