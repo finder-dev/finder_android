@@ -25,7 +25,6 @@ object MainNetWorkUtil {
             if (token.isNotEmpty()) {
                 builder.addHeader("Authorization", "Bearer $token")
             }
-            Log.e("확인", it.request().url.toString())
             val request = builder.build()
 
             return@addInterceptor it.proceed(request)

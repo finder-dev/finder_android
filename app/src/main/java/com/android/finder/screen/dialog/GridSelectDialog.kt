@@ -65,6 +65,7 @@ class GridSelectDialog(context : Context, val itemList : List<String>) : Dialog(
                 selectEvent()
                 dismiss()
             }
+            binding.closeButton -> dismiss()
         }
     }
 }

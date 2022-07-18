@@ -95,7 +95,6 @@ class CommunityDetailFragment :
             binding.questionMbtiView.text = communityMBTI
             binding.isCuriousImageView.isVisible = isQuestion
             binding.communityTitleTextView.text = communityTitle
-            Log.e("설마..", communityContent)
             binding.communityContentsTextView.text = communityContent
             binding.includePublisherData.userNicknameView.text = userNickname
             binding.includePublisherData.postDateView.text = createTime

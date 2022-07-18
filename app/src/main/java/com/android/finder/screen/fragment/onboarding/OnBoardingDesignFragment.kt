@@ -62,6 +62,7 @@ class OnBoardingDesignFragment(val position: Int) :
         CoroutineScope(Dispatchers.IO).launch {
             context?.let { SettingUtil.setOnBoardingKey(it) }
         }
-        navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToLoginFragment())
+        //여긴 추후에 소셜로그인 적용시 다시 바꿔야함
+        navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToEmailLoginFragment())
     }
 }

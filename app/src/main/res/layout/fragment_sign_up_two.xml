@@ -46,13 +46,11 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/selectMBTILayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="54dp"
             android:background="@drawable/bg_gainsboro_stroke"
             android:layout_marginBottom="16dp"
             android:paddingRight="8dp"
             android:paddingLeft="20dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -70,6 +68,7 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:src="@drawable/ic_light_gray_arrow"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>

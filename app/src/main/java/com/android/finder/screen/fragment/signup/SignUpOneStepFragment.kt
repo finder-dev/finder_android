@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import com.android.finder.databinding.FragmentSignUpOneBinding
 import com.android.finder.screen.CommonFragment
@@ -146,6 +147,9 @@ class SignUpOneStepFragment :
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        val password = binding.passwordEditTextView.text.toString()
+        val passwordConfirm = binding.passwordConfirmEditTextView.text.toString()
+        binding.passwordCorrespondView.isVisible = password.isNotEmpty() && password == passwordConfirm
         binding.nextButton.isEnabled = isDataFull()
     }
 

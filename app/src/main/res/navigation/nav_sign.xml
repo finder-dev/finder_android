@@ -10,6 +10,11 @@
         android:name="com.android.finder.screen.fragment.onboarding.OnBoardingFragment"
         tools:layout="@layout/fragment_on_boarding"
         android:label="OnBoardingFragment" >
+
+        <action
+            android:id="@+id/action_onBoardingFragment_to_emailLoginFragment"
+            app:destination="@+id/emailLoginFragment"/>
+
         <action
             android:id="@+id/action_onBoardingFragment_to_loginFragment"
             app:destination="@id/loginFragment" />

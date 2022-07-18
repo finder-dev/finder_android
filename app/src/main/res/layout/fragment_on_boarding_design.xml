@@ -79,6 +79,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:text="SKIP"
+            android:stateListAnimator="@null"
             android:textColor="@color/mainColor"
             android:textSize="16dp"
             android:padding="8dp"

@@ -7,6 +7,14 @@ apply plugin: 'kotlin-parcelize'
 def buildVersionCode = Integer.parseInt(new Date().format("yyyyMMddHH"))
 
 android {
+    signingConfigs {
+        release {
+        storeFile file('C:\\Users\\jaeheon\\Desktop\\privateData\\finder\\apkKey\\finderAppKey.jks')
+            keyAlias 'key0'
+            keyPassword 'finder123'
+            storePassword 'finder123'
+        }
+    }
     compileSdk 31
 
     defaultConfig {
@@ -24,8 +32,9 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {

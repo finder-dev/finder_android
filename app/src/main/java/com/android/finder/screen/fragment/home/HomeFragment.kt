@@ -32,25 +32,17 @@ class HomeFragment : CommonFragment<FragmentHomeBinding>(R.layout.fragment_home)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         refresh()
-        binding.debateView.homeViewModel = homeViewModel
+        binding.communityHomeView.homeViewModel = homeViewModel
         context?.let {
-            binding.debateView.communityHotRecyclerView.addItemDecoration(
+            binding.communityHomeView.communityHotRecyclerView.addItemDecoration(
                 RecyclerViewItemDeco(it, 29)
             )
         }
 
         binding.balanceGameView.emptyIncludeView.descriptionTextView.text =
             resources.getString(R.string.msg_empty_balance_game_main)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (!EventBus.getDefault().isRegistered(this)) EventBus.getDefault().register(this)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        if (EventBus.getDefault().isRegistered(this)) EventBus.getDefault().unregister(this)
+        binding.communityHomeView.emptyIncludeView.descriptionTextView.text =
+            resources.getString(R.string.msg_empty_community)
     }
 
     private fun refresh() {
@@ -190,11 +182,6 @@ class HomeFragment : CommonFragment<FragmentHomeBinding>(R.layout.fragment_home)
 
             }
         }
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun moveCommunityDetail(event: MoveToCommunityDetail) {
-        navigate(MainFragmentDirections.actionMainFragmentToCommunityDetailFragment(event.communityId))
     }
 
 }

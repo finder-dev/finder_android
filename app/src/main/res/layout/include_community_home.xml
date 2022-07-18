@@ -40,14 +40,18 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <include
+            android:id="@+id/emptyIncludeView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="@{(homeViewModel.communityHotList.size() == 0) ? View.VISIBLE : View.GONE}"
             layout="@layout/include_empty_view"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/communityHotRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             homeCommunityAdapter="@{homeViewModel.communityHotList}"
             android:visibility="@{(homeViewModel.communityHotList.size() != 0) ? View.VISIBLE : View.GONE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>

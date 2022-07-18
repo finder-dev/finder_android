@@ -35,6 +35,12 @@ class MyFragment : CommonFragment<FragmentMyBinding>(R.layout.fragment_my), View
         binding.myViewModel = myViewModel
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(resources.getString(R.string.my_write_content)))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(resources.getString(R.string.my_write_comment)))
+
+        binding.emptyIncludeView.descriptionTextView.text = if(binding.tabLayout.selectedTabPosition == 1) {
+            resources.getString(R.string.error_empty_my_comment_content)
+        } else {
+            resources.getString(R.string.error_empty_my_content)
+        }
         context?.let {
             myViewModel.getProfile(it)
             binding.myJoinContentRecyclerView.addItemDecoration(
@@ -87,6 +93,11 @@ class MyFragment : CommonFragment<FragmentMyBinding>(R.layout.fragment_my), View
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
+                binding.emptyIncludeView.descriptionTextView.text = if(tab?.position == 1) {
+                    resources.getString(R.string.error_empty_my_comment_content)
+                } else {
+                    resources.getString(R.string.error_empty_my_content)
+                }
                 dataLoading(true, tab?.position == 1)
             }
 

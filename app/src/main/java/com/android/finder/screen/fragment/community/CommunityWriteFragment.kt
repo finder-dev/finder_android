@@ -12,7 +12,9 @@ import com.android.finder.databinding.FragmentCommunityWriteBinding
 import com.android.finder.screen.CommonFragment
 import com.android.finder.R
 import com.android.finder.component.RecyclerViewHorizonItemDeco
+import com.android.finder.enumdata.MBTI
 import com.android.finder.oneButtonDialogShow
+import com.android.finder.screen.dialog.GridSelectDialog
 import com.android.finder.screen.dialog.MBTISelectDialog
 import com.android.finder.toastShow
 import com.android.finder.viewmodel.CommunityWriteViewModel
@@ -99,8 +101,8 @@ class CommunityWriteFragment: CommonFragment<FragmentCommunityWriteBinding>(R.la
             }
             binding.selectMBTILayout -> {
                 context?.let {
-                    MBTISelectDialog(it).apply {
-                        selectEvent = { writeViewModel.selectedMbti.postValue(getMBTI() ?: "") }
+                    GridSelectDialog(it, MBTI.getAllMbti(false)).apply {
+                        selectEvent = { writeViewModel.selectedMbti.postValue(getItem() ?: "") }
                         show()
                     }
                 }

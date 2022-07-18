@@ -104,7 +104,7 @@
     <string name="msg_one_on_boarding_sub">오해와 진실! 여기서 다 풀어요</string>
     <string name="msg_two_on_boarding_main">마음 놓고\n토론하세요</string>
     <string name="msg_two_on_boarding_sub">각종 논쟁을 끝내러 오셨군요!</string>
-    <string name="msg_three_on_boarding_main">세상에 나쁜\nMBti는 없다</string>
+    <string name="msg_three_on_boarding_main">세상에 나쁜\nMBTI는 없다</string>
     <string name="msg_three_on_boarding_sub">과몰입러들끼리 솔직담백한\n얘기들을 나눠보세요</string>
 
     <string name="msg_welcome_infj">오늘은 하고 싶은 말\n다하고 오셨나요?</string>
@@ -181,4 +181,6 @@
     <string name="error_delete_content_fail">글이 삭제되지 않았습니다.</string>
     <string name="error_create_debate">토론 생성에 실패하셨습니다.</string>
     <string name="error_delete_user">계정탈퇴 실패</string>
+    <string name="error_empty_my_comment_content">댓글 단 글이 없습니다.</string>
+    <string name="error_empty_my_content">작성글이 없습니다.</string>
 </resources>
