@@ -25,6 +25,7 @@ class SaveFragment : CommonFragment<FragmentSaveBinding>(R.layout.fragment_save)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.listViewModel = saveViewModel
+        binding.emptyIncludeView.descriptionTextView.text = resources.getString(R.string.msg_no_save_content)
         dataLoading(true)
         context?.let {
             binding.saveContentRecyclerView.addItemDecoration(

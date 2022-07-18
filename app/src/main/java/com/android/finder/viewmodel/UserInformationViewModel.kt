@@ -23,6 +23,10 @@ class UserInformationViewModel : ViewModel() {
 
     var modifyUserInfoResultMessage = App.instance.getString(R.string.error_unspecified_message)
 
+    fun initProfile(context: Context) {
+        CachingData.setProfile(context)
+        isExistProfile.postValue(CachingData.userProfile != null)
+    }
     fun getProfile(context: Context) {
         if (CachingData.userProfile == null) {
             CachingData.setProfile(context)

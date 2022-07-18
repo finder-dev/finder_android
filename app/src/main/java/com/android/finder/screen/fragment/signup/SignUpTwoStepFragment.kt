@@ -11,6 +11,7 @@ import com.android.finder.screen.CommonFragment
 import com.android.finder.R
 import com.android.finder.oneButtonDialogShow
 import com.android.finder.screen.dialog.MBTISelectDialog
+import com.android.finder.screen.fragment.my.SettingFragmentDirections
 import com.android.finder.setTextColorResource
 import com.android.finder.viewmodel.SignUpViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -49,7 +50,13 @@ class SignUpTwoStepFragment :
                     }
                 }
             }
-            binding.termsAgreeCheckLayout -> {
+            binding.moveToTermsButton -> {
+                navigate(
+                    SignUpTwoStepFragmentDirections.actionSignUpTwoStepFragmentToWebFragment(
+                    "https://pineapple-session-93c.notion.site/513cc9a19e4f40c491b43fa025340898"
+                ))
+            }
+            binding.termsAgreeCheckButton -> {
                 signUpViewModel.isTermsAgree.value = !(signUpViewModel.isTermsAgree.value ?: false)
                 binding.nextButton.isEnabled = isDataFull()
             }
@@ -78,7 +85,8 @@ class SignUpTwoStepFragment :
         binding.actionBar.backButton.setOnClickListener(this)
         binding.nextButton.setOnClickListener(this)
         binding.selectMBTILayout.setOnClickListener(this)
-        binding.termsAgreeCheckLayout.setOnClickListener(this)
+        binding.termsAgreeCheckButton.setOnClickListener(this)
+        binding.moveToTermsButton.setOnClickListener(this)
 
         binding.nicknameEditTextView.addTextChangedListener(this)
 

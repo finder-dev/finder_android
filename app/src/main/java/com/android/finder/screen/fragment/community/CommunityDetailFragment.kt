@@ -1,6 +1,7 @@
 package com.android.finder.screen.fragment.community
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -94,6 +95,7 @@ class CommunityDetailFragment :
             binding.questionMbtiView.text = communityMBTI
             binding.isCuriousImageView.isVisible = isQuestion
             binding.communityTitleTextView.text = communityTitle
+            Log.e("설마..", communityContent)
             binding.communityContentsTextView.text = communityContent
             binding.includePublisherData.userNicknameView.text = userNickname
             binding.includePublisherData.postDateView.text = createTime

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_sign"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/emailLoginFragment">
 
     <fragment
         android:id="@+id/onBoardingFragment"
@@ -50,11 +50,26 @@
         <action
             android:id="@+id/action_signUpTwoStepFragment_to_signUpCompleteFragment"
             app:destination="@id/signUpCompleteFragment" />
+        <action
+            android:id="@+id/action_signUpTwoStepFragment_to_webFragment"
+            app:destination="@id/webFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpCompleteFragment"
         tools:layout="@layout/fragment_sign_up_complete"
         android:name="com.android.finder.screen.fragment.signup.SignUpCompleteFragment"
         android:label="SignUpCompleteFragment" />
+    <fragment
+        android:id="@+id/webFragment"
+        tools:layout="@layout/fragment_web"
+        android:name="com.android.finder.screen.fragment.WebFragment"
+        android:label="WebFragment" >
+
+        <argument
+            android:name="url"
+            app:argType="string"
+            app:nullable="false"/>
+
+    </fragment>
 
 </navigation>

@@ -102,7 +102,11 @@ class UserInformationFragment:
                                 nickname, mbti, password.ifEmpty { null }
                             )) {
                             successEvent = {
-                                context?.let { CachingData.setProfile(it) }
+                                CoroutineScope(Dispatchers.IO).launch {
+                                    context?.let {
+                                        userInformationViewModel.initProfile(it)
+                                    }
+                                }
                                 navPopStack()
                             }
                             resources.getString(R.string.success_modify_privacy)

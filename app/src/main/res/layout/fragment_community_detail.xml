@@ -125,10 +125,10 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/communityContentsTextView"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginBottom="16dp"
-                    tools:text="그 사람 자기 입으로 잇티제 그자체라고 말할 정도로야 잊을 만 하면 연락 오거든? 근데 내가 연락하면 또 나 자라고 해서 혼란스러워; 왜 이러는"
+                    tools:text="그 사람 자기 입으로 잇티제 그자체라고 말할 정도로야 잊을 만 하면 연락 오거든?\n 근데 내가 연락하면 또 나 자라고 해서 혼란스러워; 왜 이러는"
                     android:textColor="@color/black04"
                     android:textSize="16dp"
                     android:fontFamily="@font/noto_sans_kr_medium"

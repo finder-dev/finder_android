@@ -181,4 +181,7 @@ interface MainApiService {
     fun modifyUserInformation(
         @Body data : ModifyUserInformationRequestDTO
     ) : Call<Unit>
+
+    @DELETE("api/users")
+    fun accountDeletion() : Call<Unit>
 }

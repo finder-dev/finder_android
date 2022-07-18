@@ -16,6 +16,7 @@ object CachingData {
             val result = this.execute()
             if (result.isSuccessful) {
                 result.body()?.let {
+                    Log.e("정보불러오기", it.response.toString())
                     userProfile = it.response
                 }
             }

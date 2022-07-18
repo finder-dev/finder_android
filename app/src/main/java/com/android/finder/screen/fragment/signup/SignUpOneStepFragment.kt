@@ -72,9 +72,11 @@ class SignUpOneStepFragment :
         when (button) {
             binding.actionBar.backButton -> navPopStack()
             binding.authenticationRequestButton -> {
+                isLoading = true
                 CoroutineScope(Dispatchers.IO).launch {
                     val email = binding.emailEditTextView.text.toString()
                     context?.let { signUpViewModel.sendEmailAuthCode(it, email) }
+                    isLoading = false
                 }
             }
             binding.authenticationCheckButton -> {

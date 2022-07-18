@@ -29,6 +29,7 @@ class CommunityDetailViewModel: ViewModel() {
             if(result.isSuccessful) {
                 result.body()?.let {
                     communityDetailData.postValue(it.response)
+                    Log.e("body", it.response.toString())
                     questionImages.apply {
                         clear()
                         addAll(it.response.communityImgDtos.map {  img -> img.communityImageUrl })
@@ -40,6 +41,7 @@ class CommunityDetailViewModel: ViewModel() {
                 }
             } else {
                 MainNetWorkUtil.errorMessage(result.errorBody())?.let {
+                    Log.e("???", it.toString())
                     detailResultMessage =  if(it.errorResponse.errorMessages.isNotEmpty()) {
                         it.errorResponse.errorMessages[0]
                     } else App.instance.resources.getString(R.string.error_community_detail_load_sub)
@@ -56,11 +58,10 @@ class CommunityDetailViewModel: ViewModel() {
         MainNetWorkUtil.api.createAnswer(communityId, content).runCatching {
             val data = this.execute()
             if(!data.isSuccessful) {
-                MainNetWorkUtil.errorMessage(data.errorBody())
+                Log.e("???", MainNetWorkUtil.errorMessage(data.errorBody()).toString())
             }
             result = data.isSuccessful
-        }
-            .onFailure {
+        }.onFailure {
                 it.printStackTrace()
             }
         return result

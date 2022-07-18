@@ -31,7 +31,7 @@ class SignActivity : AppCompatActivity() {
 
         val navGraph = navController.navInflater.inflate(R.navigation.nav_sign)
         if(SettingUtil.getOnBoardingData(this@SignActivity)) {
-            navGraph.setStartDestination(R.id.loginFragment)
+            navGraph.setStartDestination(R.id.emailLoginFragment)
         } else {
             navGraph.setStartDestination(R.id.onBoardingFragment)
         }

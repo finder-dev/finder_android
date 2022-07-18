@@ -68,9 +68,11 @@
     <string name="proceeding_debate">불나게 진행중인 토론</string>
     <string name="terms_of_use">이용약관</string>
     <string name="terms_of_use_service">서비스 이용약관</string>
+    <string name="deletion">탈퇴</string>
     <string name="account_deletion">탈퇴하기</string>
     <string name="app_version">앱 버전</string>
     <string name="setting">설정</string>
+    <string name="success_delete_user">계정탈퇴 완료</string>
 
     <string name="likeCountFormat">추천 %s</string>
     <string name="commentCountFormat">댓글 %s</string>
@@ -81,6 +83,7 @@
     <string name="question_delete_comment">댓글을 삭제하시겠습니까?</string>
     <string name="question_user_report">해당 사용자를 신고하시겠습니까?</string>
     <string name="question_logout">로그아웃 하시겠습니까?</string>
+    <string name="question_delete_user">정말로 탈퇴하시겠습니까?</string>
 
     <string name="hint_input_email">이메일을 인증해주세요</string>
     <string name="hint_input_code_number">코드번호를 입력하세요</string>
@@ -147,6 +150,9 @@
     <string name="msg_debate_notice">토론은 일주일간 진행됩니다.\n올리면 수정, 삭제가 안되니 신중하게 적어주세요!</string>
     <string name="password_correspond">비밀번호가 일치합니다.</string>
     <string name="msg_modify">수정되었습니다.</string>
+    <string name="msg_delete_user_sub">탈퇴 후 계정 복구는 불가능합니다.</string>
+    <string name="msg_success_delete_user">탈퇴가 완료되었습니다.</string>
+    <string name="msg_no_save_content">저장된 콘텐츠가 없습니다.</string>
 
     <string name="error_unspecified_message">문제가 발생했습니다.</string>
     <string name="error_login">로그인 실패</string>
@@ -174,4 +180,5 @@
     <string name="error_comment_delete">댓글이 삭제되지 않았습니다.</string>
     <string name="error_delete_content_fail">글이 삭제되지 않았습니다.</string>
     <string name="error_create_debate">토론 생성에 실패하셨습니다.</string>
+    <string name="error_delete_user">계정탈퇴 실패</string>
 </resources>
