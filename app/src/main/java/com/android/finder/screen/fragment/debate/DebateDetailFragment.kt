@@ -218,6 +218,7 @@ class DebateDetailFragment :
         binding.reportButton.setOnClickListener(this)
         binding.balanceGameView.optionALayout.setOnClickListener(this)
         binding.balanceGameView.optionBLayout.setOnClickListener(this)
+        binding.backButton.setOnClickListener(this)
         detailVieWModel.detailData.observe(viewLifecycleOwner) {
             if (it != null) {
                 setUI(it)
@@ -261,6 +262,7 @@ class DebateDetailFragment :
                     }
                 }
             }
+            binding.backButton -> navPopStack()
             binding.reportButton -> {
                 twoButtonDialogShow(
                     context,
