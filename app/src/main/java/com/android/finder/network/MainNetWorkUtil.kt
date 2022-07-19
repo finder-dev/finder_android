@@ -15,7 +15,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 object MainNetWorkUtil {
     val api : MainApiService by lazy { apiInit() }
     private var finderRetrofit : Retrofit? = null
-    private const val SERVER_ADDR = "https://finder777.com"
+//    private const val SERVER_ADDR = "https://finder777.com"
+    private const val SERVER_ADDR = "http://54.180.68.142:8080/"
 
     private val httpClientBuilder = OkHttpClient().newBuilder().apply {
         this.addInterceptor {

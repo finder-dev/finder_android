@@ -40,6 +40,7 @@ class MBTISelectDialog(context: Context) : Dialog(context), View.OnClickListener
         binding.selectTwoGroup.setOnCheckedChangeListener(this)
         binding.selectThreeGroup.setOnCheckedChangeListener(this)
         binding.selectFourGroup.setOnCheckedChangeListener(this)
+        binding.closeButton.setOnClickListener(this)
     }
 
 
@@ -49,6 +50,7 @@ class MBTISelectDialog(context: Context) : Dialog(context), View.OnClickListener
                 selectEvent()
                 dismiss()
             }
+            binding.closeButton -> dismiss()
         }
     }
 

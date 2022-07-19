@@ -16,7 +16,7 @@
     <string name="debate">토론</string>
     <string name="community">커뮤니티</string>
     <string name="save">저장</string>
-    <string name="my">내정보</string>
+    <string name="my">마이</string>
     <string name="fastest">최신순</string>
     <string name="most_comments">댓글순</string>
     <string name="complete">완료</string>
@@ -85,7 +85,7 @@
     <string name="question_logout">로그아웃 하시겠습니까?</string>
     <string name="question_delete_user">정말로 탈퇴하시겠습니까?</string>
 
-    <string name="hint_input_email">이메일을 인증해주세요</string>
+    <string name="hint_input_email">이메일을 입력해주세요</string>
     <string name="hint_input_code_number">코드번호를 입력하세요</string>
     <string name="hint_input_password">비밀번호를 입력해주세요</string>
     <string name="hint_re_input_password">비밀번호를 다시 입력해주세요</string>
@@ -121,7 +121,7 @@
     <string name="msg_welcome_esfj">오늘 계획도 완벽 수행각이에요!</string>
     <string name="msg_welcome_estp">스릴 넘치는 하루\n보내세요!</string>
     <string name="msg_welcome_enfp">오늘은 어떤 상상을\n하셨나요?</string>
-    <string name="msg_welcome_entp">자신감 충만한/n하루 되세요!</string>
+    <string name="msg_welcome_entp">자신감 충만한\n하루 되세요!</string>
     <string name="msg_welcome_esfp">어떤 재밌는 일이\n기다리고 있을까요?</string>
 
     <string name="msg_sign_up_induce">아직 F!nder 회원이 아니라면?</string>

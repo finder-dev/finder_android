@@ -12,7 +12,9 @@ import java.util.*
 object SignNetworkUtil {
     val api : SignApiService by lazy { apiInit() }
     private var finderRetrofit : Retrofit? = null
-    private const val SERVER_ADDR = "https://finder777.com"
+//    private const val SERVER_ADDR = "https://finder777.com"
+
+    private const val SERVER_ADDR = "http://54.180.68.142:8080/"
 
     private fun apiInit() : SignApiService {
         val testRetrofit = finderRetrofit

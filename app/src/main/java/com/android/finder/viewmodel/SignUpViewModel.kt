@@ -28,7 +28,7 @@ class SignUpViewModel : ViewModel() {
     var email = ""
     var emailAuthCode = ""
     var password = ""
-    var mbti = ""
+    var mbti : MutableLiveData<String?> = MutableLiveData()
     var nickname = ""
 
     fun sendEmailAuthCode(context: Context, email: String) {
@@ -118,11 +118,12 @@ class SignUpViewModel : ViewModel() {
     }
 
     fun signUpByEmail(context: Context): Boolean {
-        if (MBTI.getMbtiByString(mbti) != null) {
+        val mbtiClass = MBTI.getMbtiByString(mbti.value)
+        if (mbtiClass != null) {
             SignNetworkUtil.api.signUpByEmail(
                 email,
                 password,
-                mbti,
+                mbtiClass.value,
                 nickname
             ).runCatching {
                 val result = this.execute()

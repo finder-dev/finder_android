@@ -1,6 +1,8 @@
 package com.android.finder.screen.fragment.community
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
@@ -25,7 +27,7 @@ import java.lang.Exception
 
 class CommunityDetailFragment :
     CommonFragment<FragmentCommunityDetailBinding>(R.layout.fragment_community_detail),
-    View.OnClickListener {
+    View.OnClickListener, TextWatcher {
 
     private val communityDetailViewModel: CommunityDetailViewModel by viewModels()
     private val args: CommunityDetailFragmentArgs by navArgs()
@@ -57,6 +59,7 @@ class CommunityDetailFragment :
         binding.likeLayout.setOnClickListener(this)
         binding.saveButton.setOnClickListener(this)
         binding.attributeButton.setOnClickListener(this)
+        binding.commentEditTextView.addTextChangedListener(this)
 
         communityDetailViewModel.communityDetailData.observe(viewLifecycleOwner) {
             if (it != null) setUI(it)
@@ -105,6 +108,7 @@ class CommunityDetailFragment :
                     null
                 ) else App.instance.resources.getColor(R.color.black7, null)
             )
+            binding.likeCountView.setTextColorResource(if(likeUser) R.color.mainColor else R.color.gray2)
             binding.likeCountView.text =
                 resources.getString(R.string.likeCountFormat, likeCount.toString())
             binding.commentCountView.text =
@@ -465,4 +469,25 @@ class CommunityDetailFragment :
         }
         dialog.show(childFragmentManager, "reComment")
     }
+
+    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        if(binding.commentEditTextView.text.toString().isNotEmpty()) {
+            binding.commentInputButton.setBackgroundResource(R.drawable.bg_oval_main_color)
+            binding.commentInputButton.setColorFilter(resources.getColor(
+                R.color.white,
+                null
+            ))
+        } else {
+            binding.commentInputButton.setBackgroundResource(R.drawable.bg_oval_black7)
+            binding.commentInputButton.setColorFilter(resources.getColor(
+                R.color.black04,
+                null
+            ))
+        }
+
+    }
+
+    override fun afterTextChanged(p0: Editable?) {}
 }

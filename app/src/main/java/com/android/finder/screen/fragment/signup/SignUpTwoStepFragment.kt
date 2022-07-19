@@ -37,13 +37,7 @@ class SignUpTwoStepFragment :
                     MBTISelectDialog(it).apply {
                         selectEvent = {
                             val mbti = this.getMBTI()
-                            if (mbti != null) {
-                                signUpViewModel.mbti = mbti
-                                binding.mbtiDisplayView.setTextColorResource(R.color.black1)
-                                binding.mbtiDisplayView.text = mbti
-                            } else {
-                                binding.mbtiDisplayView.setTextColorResource(R.color.light_gray)
-                            }
+                            signUpViewModel.mbti.value = mbti
                             binding.nextButton.isEnabled = isDataFull()
                         }
                         show()
@@ -81,6 +75,17 @@ class SignUpTwoStepFragment :
         }
     }
 
+    private fun setMbtiText(mbti : String?) {
+        if(!mbti.isNullOrEmpty()) {
+            binding.mbtiDisplayView.setTextColorResource(R.color.black1)
+            binding.mbtiDisplayView.text = mbti
+        } else {
+            binding.mbtiDisplayView.setTextColorResource(R.color.light_gray)
+            binding.mbtiDisplayView.text = resources.getString(R.string.hint_MBTI_select)
+        }
+
+    }
+
     override fun eventListenerSetting() {
         binding.actionBar.backButton.setOnClickListener(this)
         binding.nextButton.setOnClickListener(this)
@@ -90,7 +95,9 @@ class SignUpTwoStepFragment :
 
         binding.nicknameEditTextView.addTextChangedListener(this)
 
-
+        signUpViewModel.mbti.observe(viewLifecycleOwner) {
+            setMbtiText(it)
+        }
         signUpViewModel.isTermsAgree.observe(viewLifecycleOwner) {
             binding.termsAgreeCheckButton.setImageResource(if
                     (it) R.drawable.ic_check_on_button else R.drawable.ic_check_off_button)
@@ -99,7 +106,7 @@ class SignUpTwoStepFragment :
 
     private fun isDataFull(): Boolean {
         val nickname = binding.nicknameEditTextView.text.toString()
-        return signUpViewModel.mbti.isNotEmpty() && nickname.isNotEmpty() && signUpViewModel.isTermsAgree.value?:false
+        return !signUpViewModel.mbti.value.isNullOrEmpty() && nickname.isNotEmpty() && signUpViewModel.isTermsAgree.value?:false
     }
 
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}

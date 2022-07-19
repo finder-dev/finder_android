@@ -1,6 +1,8 @@
 package com.android.finder.screen.fragment.debate
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
@@ -24,7 +26,7 @@ import java.lang.Exception
 
 class DebateDetailFragment :
     CommonFragment<FragmentDebateDetailBinding>(R.layout.fragment_debate_detail),
-    View.OnClickListener {
+    View.OnClickListener, TextWatcher {
 
     private val detailVieWModel: DebateDetailViewModel by viewModels()
     private val args: DebateDetailFragmentArgs by navArgs()
@@ -219,6 +221,8 @@ class DebateDetailFragment :
         binding.balanceGameView.optionALayout.setOnClickListener(this)
         binding.balanceGameView.optionBLayout.setOnClickListener(this)
         binding.backButton.setOnClickListener(this)
+        binding.commentEditTextView.addTextChangedListener(this)
+
         detailVieWModel.detailData.observe(viewLifecycleOwner) {
             if (it != null) {
                 setUI(it)
@@ -418,4 +422,25 @@ class DebateDetailFragment :
         }
         dialog.show(childFragmentManager, "reComment")
     }
+
+    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        if(binding.commentEditTextView.text.toString().isNotEmpty()) {
+            binding.commentInputButton.setBackgroundResource(R.drawable.bg_oval_main_color)
+            binding.commentInputButton.setColorFilter(resources.getColor(
+                R.color.white,
+                null
+            ))
+        } else {
+            binding.commentInputButton.setBackgroundResource(R.drawable.bg_oval_black7)
+            binding.commentInputButton.setColorFilter(resources.getColor(
+                R.color.black04,
+                null
+            ))
+        }
+
+    }
+
+    override fun afterTextChanged(p0: Editable?) {}
 }

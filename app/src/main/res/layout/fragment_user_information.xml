@@ -227,6 +227,7 @@
             android:layout_marginLeft="4dp"
             android:layout_marginRight="4dp"
             android:background="@drawable/bg_select_button"
+            android:stateListAnimator="@null"
             android:enabled="true"
             android:text="@string/change"
             android:textColor="@color/white"

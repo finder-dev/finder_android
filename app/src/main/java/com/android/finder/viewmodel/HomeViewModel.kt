@@ -16,7 +16,7 @@ class HomeViewModel: ViewModel() {
 
     val isExistProfile : MutableLiveData<Boolean> = MutableLiveData(false)
     val communityHotList : ObservableArrayList<CommunityHotTitleData> = ObservableArrayList()
-    val hotDebate : MutableLiveData<DebateHotVO?> = MutableLiveData()
+    val hotDebate : MutableLiveData<DebateHotVO?> = MutableLiveData(null)
     val isDebateJoin : MutableLiveData<Boolean> = MutableLiveData(false)
     var isA = false
 

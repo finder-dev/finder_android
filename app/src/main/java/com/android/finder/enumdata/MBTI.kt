@@ -52,7 +52,7 @@ enum class MBTI(val value : String) {
         }
     }
     companion object {
-        fun getMbtiByString(mbti : String) : MBTI? = values().find { it.value == mbti }
+        fun getMbtiByString(mbti : String?) : MBTI? = values().find { it.value == mbti }
 
         fun getAllMbti(isAll : Boolean) : ArrayList<String> {
             val list = ArrayList<String>()
