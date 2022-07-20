@@ -2,6 +2,7 @@ package com.finder.android.mbti
 
 import com.finder.android.mbti.dataobj.CommentData
 import com.finder.android.mbti.dataobj.Content
+import com.finder.android.mbti.dataobj.NoteListData
 import com.finder.android.mbti.dataobj.ReCommentData
 
 data class LikeCommunityContent(val content : Content, val position: Int)
@@ -15,3 +16,5 @@ data class ImageDeleteEvent(val imageUrl: String)
 data class CommentAttributeClickEvent(val data : CommentData)
 
 data class ReCommentAttributeClickEvent(val data : ReCommentData)
+
+data class MoveToNoteWithAnotherUser(val data : NoteListData)

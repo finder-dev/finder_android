@@ -28,7 +28,6 @@ class LoginViewModel: ViewModel() {
             } else {
                 MainNetWorkUtil.errorMessage(result.errorBody())?.let {
                     try {
-                        toastShow(context, it.toString())
                         loginErrorMessage = if(it.errorResponse.errorMessages.isNotEmpty()) {
                             it.errorResponse.errorMessages[0]
                         } else {

@@ -178,5 +178,25 @@
         android:id="@+id/noteListFragment"
         tools:layout="@layout/fragment_note_list"
         android:name="com.finder.android.mbti.screen.fragment.note.NoteListFragment"
-        android:label="NoteListFragment" />
+        android:label="NoteListFragment" >
+        <action
+            android:id="@+id/action_noteListFragment_to_noteWithUserFragment"
+            app:destination="@id/noteWithUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/noteWithUserFragment"
+        tools:layout="@layout/fragment_note_with_user"
+        android:name="com.finder.android.mbti.screen.fragment.note.NoteWithUserFragment"
+        android:label="NoteWithUserFragment" >
+
+        <argument
+            android:name="userData"
+            android:defaultValue="@null"
+            app:argType="com.finder.android.mbti.dataobj.NoteListData"
+            app:nullable="true"/>
+
+        <action
+            android:id="@+id/action_noteWithUserFragment_to_sendNoteFragment"
+            app:destination="@id/sendNoteFragment" />
+    </fragment>
 </navigation>

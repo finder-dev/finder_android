@@ -187,4 +187,10 @@ interface MainApiService {
 
     @GET("api/users/activity/message")
     fun getAllNotes(@Query("page") page: Int) : Call<NoteListResponseDTO>
+
+    @GET("api/message")
+    fun getNoteWithUser(
+        @Query("userId") userId : Long,
+        @Query("page") page : Int
+    ) : Call<NoteListWithUserResponseDTO>
 }

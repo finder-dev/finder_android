@@ -13,7 +13,7 @@ class HomeViewModel: ViewModel() {
 
     val isExistProfile : MutableLiveData<Boolean> = MutableLiveData(false)
     val communityHotList : ObservableArrayList<CommunityHotTitleData> = ObservableArrayList()
-    val hotDebate : MutableLiveData<DebateHotVO?> = MutableLiveData(null)
+    val hotDebate : MutableLiveData<DebateHotVO?> = MutableLiveData()
     val isDebateJoin : MutableLiveData<Boolean> = MutableLiveData(false)
     var isA = false
 
@@ -47,7 +47,10 @@ class HomeViewModel: ViewModel() {
                         isA = (it.response.joinOption == "A")
                     }
                 }
-            }
-        }.onFailure { it.printStackTrace() }
+            } else hotDebate.postValue(null)
+        }.onFailure {
+            hotDebate.postValue(null)
+            it.printStackTrace()
+        }
     }
 }
