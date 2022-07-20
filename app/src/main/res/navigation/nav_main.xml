@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/mainFragment"
         tools:layout="@layout/fragment_main"
-        android:name="com.android.finder.screen.fragment.MainFragment"
+        android:name="com.finder.android.mbti.screen.fragment.MainFragment"
         android:label="MainFragment" >
         <action
             android:id="@+id/action_mainFragment_to_communityWriteFragment"
@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/communityWriteFragment"
         tools:layout="@layout/fragment_community_write"
-        android:name="com.android.finder.screen.fragment.community.CommunityWriteFragment"
+        android:name="com.finder.android.mbti.screen.fragment.community.CommunityWriteFragment"
         android:label="CommunityWriteFragment" >
 
         <argument
@@ -58,7 +58,7 @@
         <argument
             android:name="images"
             android:defaultValue="@null"
-            app:argType="com.android.finder.dataobj.CommunityImgDto[]"
+            app:argType="com.finder.android.mbti.dataobj.CommunityImgDto[]"
             app:nullable="true"/>
         <argument
             android:name="isCurious"
@@ -68,7 +68,7 @@
     <fragment
         android:id="@+id/communityDetailFragment"
         tools:layout="@layout/fragment_community_detail"
-        android:name="com.android.finder.screen.fragment.community.CommunityDetailFragment"
+        android:name="com.finder.android.mbti.screen.fragment.community.CommunityDetailFragment"
         android:label="CommunityDetailFragment" >
         <argument
             android:name="communityId"
@@ -84,7 +84,7 @@
     <fragment
         android:id="@+id/sendNoteFragment"
         tools:layout="@layout/fragment_send_a_note"
-        android:name="com.android.finder.screen.fragment.note.SendNoteFragment"
+        android:name="com.finder.android.mbti.screen.fragment.note.SendNoteFragment"
         android:label="SendNoteFragment" >
 
         <argument
@@ -96,7 +96,7 @@
     <fragment
         android:id="@+id/debateWriteFragment"
         tools:layout="@layout/fragment_debate_write"
-        android:name="com.android.finder.screen.fragment.debate.DebateWriteFragment"
+        android:name="com.finder.android.mbti.screen.fragment.debate.DebateWriteFragment"
         android:label="DebateWriteFragment" >
 
         <argument
@@ -126,7 +126,7 @@
     <fragment
         android:id="@+id/debateDetailFragment"
         tools:layout="@layout/fragment_debate_detail"
-        android:name="com.android.finder.screen.fragment.debate.DebateDetailFragment"
+        android:name="com.finder.android.mbti.screen.fragment.debate.DebateDetailFragment"
         android:label="DebateDetailFragment" >
 
         <argument
@@ -144,7 +144,7 @@
     <fragment
         android:id="@+id/settingFragment"
         tools:layout="@layout/fragment_setting"
-        android:name="com.android.finder.screen.fragment.my.SettingFragment"
+        android:name="com.finder.android.mbti.screen.fragment.my.SettingFragment"
         android:label="SettingFragment" >
         <action
             android:id="@+id/action_settingFragment_to_userInformationFragment"
@@ -156,12 +156,12 @@
     <fragment
         android:id="@+id/userInformationFragment"
         tools:layout="@layout/fragment_user_information"
-        android:name="com.android.finder.screen.fragment.my.UserInformationFragment"
+        android:name="com.finder.android.mbti.screen.fragment.my.UserInformationFragment"
         android:label="UserInformationFragment" />
     <fragment
         android:id="@+id/webFragment"
         tools:layout="@layout/fragment_web"
-        android:name="com.android.finder.screen.fragment.WebFragment"
+        android:name="com.finder.android.mbti.screen.fragment.WebFragment"
         android:label="WebFragment" >
 
         <argument

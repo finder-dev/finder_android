@@ -30,7 +30,5 @@
             android:layout_gravity="center"
             tools:text="카카오로 시작하기" />
 
-
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

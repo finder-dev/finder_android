@@ -163,7 +163,7 @@
                             android:paddingTop="16dp"
                             android:paddingBottom="16dp"
                             android:paddingRight="20dp"
-                            android:background="@color/white"
+                            android:background="@color/white_f4"
                             android:gravity="right"
                             tools:text="절대 불가능"
                             android:textColor="@color/gray3"
