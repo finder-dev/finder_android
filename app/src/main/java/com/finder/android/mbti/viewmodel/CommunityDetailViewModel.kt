@@ -41,7 +41,6 @@ class CommunityDetailViewModel: ViewModel() {
                 }
             } else {
                 MainNetWorkUtil.errorMessage(result.errorBody())?.let {
-                    Log.e("???", it.toString())
                     detailResultMessage =  if(it.errorResponse.errorMessages.isNotEmpty()) {
                         it.errorResponse.errorMessages[0]
                     } else App.instance.resources.getString(R.string.error_community_detail_load_sub)

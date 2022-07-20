@@ -299,7 +299,7 @@ class DebateDetailFragment :
             )
         } else {
             arrayListOf(
-//                resources.getString(R.string.send_a_note),
+                resources.getString(R.string.send_a_note),
                 resources.getString(R.string.re_comment_put_on),
                 resources.getString(R.string.report),
                 resources.getString(R.string.close)
@@ -372,7 +372,7 @@ class DebateDetailFragment :
             )
         } else {
             arrayListOf(
-//                resources.getString(R.string.send_a_note),
+                resources.getString(R.string.send_a_note),
                 resources.getString(R.string.report),
                 resources.getString(R.string.close)
             )

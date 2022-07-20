@@ -1,10 +1,8 @@
 package com.finder.android.mbti.network.api
 
-import com.finder.android.mbti.network.request.CreateDebateRequestDTO
-import com.finder.android.mbti.network.request.ContentBodyRequestDTO
+import android.os.Message
+import com.finder.android.mbti.network.request.*
 import com.finder.android.mbti.network.response.*
-import com.finder.android.mbti.network.request.DebateOptionBodyRequestDTO
-import com.finder.android.mbti.network.request.ModifyUserInformationRequestDTO
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -183,4 +181,7 @@ interface MainApiService {
 
     @DELETE("api/users")
     fun accountDeletion() : Call<Unit>
+
+    @POST("api/message")
+    fun sendAMessage(@Body data : SendANoteRequestDTO) : Call<MessageResponse>
 }

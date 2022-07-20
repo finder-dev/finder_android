@@ -157,7 +157,9 @@
         android:id="@+id/userInformationFragment"
         tools:layout="@layout/fragment_user_information"
         android:name="com.finder.android.mbti.screen.fragment.my.UserInformationFragment"
-        android:label="UserInformationFragment" />
+        android:label="UserInformationFragment" >
+
+    </fragment>
     <fragment
         android:id="@+id/webFragment"
         tools:layout="@layout/fragment_web"
