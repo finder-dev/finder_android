@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_mainFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_noteListFragment"
+            app:destination="@id/noteListFragment" />
     </fragment>
     <fragment
         android:id="@+id/communityWriteFragment"
@@ -171,4 +174,9 @@
             app:argType="string"
             app:nullable="false"/>
     </fragment>
+    <fragment
+        android:id="@+id/noteListFragment"
+        tools:layout="@layout/fragment_note_list"
+        android:name="com.finder.android.mbti.screen.fragment.note.NoteListFragment"
+        android:label="NoteListFragment" />
 </navigation>

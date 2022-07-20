@@ -3,12 +3,14 @@ package com.finder.android.mbti.bindingadapter
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableArrayList
 import androidx.recyclerview.widget.RecyclerView
+import com.finder.android.mbti.bindingadapter.RecyclerViewBinding.setDebateListAdapter
 import com.finder.android.mbti.dataobj.*
 import com.finder.android.mbti.list.community.CommunityDetailCommentAdapter
 import com.finder.android.mbti.list.community.CommunityListAdapter
 import com.finder.android.mbti.list.debate.DebateListAdapter
 import com.finder.android.mbti.list.home.CommunityHotListAdapter
 import com.finder.android.mbti.list.image.ImageListAdapter
+import com.finder.android.mbti.list.note.NoteTitleListAdapter
 
 object RecyclerViewBinding {
 
@@ -59,6 +61,13 @@ object RecyclerViewBinding {
     @JvmStatic
     fun RecyclerView.setDebateListAdapter(list : ObservableArrayList<DebateListVO>) {
         if(this.adapter == null) adapter = DebateListAdapter(this.context, list)
+        adapter?.notifyDataSetChanged()
+    }
+
+    @BindingAdapter("noteListAdapter")
+    @JvmStatic
+    fun RecyclerView.setNoteListAdapter(list : ObservableArrayList<NoteListData>) {
+        if(this.adapter == null) adapter = NoteTitleListAdapter(this.context, list)
         adapter?.notifyDataSetChanged()
     }
 }

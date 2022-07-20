@@ -30,10 +30,9 @@ class CommunityViewModel : ViewModel() {
                     currentPage++
                 }
             } else {
-                result.errorBody()?.string()?.let {
-                    val response = Gson().fromJson(it, MessageResponse::class.java)
-                    getListResultMessage = if(response.errorResponse.errorMessages.isNotEmpty()) {
-                        response.errorResponse.errorMessages[0]
+                MainNetWorkUtil.errorMessage(result.errorBody())?.let {
+                    getListResultMessage = if(it.errorResponse.errorMessages.isNotEmpty()) {
+                        it.errorResponse.errorMessages[0]
                     } else "입력값을 확인해주세요."
                 }
             }

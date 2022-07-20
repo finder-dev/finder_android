@@ -184,4 +184,7 @@ interface MainApiService {
 
     @POST("api/message")
     fun sendAMessage(@Body data : SendANoteRequestDTO) : Call<MessageResponse>
+
+    @GET("api/users/activity/message")
+    fun getAllNotes(@Query("page") page: Int) : Call<NoteListResponseDTO>
 }
