@@ -61,6 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/noto_sans_kr_bold"
+            android:visibility="gone"
             android:includeFontPadding="false"
             android:text="@string/alarm_reception"
             android:textColor="@color/black1"
@@ -69,6 +70,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_marginBottom="33dp">
 
             <androidx.appcompat.widget.AppCompatTextView

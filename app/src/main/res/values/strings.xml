@@ -16,7 +16,7 @@
     <string name="debate">토론</string>
     <string name="community">커뮤니티</string>
     <string name="save">저장</string>
-    <string name="my">내정보</string>
+    <string name="my">마이</string>
     <string name="fastest">최신순</string>
     <string name="most_comments">댓글순</string>
     <string name="complete">완료</string>
@@ -24,6 +24,7 @@
     <string name="debate_create">토론 생성</string>
     <string name="select_target_mbti">대상 MBTI 선택</string>
     <string name="curious">궁금</string>
+    <string name="note_box">쪽지함</string>
     <string name="send_a_note">쪽지 보내기</string>
     <string name="re_comment_put_on">대댓글 달기</string>
     <string name="report">신고</string>
@@ -72,7 +73,9 @@
     <string name="account_deletion">탈퇴하기</string>
     <string name="app_version">앱 버전</string>
     <string name="setting">설정</string>
+
     <string name="success_delete_user">계정탈퇴 완료</string>
+    <string name="success_send_note">쪽지 전송 완료</string>
 
     <string name="likeCountFormat">추천 %s</string>
     <string name="commentCountFormat">댓글 %s</string>
@@ -85,7 +88,7 @@
     <string name="question_logout">로그아웃 하시겠습니까?</string>
     <string name="question_delete_user">정말로 탈퇴하시겠습니까?</string>
 
-    <string name="hint_input_email">이메일을 인증해주세요</string>
+    <string name="hint_input_email">이메일을 입력해주세요</string>
     <string name="hint_input_code_number">코드번호를 입력하세요</string>
     <string name="hint_input_password">비밀번호를 입력해주세요</string>
     <string name="hint_re_input_password">비밀번호를 다시 입력해주세요</string>
@@ -121,7 +124,7 @@
     <string name="msg_welcome_esfj">오늘 계획도 완벽 수행각이에요!</string>
     <string name="msg_welcome_estp">스릴 넘치는 하루\n보내세요!</string>
     <string name="msg_welcome_enfp">오늘은 어떤 상상을\n하셨나요?</string>
-    <string name="msg_welcome_entp">자신감 충만한/n하루 되세요!</string>
+    <string name="msg_welcome_entp">자신감 충만한\n하루 되세요!</string>
     <string name="msg_welcome_esfp">어떤 재밌는 일이\n기다리고 있을까요?</string>
 
     <string name="msg_sign_up_induce">아직 F!nder 회원이 아니라면?</string>
@@ -132,6 +135,7 @@
     <string name="msg_debate_introduce_title">급상승 중인 파인더들의 수다</string>
     <string name="msg_empty_balance_game_main">아직 생성된 토론이 없습니다!\n첫 토론의 주인공이 돼보세요! GOGO!</string>
     <string name="msg_empty_community">커뮤니티 게시글이 없습니다.</string>
+    <string name="msg_empty_note">나눈 쪽지가 없습니다.</string>
     <string name="msg_re_login">앱을 재실행해주세요</string>
     <string name="msg_community_post_empty">커뮤니티 게시글이 없습니다.</string>
     <string name="msg_success_write">글이 등록되었습니다.</string>
@@ -153,6 +157,7 @@
     <string name="msg_delete_user_sub">탈퇴 후 계정 복구는 불가능합니다.</string>
     <string name="msg_success_delete_user">탈퇴가 완료되었습니다.</string>
     <string name="msg_no_save_content">저장된 콘텐츠가 없습니다.</string>
+    <string name="msg_message_send">메시지를 전송했습니다.</string>
 
     <string name="error_unspecified_message">문제가 발생했습니다.</string>
     <string name="error_login">로그인 실패</string>
@@ -170,6 +175,7 @@
     <string name="error_not_equal_password_sub">비밀번호가 비밀번호 확인과 동일한 지 확인해주세요.</string>
     <string name="error_sign_up">회원가입 실패</string>
     <string name="error_write">글쓰기 실패</string>
+    <string name="error_load">불러오기 실패</string>
     <string name="error_nickName_duplicate">닉네임 중복</string>
     <string name="error_modify">수정 실패</string>
     <string name="error_community_detail_load">게시글 조회 실패</string>
@@ -183,4 +189,5 @@
     <string name="error_delete_user">계정탈퇴 실패</string>
     <string name="error_empty_my_comment_content">댓글 단 글이 없습니다.</string>
     <string name="error_empty_my_content">작성글이 없습니다.</string>
+    <string name="error_send_note">쪽지 전송 실패</string>
 </resources>

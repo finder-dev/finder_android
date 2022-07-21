@@ -6,7 +6,7 @@
         <import type="android.view.View"/>
         <variable
             name="homeViewModel"
-            type="com.android.finder.viewmodel.HomeViewModel" />
+            type="com.finder.android.mbti.viewmodel.HomeViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat

@@ -36,7 +36,7 @@
     @org.greenrobot.eventbus.Subscribe <methods>;
 }
 -keep enum org.greenrobot.eventbus.ThreadMode { *; }
--keep class com.android.finder.dataobj.** {*;}
+-keep class com.finder.android.mbti.dataobj.** {*;}
 
 # Retrofit
 -keep class com.google.gson.** { *; }

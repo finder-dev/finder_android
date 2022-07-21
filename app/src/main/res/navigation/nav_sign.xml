@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onBoardingFragment"
-        android:name="com.android.finder.screen.fragment.onboarding.OnBoardingFragment"
+        android:name="com.finder.android.mbti.screen.fragment.onboarding.OnBoardingFragment"
         tools:layout="@layout/fragment_on_boarding"
         android:label="OnBoardingFragment" >
 
@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.android.finder.screen.fragment.login.LoginFragment"
+        android:name="com.finder.android.mbti.screen.fragment.login.LoginFragment"
         tools:layout="@layout/fragment_login"
         android:label="LoginFragment" >
         <action
@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/emailLoginFragment"
         tools:layout="@layout/fragment_email_login"
-        android:name="com.android.finder.screen.fragment.login.EmailLoginFragment"
+        android:name="com.finder.android.mbti.screen.fragment.login.EmailLoginFragment"
         android:label="EmailLoginFragment" >
         <action
             android:id="@+id/action_emailLoginFragment_to_signUpOneStepFragment"
@@ -41,7 +41,7 @@
     <fragment
         android:id="@+id/signUpOneStepFragment"
         tools:layout="@layout/fragment_sign_up_one"
-        android:name="com.android.finder.screen.fragment.signup.SignUpOneStepFragment"
+        android:name="com.finder.android.mbti.screen.fragment.signup.SignUpOneStepFragment"
         android:label="SignUpOneStepFragment" >
         <action
             android:id="@+id/action_signUpOneStepFragment_to_signUpTwoStepFragment"
@@ -50,7 +50,7 @@
     <fragment
         android:id="@+id/signUpTwoStepFragment"
         tools:layout="@layout/fragment_sign_up_two"
-        android:name="com.android.finder.screen.fragment.signup.SignUpTwoStepFragment"
+        android:name="com.finder.android.mbti.screen.fragment.signup.SignUpTwoStepFragment"
         android:label="SignUpTwoStepFragment" >
         <action
             android:id="@+id/action_signUpTwoStepFragment_to_signUpCompleteFragment"
@@ -62,12 +62,12 @@
     <fragment
         android:id="@+id/signUpCompleteFragment"
         tools:layout="@layout/fragment_sign_up_complete"
-        android:name="com.android.finder.screen.fragment.signup.SignUpCompleteFragment"
+        android:name="com.finder.android.mbti.screen.fragment.signup.SignUpCompleteFragment"
         android:label="SignUpCompleteFragment" />
     <fragment
         android:id="@+id/webFragment"
         tools:layout="@layout/fragment_web"
-        android:name="com.android.finder.screen.fragment.WebFragment"
+        android:name="com.finder.android.mbti.screen.fragment.WebFragment"
         android:label="WebFragment" >
 
         <argument

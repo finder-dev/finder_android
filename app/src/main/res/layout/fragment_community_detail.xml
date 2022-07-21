@@ -6,7 +6,7 @@
     <data>
         <variable
             name="detailViewModel"
-            type="com.android.finder.viewmodel.CommunityDetailViewModel" />
+            type="com.finder.android.mbti.viewmodel.CommunityDetailViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat

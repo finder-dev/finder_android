@@ -6,7 +6,7 @@
         <import type="android.view.View"/>
         <variable
             name="listViewModel"
-            type="com.android.finder.viewmodel.SaveViewModel" />
+            type="com.finder.android.mbti.viewmodel.SaveViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
