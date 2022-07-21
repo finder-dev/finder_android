@@ -4,15 +4,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.finder.android.mbti.CommonFragment
-import com.finder.android.mbti.R
+import androidx.recyclerview.widget.RecyclerView
+import com.finder.android.mbti.*
+import com.finder.android.mbti.component.RecyclerViewItemDeco
 import com.finder.android.mbti.databinding.FragmentNoteWithUserBinding
-import com.finder.android.mbti.oneButtonDialogShow
-import com.finder.android.mbti.toastShow
 import com.finder.android.mbti.viewmodel.NoteListWithUserViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class NoteWithUserFragment : CommonFragment<FragmentNoteWithUserBinding>(R.layout.fragment_note_with_user), View.OnClickListener {
 
@@ -30,6 +30,24 @@ class NoteWithUserFragment : CommonFragment<FragmentNoteWithUserBinding>(R.layou
         }
         binding.userNoteViewModel = noteWithUserViewModel
         dataLoading(true)
+        try {
+            binding.noteRecyclerView.addItemDecoration(
+                RecyclerViewItemDeco(requireContext(), 8)
+            )
+            binding.noteRecyclerView.addOnScrollListener(object :
+                RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    if (scrollPercent(binding.noteRecyclerView) >= 90) {
+                        if (!noteWithUserViewModel.isLast) {
+                            dataLoading(false)
+                        }
+                    }
+                }
+            })
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     private fun dataLoading(isRefresh:Boolean) {
@@ -56,7 +74,6 @@ class NoteWithUserFragment : CommonFragment<FragmentNoteWithUserBinding>(R.layou
                 args.userData?.let {
                     navigate(NoteWithUserFragmentDirections.actionNoteWithUserFragmentToSendNoteFragment(it.targetUserId))
                 }
-
             }
         }
     }

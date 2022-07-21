@@ -25,9 +25,10 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/subDescriptionView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:gravity="center"
             tools:text="이메일로 코드 번호가 발송되었습니다."
             android:textColor="@color/black04"
             android:layout_gravity="center"
@@ -35,7 +36,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/confirmButton"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:background="@color/mainColor"
             android:gravity="center"

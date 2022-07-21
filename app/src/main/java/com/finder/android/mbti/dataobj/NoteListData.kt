@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class NoteListData(
-    @SerializedName("toUserId") val targetUserId: Long,
+    @SerializedName("userId") val targetUserId: Long,
     @SerializedName("userNickname") val userNickname : String,
     @SerializedName("content") val content: String,
     @SerializedName("createTime") val createTime : String

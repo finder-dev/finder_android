@@ -1,5 +1,6 @@
 package com.finder.android.mbti.network
 
+import android.util.Log
 import com.finder.android.mbti.network.api.MainApiService
 import com.finder.android.mbti.network.response.MessageResponse
 import com.finder.android.mbti.util.SecureManager
@@ -20,6 +21,7 @@ object MainNetWorkUtil {
             val token =
                 SecureManager(App.instance.applicationContext).getToken()
             val builder = it.request().newBuilder()
+            Log.e("url", it.request().url.toString())
             if (token.isNotEmpty()) {
                 builder.addHeader("Authorization", "Bearer $token")
             }

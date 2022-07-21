@@ -136,6 +136,7 @@ class MyFragment : CommonFragment<FragmentMyBinding>(R.layout.fragment_my), View
                                     context?.let {
                                         SettingUtil.setAutoLoginKey(it, false)
                                         SecureManager(it).removeToken()
+                                        CachingData.userProfile = null
                                     }
                                     val sendIntent = Intent(context, SignActivity::class.java)
                                     sendIntent.run {

@@ -1,6 +1,7 @@
 package com.finder.android.mbti.viewmodel
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.finder.android.mbti.R
@@ -18,6 +19,7 @@ class LoginViewModel: ViewModel() {
     fun login(context : Context, email :String, password : String) : Boolean {
         SignNetworkUtil.api.login(email, password).runCatching {
             val result = this.execute()
+            Log.e("버근가...", email)
             if(result.isSuccessful) {
                 //여기서 토큰 처리
                 result.body()?.let {
