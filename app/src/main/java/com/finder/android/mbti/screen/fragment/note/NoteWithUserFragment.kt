@@ -7,6 +7,7 @@ import androidx.navigation.fragment.navArgs
 import com.finder.android.mbti.CommonFragment
 import com.finder.android.mbti.R
 import com.finder.android.mbti.databinding.FragmentNoteWithUserBinding
+import com.finder.android.mbti.oneButtonDialogShow
 import com.finder.android.mbti.toastShow
 import com.finder.android.mbti.viewmodel.NoteListWithUserViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -27,13 +28,20 @@ class NoteWithUserFragment : CommonFragment<FragmentNoteWithUserBinding>(R.layou
             toastShow(context , resources.getString(R.string.error_unspecified_message))
             navPopStack()
         }
+        binding.userNoteViewModel = noteWithUserViewModel
         dataLoading(true)
     }
 
-    fun dataLoading(isRefresh:Boolean) {
+    private fun dataLoading(isRefresh:Boolean) {
         if(isRefresh) noteWithUserViewModel.currentPage = 0
         CoroutineScope(Dispatchers.IO).launch {
-            noteWithUserViewModel.getNotes()
+            if(!noteWithUserViewModel.getNotes()) {
+                oneButtonDialogShow(
+                    context,
+                    resources.getString(R.string.error_load),
+                    noteWithUserViewModel.getListResultMessage
+                ) { navPopStack()}
+            }
         }
     }
     override fun eventListenerSetting() {

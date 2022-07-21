@@ -7,12 +7,13 @@ import com.finder.android.mbti.App
 import com.finder.android.mbti.R
 import com.finder.android.mbti.dataobj.NoteListData
 import com.finder.android.mbti.dataobj.NoteWithUserVO
+import com.finder.android.mbti.dataobj.UserNoteVO
 import com.finder.android.mbti.network.MainNetWorkUtil
 
 class NoteListWithUserViewModel: ViewModel() {
 
     var targetUserData : NoteListData? = null
-    val noteList : ObservableArrayList<NoteWithUserVO> = ObservableArrayList()
+    val noteList : ObservableArrayList<UserNoteVO> = ObservableArrayList()
     var currentPage : Int = 0
     var getListResultMessage = ""
     var isLast : Boolean = false
@@ -21,13 +22,16 @@ class NoteListWithUserViewModel: ViewModel() {
         targetUserData?.let {
             MainNetWorkUtil.api.getNoteWithUser(it.targetUserId, currentPage).runCatching {
                 val result = this.execute()
+                Log.e("안오네", result.isSuccessful.toString())
                 if(result.isSuccessful) {
                     result.body()?.response?.let { note ->
+                        Log.e("note", note.toString())
                         if(currentPage == 0) noteList.clear()
                         isLast = note.last
-                        noteList.addAll(note.content)
+                        noteList.addAll(note.content.map { userVo ->
+                            UserNoteVO(userVo.fromUserId != it.targetUserId, userVo.content, userVo.createTime)
+                        })
                         currentPage++
-                        Log.e("확인차", noteList.toString())
                     }
                 } else {
                     MainNetWorkUtil.errorMessage(result.errorBody())?.let { message ->
