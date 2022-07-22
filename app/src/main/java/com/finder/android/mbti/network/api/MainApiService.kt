@@ -193,4 +193,16 @@ interface MainApiService {
         @Query("userId") userId : Long,
         @Query("page") page : Int
     ) : Call<NoteListWithUserResponseDTO>
+
+    @Headers("Content-Type: application/json")
+    @POST("api/message/report")
+    fun reportUser(@Body data : ReportUserRequest) : Call<Unit>
+
+    @Headers("Content-Type: application/json")
+    @POST("api/message/block")
+    fun blockUser(@Body data : BlockUserRequest) : Call<Unit>
+
+    @Headers("Content-Type: application/json")
+    @HTTP(method = "DELETE", path="api/message",hasBody = true)
+    fun allDeleteNoteWithUser(@Body data : DeleteUserRequestDTO) : Call<Unit>
 }

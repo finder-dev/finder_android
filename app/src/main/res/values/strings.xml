@@ -63,6 +63,11 @@
     <string name="success_create_debate">토론 생성 성공</string>
     <string name="success_modify">수정 성공</string>
     <string name="user_report_complete">해당 사용자 신고 완료</string>
+    <string name="user_block_complete">해당 사용자 차단 완료</string>
+    <string name="user_report_failed">해당 사용자 신고 실패</string>
+    <string name="user_block_failed">해당 사용자 차단 실패</string>
+    <string name="delete_all_note_complete">쪽지 전체 삭제 완료</string>
+    <string name="delete_all_note_failed">쪽지 전체 삭제 실패</string>
     <string name="move_to_debate_create">토론 만들러 가기</string>
     <string name="move_to_leave_a_comment">의견 남기러 가기</string>
     <string name="complete_debate">아쉽게 마감된 토론</string>
@@ -73,6 +78,9 @@
     <string name="account_deletion">탈퇴하기</string>
     <string name="app_version">앱 버전</string>
     <string name="setting">설정</string>
+    <string name="delete_all">전체삭제</string>
+    <string name="block">차단</string>
+
 
     <string name="success_delete_user">계정탈퇴 완료</string>
     <string name="success_send_note">쪽지 전송 완료</string>
@@ -85,8 +93,10 @@
     <string name="question_delete_content">글을 삭제하시겠습니까?</string>
     <string name="question_delete_comment">댓글을 삭제하시겠습니까?</string>
     <string name="question_user_report">해당 사용자를 신고하시겠습니까?</string>
+    <string name="question_user_block">해당 사용자를 차단하시겠습니까?</string>
     <string name="question_logout">로그아웃 하시겠습니까?</string>
     <string name="question_delete_user">정말로 탈퇴하시겠습니까?</string>
+    <string name="question_delete_all_note">해당 쪽지를 전체 삭제하시겠습니까?</string>
 
     <string name="hint_input_email">이메일을 입력해주세요</string>
     <string name="hint_input_code_number">코드번호를 입력하세요</string>
@@ -149,7 +159,9 @@
     <string name="msg_delete_content">글을 삭제했습니다.</string>
     <string name="msg_delete_comment">댓글을 삭제했습니다.</string>
     <string name="msg_delete_re_comment">대댓글을 삭제했습니다.</string>
-    <string name="msg_report_complete">신고되었습니다.</string>
+    <string name="msg_report_complete">신고 완료되었습니다.</string>
+    <string name="msg_block_complete">차단 완료되었습니다.</string>
+    <string name="msg_delete_complete">삭제 완료되었습니다.</string>
     <string name="msg_description_user_report">허위 신고일 경우, 활동이 제한될 수 있으니, 신중히 신고하세요.</string>
     <string name="msg_debate_notice">토론은 일주일간 진행됩니다.\n올리면 수정, 삭제가 안되니 신중하게 적어주세요!</string>
     <string name="password_correspond">비밀번호가 일치합니다.</string>
@@ -158,6 +170,9 @@
     <string name="msg_success_delete_user">탈퇴가 완료되었습니다.</string>
     <string name="msg_no_save_content">저장된 콘텐츠가 없습니다.</string>
     <string name="msg_message_send">메시지를 전송했습니다.</string>
+    <string name="msg_report_sub">신고와 동시에 해당 사용자의\n 쪽지가 차단됩니다.</string>
+    <string name="msg_block_sub">쪽지 수발신이 모두 차단되며\n다시 해제할 수 없습니다.</string>
+    <string name="msg_delete_all_note_sub">삭제된 쪽지는 복구할 수 없으며, \n대화방에서 자동으로 나가게 됩니다.</string>
 
     <string name="error_unspecified_message">문제가 발생했습니다.</string>
     <string name="error_login">로그인 실패</string>
