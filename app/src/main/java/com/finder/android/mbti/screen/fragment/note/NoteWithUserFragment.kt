@@ -25,6 +25,7 @@ class NoteWithUserFragment :
 
     private val args: NoteWithUserFragmentArgs by navArgs()
     private val noteWithUserViewModel: NoteListWithUserViewModel by viewModels()
+    private var isDatALoading = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,16 +59,23 @@ class NoteWithUserFragment :
     }
 
     private fun dataLoading(isRefresh: Boolean) {
-        if (isRefresh) noteWithUserViewModel.currentPage = 0
-        CoroutineScope(Dispatchers.IO).launch {
-            if (!noteWithUserViewModel.getNotes()) {
-                oneButtonDialogShow(
-                    context,
-                    resources.getString(R.string.error_load),
-                    noteWithUserViewModel.getListResultMessage
-                ) { navPopStack() }
+        if(!isDatALoading) {
+            isDatALoading = true
+            if (isRefresh) noteWithUserViewModel.currentPage = 0
+            CoroutineScope(Dispatchers.IO).launch {
+                isLoading = true
+                if (!noteWithUserViewModel.getNotes()) {
+                    oneButtonDialogShow(
+                        context,
+                        resources.getString(R.string.error_load),
+                        noteWithUserViewModel.getListResultMessage
+                    ) { navPopStack() }
+                }
+                isLoading = false
+                isDatALoading = false
             }
         }
+
     }
 
     override fun eventListenerSetting() {
@@ -110,6 +118,7 @@ class NoteWithUserFragment :
                                             closeButtonTitle = resources.getString(R.string.delete),
                                             confirmButtonTitle = resources.getString(R.string.cancel),
                                             closeEvent = {
+                                                isLoading = true
                                                 CoroutineScope(Dispatchers.IO).launch {
                                                     if (noteWithUserViewModel.deleteUserNote(target.targetUserId)) {
                                                         oneButtonDialogShow(
@@ -124,6 +133,7 @@ class NoteWithUserFragment :
                                                             subMessage = noteWithUserViewModel.deleteUserNoteResultMessage
                                                         )
                                                     }
+                                                    isLoading = false
                                                 }
                                             }
                                         )
@@ -136,6 +146,7 @@ class NoteWithUserFragment :
                                             closeButtonTitle = resources.getString(R.string.block),
                                             confirmButtonTitle = resources.getString(R.string.cancel),
                                             closeEvent = {
+                                                isLoading = true
                                                 CoroutineScope(Dispatchers.IO).launch {
                                                     if (noteWithUserViewModel.blockUser(target.targetUserId)) {
                                                         oneButtonDialogShow(
@@ -150,6 +161,7 @@ class NoteWithUserFragment :
                                                             subMessage = noteWithUserViewModel.blockUserResultMessage
                                                         )
                                                     }
+                                                    isLoading = false
                                                 }
                                             }
                                         )
@@ -162,6 +174,7 @@ class NoteWithUserFragment :
                                             closeButtonTitle = resources.getString(R.string.report),
                                             confirmButtonTitle = resources.getString(R.string.cancel),
                                             closeEvent = {
+                                                isLoading = true
                                                 CoroutineScope(Dispatchers.IO).launch {
                                                     if (noteWithUserViewModel.reportUser(target.targetUserId)) {
                                                         oneButtonDialogShow(
@@ -176,6 +189,7 @@ class NoteWithUserFragment :
                                                             subMessage = noteWithUserViewModel.reportUserResultMessage
                                                         )
                                                     }
+                                                    isLoading = false
                                                 }
                                             }
                                         )

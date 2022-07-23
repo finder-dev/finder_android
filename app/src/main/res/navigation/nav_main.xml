@@ -83,6 +83,9 @@
         <action
             android:id="@+id/action_communityDetailFragment_to_sendNoteFragment"
             app:destination="@id/sendNoteFragment" />
+        <action
+            android:id="@+id/action_communityDetailFragment_to_imagePageFragment"
+            app:destination="@id/imagePageFragment" />
     </fragment>
     <fragment
         android:id="@+id/sendNoteFragment"
@@ -198,5 +201,20 @@
         <action
             android:id="@+id/action_noteWithUserFragment_to_sendNoteFragment"
             app:destination="@id/sendNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imagePageFragment"
+        tools:layout="@layout/fragment_image_list"
+        android:name="com.finder.android.mbti.screen.fragment.ImagePageFragment"
+        android:label="ImagePageFragment" >
+
+        <argument
+            android:name="images"
+            app:argType="string[]"
+            app:nullable="false"/>
+
+        <argument
+            android:name="position"
+            app:argType="integer" />
     </fragment>
 </navigation>

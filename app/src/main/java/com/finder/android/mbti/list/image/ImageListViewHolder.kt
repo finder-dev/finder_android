@@ -8,6 +8,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.finder.android.mbti.ImageDeleteEvent
+import com.finder.android.mbti.MoveToImageDetailEvent
 import org.greenrobot.eventbus.EventBus
 
 class ImageListViewHolder(val binding: ItemImageBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -26,6 +27,9 @@ class ImageListViewHolder(val binding: ItemImageBinding) : RecyclerView.ViewHold
         binding.deleteButton.setOnClickListener {
             //제거 이벤트
             EventBus.getDefault().post(ImageDeleteEvent(imageUrl))
+        }
+        binding.imageView.setOnClickListener {
+            EventBus.getDefault().post(MoveToImageDetailEvent(adapterPosition))
         }
     }
 }
