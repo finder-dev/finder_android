@@ -29,7 +29,6 @@ class CommunityDetailViewModel: ViewModel() {
             if(result.isSuccessful) {
                 result.body()?.let {
                     communityDetailData.postValue(it.response)
-                    Log.e("body", it.response.toString())
                     questionImages.apply {
                         clear()
                         addAll(it.response.communityImgDtos.map {  img -> img.communityImageUrl })

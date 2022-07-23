@@ -18,3 +18,5 @@ data class CommentAttributeClickEvent(val data : CommentData)
 data class ReCommentAttributeClickEvent(val data : ReCommentData)
 
 data class MoveToNoteWithAnotherUser(val data : NoteListData)
+
+data class MoveToImageDetailEvent(val position: Int)

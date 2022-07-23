@@ -23,6 +23,8 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import java.lang.Exception
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CommunityDetailFragment :
     CommonFragment<FragmentCommunityDetailBinding>(R.layout.fragment_community_detail),
@@ -107,7 +109,7 @@ class CommunityDetailFragment :
                     null
                 ) else App.instance.resources.getColor(R.color.black7, null)
             )
-            binding.likeCountView.setTextColorResource(if(likeUser) R.color.mainColor else R.color.gray2)
+            binding.likeCountView.setTextColorResource(if (likeUser) R.color.mainColor else R.color.gray2)
             binding.likeCountView.text =
                 resources.getString(R.string.likeCountFormat, likeCount.toString())
             binding.commentCountView.text =
@@ -185,7 +187,9 @@ class CommunityDetailFragment :
                                                         if (communityDetailViewModel.deleteCommunityContent(
                                                                 detailData.communityId
                                                             )
-                                                        ) { navPopStack() }
+                                                        ) {
+                                                            navPopStack()
+                                                        }
                                                         toastShow(
                                                             it,
                                                             communityDetailViewModel.deleteContentResultMessage
@@ -197,7 +201,11 @@ class CommunityDetailFragment :
                                     }
                                     resources.getString(R.string.send_a_note) -> {
                                         //쪽지 보내기 기능
-                                        navigate(CommunityDetailFragmentDirections.actionCommunityDetailFragmentToSendNoteFragment(detailData.userId))
+                                        navigate(
+                                            CommunityDetailFragmentDirections.actionCommunityDetailFragmentToSendNoteFragment(
+                                                detailData.userId
+                                            )
+                                        )
                                     }
                                     resources.getString(R.string.report) -> {
                                         //신고 기능
@@ -289,7 +297,7 @@ class CommunityDetailFragment :
         }
     }
 
-    private fun modifyComment(answerId: Long, content : String) {
+    private fun modifyComment(answerId: Long, content: String) {
         isLoading = true
         CoroutineScope(Dispatchers.IO).launch {
             val message = communityDetailViewModel.modifyAnswers(answerId, content)
@@ -299,7 +307,7 @@ class CommunityDetailFragment :
         }
     }
 
-    private fun createReComment(answerId: Long, content : String) {
+    private fun createReComment(answerId: Long, content: String) {
         isLoading = true
         CoroutineScope(Dispatchers.IO).launch {
             val message = communityDetailViewModel.createReAnswer(answerId, content)
@@ -309,7 +317,7 @@ class CommunityDetailFragment :
         }
     }
 
-    private fun deleteComment(answerId : Long, isComment : Boolean = true) {
+    private fun deleteComment(answerId: Long, isComment: Boolean = true) {
         isLoading = true
         CoroutineScope(Dispatchers.IO).launch {
             val message = communityDetailViewModel.deleteAnswers(answerId)
@@ -329,14 +337,16 @@ class CommunityDetailFragment :
         isLoading = true
         CoroutineScope(Dispatchers.IO).launch {
             val message = communityDetailViewModel.reportAnswers(answerId)
-            toastShow(context, message.ifEmpty { resources.getString(R.string.msg_report_complete) })
+            toastShow(
+                context,
+                message.ifEmpty { resources.getString(R.string.msg_report_complete) })
             isLoading = false
             refresh()
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun commentAttributeClick(event : CommentAttributeClickEvent) {
+    fun commentAttributeClick(event: CommentAttributeClickEvent) {
         val commentData = event.data
         val itemList = if (commentData.userId == CachingData.userProfile?.userId) {
             arrayListOf(
@@ -355,7 +365,7 @@ class CommunityDetailFragment :
         val dialog = SelectListBottomSheetDialog(itemList).apply {
             result = object : StringResult {
                 override fun finish(data: String) {
-                    when(data) {
+                    when (data) {
                         resources.getString(R.string.modify) -> {
                             textInputDialogShow(
                                 context,
@@ -377,7 +387,11 @@ class CommunityDetailFragment :
                             )
                         }
                         resources.getString(R.string.send_a_note) -> {
-                            navigate(CommunityDetailFragmentDirections.actionCommunityDetailFragmentToSendNoteFragment(commentData.userId))
+                            navigate(
+                                CommunityDetailFragmentDirections.actionCommunityDetailFragmentToSendNoteFragment(
+                                    commentData.userId
+                                )
+                            )
                         }
                         resources.getString(R.string.re_comment_put_on) -> {
                             textInputDialogShow(
@@ -409,7 +423,7 @@ class CommunityDetailFragment :
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun reCommentAttributeClick(event : ReCommentAttributeClickEvent) {
+    fun reCommentAttributeClick(event: ReCommentAttributeClickEvent) {
         val reCommentData = event.data
         val itemList = if (reCommentData.userId == CachingData.userProfile?.userId) {
             arrayListOf(
@@ -427,7 +441,7 @@ class CommunityDetailFragment :
         val dialog = SelectListBottomSheetDialog(itemList).apply {
             result = object : StringResult {
                 override fun finish(data: String) {
-                    when(data) {
+                    when (data) {
                         resources.getString(R.string.modify) -> {
                             textInputDialogShow(
                                 context,
@@ -449,7 +463,11 @@ class CommunityDetailFragment :
                             )
                         }
                         resources.getString(R.string.send_a_note) -> {
-                            navigate(CommunityDetailFragmentDirections.actionCommunityDetailFragmentToSendNoteFragment(reCommentData.userId))
+                            navigate(
+                                CommunityDetailFragmentDirections.actionCommunityDetailFragmentToSendNoteFragment(
+                                    reCommentData.userId
+                                )
+                            )
                         }
                         resources.getString(R.string.report) -> {
                             twoButtonDialogShow(
@@ -469,21 +487,39 @@ class CommunityDetailFragment :
         dialog.show(childFragmentManager, "reComment")
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun moveToImageDetailEvent(event: MoveToImageDetailEvent) {
+        navigate(
+            CommunityDetailFragmentDirections.actionCommunityDetailFragmentToImagePageFragment(
+                communityDetailViewModel.questionImages.toArray(
+                    arrayOfNulls<String>(
+                        communityDetailViewModel.questionImages.size
+                    )
+                ),
+                event.position
+            )
+        )
+    }
+
     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
     override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        if(binding.commentEditTextView.text.toString().isNotEmpty()) {
+        if (binding.commentEditTextView.text.toString().isNotEmpty()) {
             binding.commentInputButton.setBackgroundResource(R.drawable.bg_oval_main_color)
-            binding.commentInputButton.setColorFilter(resources.getColor(
-                R.color.white,
-                null
-            ))
+            binding.commentInputButton.setColorFilter(
+                resources.getColor(
+                    R.color.white,
+                    null
+                )
+            )
         } else {
             binding.commentInputButton.setBackgroundResource(R.drawable.bg_oval_black7)
-            binding.commentInputButton.setColorFilter(resources.getColor(
-                R.color.black04,
-                null
-            ))
+            binding.commentInputButton.setColorFilter(
+                resources.getColor(
+                    R.color.black04,
+                    null
+                )
+            )
         }
 
     }

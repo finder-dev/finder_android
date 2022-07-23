@@ -1,6 +1,7 @@
 package com.finder.android.mbti.screen.fragment.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
@@ -67,6 +68,7 @@ class HomeFragment : CommonFragment<FragmentHomeBinding>(R.layout.fragment_home)
         homeViewModel.hotDebate.observe(viewLifecycleOwner) {
             if (it != null) {
                 binding.balanceGameView.apply {
+                    balanceGamePromotionLayout.visibility = View.VISIBLE
                     emptyIncludeView.root.visibility = View.GONE
                     balanceGameTitleView.text = it.title
                     remainingTimeView.text = it.deadline

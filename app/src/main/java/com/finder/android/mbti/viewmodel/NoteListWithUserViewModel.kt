@@ -9,6 +9,9 @@ import com.finder.android.mbti.dataobj.NoteListData
 import com.finder.android.mbti.dataobj.NoteWithUserVO
 import com.finder.android.mbti.dataobj.UserNoteVO
 import com.finder.android.mbti.network.MainNetWorkUtil
+import com.finder.android.mbti.network.request.BlockUserRequest
+import com.finder.android.mbti.network.request.DeleteUserRequestDTO
+import com.finder.android.mbti.network.request.ReportUserRequest
 
 class NoteListWithUserViewModel: ViewModel() {
 
@@ -17,15 +20,16 @@ class NoteListWithUserViewModel: ViewModel() {
     var currentPage : Int = 0
     var getListResultMessage = ""
     var isLast : Boolean = false
+    var reportUserResultMessage = ""
+    var blockUserResultMessage = ""
+    var deleteUserNoteResultMessage = ""
 
     fun getNotes() : Boolean {
         targetUserData?.let {
             MainNetWorkUtil.api.getNoteWithUser(it.targetUserId, currentPage).runCatching {
                 val result = this.execute()
-                Log.e("안오네", result.isSuccessful.toString())
                 if(result.isSuccessful) {
                     result.body()?.response?.let { note ->
-                        Log.e("note", note.toString())
                         if(currentPage == 0) noteList.clear()
                         isLast = note.last
                         noteList.addAll(note.content.map { userVo ->
@@ -45,6 +49,66 @@ class NoteListWithUserViewModel: ViewModel() {
                 getListResultMessage = App.instance.resources.getString(R.string.error_unspecified_message)
                 error.printStackTrace()
             }
+        }
+        return false
+    }
+
+    fun reportUser(userId: Long) : Boolean {
+        reportUserResultMessage = App.instance.resources.getString(R.string.error_unspecified_message)
+        MainNetWorkUtil.api.reportUser(ReportUserRequest(userId)).runCatching {
+            val result = this.execute()
+            if(result.isSuccessful) {
+                reportUserResultMessage = App.instance.getString(R.string.msg_report_complete)
+            } else {
+                MainNetWorkUtil.errorMessage(result.errorBody())?.let {
+                    if(it.errorResponse.errorMessages.isNotEmpty()) {
+                        reportUserResultMessage = it.errorResponse.errorMessages[0]
+                    }
+                }
+            }
+            return result.isSuccessful
+        }.onFailure {
+            it.printStackTrace()
+        }
+        return false
+    }
+
+    fun blockUser(userId: Long) : Boolean {
+        blockUserResultMessage = App.instance.resources.getString(R.string.error_unspecified_message)
+        MainNetWorkUtil.api.blockUser(BlockUserRequest(userId)).runCatching {
+            val result = this.execute()
+            if(result.isSuccessful) {
+                blockUserResultMessage = App.instance.getString(R.string.msg_block_complete)
+            } else {
+                MainNetWorkUtil.errorMessage(result.errorBody())?.let {
+                    if(it.errorResponse.errorMessages.isNotEmpty()) {
+                        blockUserResultMessage = it.errorResponse.errorMessages[0]
+                    }
+                }
+            }
+            return result.isSuccessful
+        }.onFailure {
+            it.printStackTrace()
+        }
+        return false
+    }
+
+    fun deleteUserNote(userId: Long) : Boolean {
+        deleteUserNoteResultMessage = App.instance.resources.getString(R.string.error_unspecified_message)
+        MainNetWorkUtil.api.allDeleteNoteWithUser(DeleteUserRequestDTO(userId)).runCatching {
+            val result = this.execute()
+            if(result.isSuccessful) {
+                deleteUserNoteResultMessage = App.instance.getString(R.string.msg_delete_complete)
+            } else {
+                MainNetWorkUtil.errorMessage(result.errorBody())?.let {
+                    if(it.errorResponse.errorMessages.isNotEmpty()) {
+                        deleteUserNoteResultMessage = it.errorResponse.errorMessages[0]
+                    }
+                }
+            }
+            return result.isSuccessful
+        }.onFailure {
+            it.printStackTrace()
         }
         return false
     }
