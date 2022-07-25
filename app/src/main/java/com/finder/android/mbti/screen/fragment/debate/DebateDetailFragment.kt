@@ -72,6 +72,7 @@ class DebateDetailFragment :
     private fun setUI(data: DebateDetailResponseVO) {
         balanceGameOnOff(data.join, (data.joinOption == "A"))
         binding.balanceGameView.apply {
+            balanceGamePromotionLayout.visibility = View.VISIBLE
             emptyIncludeView.root.visibility = View.GONE
             balanceGameTitleView.text = data.debateTitle
             remainingTimeView.text = data.deadline
