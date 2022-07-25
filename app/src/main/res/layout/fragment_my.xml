@@ -118,7 +118,7 @@
             app:tabTextAppearance="@style/tab_text"
             app:tabSelectedTextColor="@color/mainColor"
             app:tabRippleColor="@null"
-            app:tabIndicatorHeight="1dp"
+            app:tabIndicatorHeight="3dp"
             app:tabIndicatorColor="@color/mainColor"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout

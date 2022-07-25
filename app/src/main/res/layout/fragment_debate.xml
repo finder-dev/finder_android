@@ -66,6 +66,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/noto_sans_kr_bold"
+                android:includeFontPadding="false"
                 android:textColor="@color/black1"
                 android:textSize="18dp"/>
 
@@ -78,7 +80,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="3dp"
             android:background="@color/mainColor"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
