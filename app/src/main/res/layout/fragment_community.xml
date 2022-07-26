@@ -99,6 +99,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="8dp"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:includeFontPadding="false"
                         android:text="@string/fastest"
                         android:textColor="@color/black1"
                         android:textSize="16dp"/>
@@ -125,6 +127,8 @@
                         android:id="@+id/mostCommentsTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/noto_sans_kr_regular"
+                        android:includeFontPadding="false"
                         android:text="@string/most_comments"
                         android:textColor="@color/gray3"
                         android:textSize="16dp"/>

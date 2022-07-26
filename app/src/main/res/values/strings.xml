@@ -36,6 +36,7 @@
     <string name="close">닫기</string>
     <string name="my_write_content">작성 글</string>
     <string name="my_write_comment">댓글 단 글</string>
+    <string name="search">검색</string>
 
     <string name="sign_up_complete">회원가입 완료</string>
     <string name="send_code_number">코드번호 발송</string>
@@ -80,7 +81,7 @@
     <string name="setting">설정</string>
     <string name="delete_all">전체삭제</string>
     <string name="block">차단</string>
-
+    <string name="current_search_word">최근 검색어</string>
 
     <string name="success_delete_user">계정탈퇴 완료</string>
     <string name="success_send_note">쪽지 전송 완료</string>
@@ -173,6 +174,7 @@
     <string name="msg_report_sub">신고와 동시에 해당 사용자의\n 쪽지가 차단됩니다.</string>
     <string name="msg_block_sub">쪽지 수발신이 모두 차단되며\n다시 해제할 수 없습니다.</string>
     <string name="msg_delete_all_note_sub">삭제된 쪽지는 복구할 수 없으며, \n대화방에서 자동으로 나가게 됩니다.</string>
+    <string name="msg_empty_search_word">최근 검색어가 없습니다.</string>
 
     <string name="error_unspecified_message">문제가 발생했습니다.</string>
     <string name="error_login">로그인 실패</string>

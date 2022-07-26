@@ -129,6 +129,7 @@ class MyFragment : CommonFragment<FragmentMyBinding>(R.layout.fragment_my), View
                     closeButtonTitle = resources.getString(R.string.logout),
                     confirmButtonTitle = resources.getString(R.string.no),
                     closeEvent = {
+                        isLoading = true
                         CoroutineScope(Dispatchers.IO).launch {
                             val result = myViewModel.logout()
                             if(result) {
@@ -152,6 +153,7 @@ class MyFragment : CommonFragment<FragmentMyBinding>(R.layout.fragment_my), View
                                     resources.getString(R.string.error_unspecified_message)
                                 )
                             }
+                            isLoading = false
                         }
                     }
                 )
