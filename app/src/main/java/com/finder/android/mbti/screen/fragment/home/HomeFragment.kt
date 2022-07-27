@@ -51,6 +51,7 @@ class HomeFragment : CommonFragment<FragmentHomeBinding>(R.layout.fragment_home)
     override fun eventListenerSetting() {
         binding.moveToDebateButton.setOnClickListener(this)
         binding.moveToNoteView.setOnClickListener(this)
+        binding.searchLayout.setOnClickListener(this)
 
         homeViewModel.isExistProfile.observe(viewLifecycleOwner) {
             if (it) {
@@ -176,6 +177,9 @@ class HomeFragment : CommonFragment<FragmentHomeBinding>(R.layout.fragment_home)
                 homeViewModel.hotDebate.value?.let {
                     navigate(MainFragmentDirections.actionMainFragmentToDebateDetailFragment(it.debateId))
                 }
+            }
+            binding.searchLayout -> {
+                navigate(MainFragmentDirections.actionMainFragmentToSearchFragment())
             }
             binding.moveToNoteView -> {
                 navigate(MainFragmentDirections.actionMainFragmentToNoteListFragment())

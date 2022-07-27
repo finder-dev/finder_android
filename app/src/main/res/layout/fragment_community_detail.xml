@@ -119,8 +119,14 @@
                     android:id="@+id/includePublisherData"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="32dp"
                     layout="@layout/include_user_data"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/almost_white_ed"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/communityContentsTextView"
@@ -144,6 +150,11 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="horizontal"
                     android:layout_weight="1"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/almost_white_ed"/>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -209,6 +220,11 @@
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="#F7F8FC"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/commentRecyclerView"

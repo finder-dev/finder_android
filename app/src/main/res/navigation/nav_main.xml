@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_mainFragment_to_noteListFragment"
             app:destination="@id/noteListFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/communityWriteFragment"
@@ -216,5 +219,14 @@
         <argument
             android:name="position"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        tools:layout="@layout/fragment_search"
+        android:name="com.finder.android.mbti.screen.fragment.home.SearchFragment"
+        android:label="SearchFragment">
+        <action
+            android:id="@+id/action_searchFragment_to_communityDetailFragment"
+            app:destination="@id/communityDetailFragment" />
     </fragment>
 </navigation>

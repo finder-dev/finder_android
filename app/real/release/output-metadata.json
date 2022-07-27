@@ -4,14 +4,14 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.finder.android",
+  "applicationId": "com.finder.android.mbti",
   "variantName": "realRelease",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 2022072001,
+      "versionCode": 2022072522,
       "versionName": "0.0.1-beta",
       "outputFile": "app-real-release.apk"
     }

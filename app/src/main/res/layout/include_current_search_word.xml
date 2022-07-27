@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="searchViewModel"
+            type="com.finder.android.mbti.viewmodel.SearchViewModel" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/currentSearchWordTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/current_search_word"
+                android:textColor="@color/black1"
+                android:textSize="16dp"
+                android:fontFamily="@font/noto_sans_kr_bold"
+                android:includeFontPadding="false"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/allDeleteWordButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_all"
+                android:textColor="@color/gray3"
+                android:textSize="14dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:includeFontPadding="false"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/searchWordRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            searchAdapter="@{searchViewModel.searchWordList}"
+            android:visibility="@{(searchViewModel.searchWordList.size() != 0) ? View.VISIBLE : View.GONE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/wordEmptyView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{(searchViewModel.searchWordList.size() == 0) ? View.VISIBLE : View.GONE}"
+            android:text="@string/msg_empty_search_word"
+            android:textSize="14dp"
+            android:textColor="@color/gray3"
+            android:fontFamily="@font/noto_sans_kr_medium"
+            android:includeFontPadding="false"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

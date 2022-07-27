@@ -116,13 +116,13 @@ class CommunityFragment : CommonFragment<FragmentCommunityBinding>(R.layout.frag
                 binding.mostCommentsDotView.setImageResource(R.drawable.ic_gray_dot)
                 binding.mostCommentsTextView.setTextColorResource(R.color.gray3)
                 binding.fastestDotView.setImageResource(R.drawable.ic_main_2_color_dot)
-                binding.fastestTextView.setTextColorResource(R.color.main_color_2)
+                binding.fastestTextView.setTextColorResource(R.color.black1)
             }
             CommunityOrderBy.ANSWER_COUNT -> {
                 binding.fastestDotView.setImageResource(R.drawable.ic_gray_dot)
                 binding.fastestTextView.setTextColorResource(R.color.gray3)
                 binding.mostCommentsDotView.setImageResource(R.drawable.ic_main_2_color_dot)
-                binding.mostCommentsTextView.setTextColorResource(R.color.main_color_2)
+                binding.mostCommentsTextView.setTextColorResource(R.color.black1)
             }
         }
         dataLoading(true)

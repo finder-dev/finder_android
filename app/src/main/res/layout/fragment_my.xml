@@ -58,8 +58,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
+            android:background="@drawable/bg_round_ededed"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginRight="20dp"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:layout_marginTop="28dp"
@@ -118,7 +121,7 @@
             app:tabTextAppearance="@style/tab_text"
             app:tabSelectedTextColor="@color/mainColor"
             app:tabRippleColor="@null"
-            app:tabIndicatorHeight="1dp"
+            app:tabIndicatorHeight="3dp"
             app:tabIndicatorColor="@color/mainColor"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -131,6 +134,8 @@
                 android:id="@+id/myJoinContentRecyclerView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 communityAdapter="@{myViewModel.contentList}"
                 android:visibility="@{(myViewModel.contentList.size()!=0) ? View.VISIBLE : View.GONE}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
