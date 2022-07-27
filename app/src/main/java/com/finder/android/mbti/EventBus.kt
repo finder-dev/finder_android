@@ -1,5 +1,6 @@
 package com.finder.android.mbti
 
+import com.finder.android.mbti.database.entity.SearchWordEntity
 import com.finder.android.mbti.dataobj.CommentData
 import com.finder.android.mbti.dataobj.Content
 import com.finder.android.mbti.dataobj.NoteListData
@@ -20,3 +21,5 @@ data class ReCommentAttributeClickEvent(val data : ReCommentData)
 data class MoveToNoteWithAnotherUser(val data : NoteListData)
 
 data class MoveToImageDetailEvent(val position: Int)
+
+data class ClickSearchWordEvent(val word : SearchWordEntity)

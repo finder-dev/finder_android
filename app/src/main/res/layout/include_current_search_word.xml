@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="android.view.View"/>
+        <variable
+            name="searchViewModel"
+            type="com.finder.android.mbti.viewmodel.SearchViewModel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -44,15 +47,19 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/searchWordRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            searchAdapter="@{searchViewModel.searchWordList}"
+            android:visibility="@{(searchViewModel.searchWordList.size() != 0) ? View.VISIBLE : View.GONE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/wordEmptyView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="@{(searchViewModel.searchWordList.size() == 0) ? View.VISIBLE : View.GONE}"
             android:text="@string/msg_empty_search_word"
             android:textSize="14dp"
             android:textColor="@color/gray3"

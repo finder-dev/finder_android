@@ -205,4 +205,12 @@ interface MainApiService {
     @Headers("Content-Type: application/json")
     @HTTP(method = "DELETE", path="api/message",hasBody = true)
     fun allDeleteNoteWithUser(@Body data : DeleteUserRequestDTO) : Call<Unit>
+
+    @GET("api/community/search")
+    fun getCommunitySearchList(
+        @Query("searchQuery") searchWord : String,
+        @Query("orderBy") orderBy: String? = null, //ANSWER_COUNT, CREATE_TIME →default: CREATE_TIME
+        @Query("page") page: Int
+    ) : Call<CommunityListResponse>
+
 }

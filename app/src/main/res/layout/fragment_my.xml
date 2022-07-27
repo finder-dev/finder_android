@@ -134,6 +134,8 @@
                 android:id="@+id/myJoinContentRecyclerView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
                 communityAdapter="@{myViewModel.contentList}"
                 android:visibility="@{(myViewModel.contentList.size()!=0) ? View.VISIBLE : View.GONE}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
